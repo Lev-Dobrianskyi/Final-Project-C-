@@ -46,11 +46,11 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 32F);
-            label2.Location = new Point(151, 204);
+            label2.Location = new Point(213, 91);
             label2.Name = "label2";
-            label2.Size = new Size(417, 59);
+            label2.Size = new Size(314, 59);
             label2.TabIndex = 1;
-            label2.Text = "THASHAJSHDLAJDH";
+            label2.Text = "This is my work";
             // 
             // MainMenuForm
             // 
