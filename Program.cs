@@ -1,5 +1,0 @@
-/*
- 
- test
-I checked this file
- */
