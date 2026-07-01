@@ -1,6 +1,6 @@
 ﻿namespace Music_App
 {
-    partial class MainMenuForm
+    partial class SignupForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,38 +29,25 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            label2 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 24F);
-            label1.Location = new Point(25, 9);
+            label1.Location = new Point(327, 146);
             label1.Name = "label1";
-            label1.Size = new Size(749, 45);
+            label1.Size = new Size(38, 15);
             label1.TabIndex = 0;
-            label1.Text = "Yooo so uhh just use this as the main menu thanks!";
+            label1.Text = "label1";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 24F);
-            label2.Location = new Point(206, 217);
-            label2.Name = "label2";
-            label2.Size = new Size(375, 45);
-            label2.TabIndex = 1;
-            label2.Text = "Label of SignupForm dev";
-            // 
-            // MainMenuForm
+            // SignupForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(label2);
             Controls.Add(label1);
-            Name = "MainMenuForm";
-            Text = "MainMenuForm";
+            Name = "SignupForm";
+            Text = "SignupForm";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -68,6 +55,5 @@
         #endregion
 
         private Label label1;
-        private Label label2;
     }
 }
