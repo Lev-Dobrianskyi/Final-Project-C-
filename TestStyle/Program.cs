@@ -1,4 +1,4 @@
-namespace Music_App
+namespace TestStyle
 {
     internal static class Program
     {
@@ -15,3 +15,4 @@ namespace Music_App
         }
     }
 }
+
