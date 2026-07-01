@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             label1 = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -41,11 +42,22 @@
             label1.TabIndex = 0;
             label1.Text = "Yooo so uhh just use this as the main menu thanks!";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 24F);
+            label2.Location = new Point(276, 159);
+            label2.Name = "label2";
+            label2.Size = new Size(238, 45);
+            label2.TabIndex = 1;
+            label2.Text = "This is my work";
+            // 
             // MainMenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label2);
             Controls.Add(label1);
             Name = "MainMenuForm";
             Text = "MainMenuForm";
@@ -56,5 +68,6 @@
         #endregion
 
         private Label label1;
+        private Label label2;
     }
 }
