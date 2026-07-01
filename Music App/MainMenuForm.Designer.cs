@@ -30,7 +30,6 @@
         {
             label1 = new Label();
             label3 = new Label();
-            label2 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -50,22 +49,11 @@
             label3.Size = new Size(100, 23);
             label3.TabIndex = 0;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 24F);
-            label2.Location = new Point(272, 185);
-            label2.Name = "label2";
-            label2.Size = new Size(249, 45);
-            label2.TabIndex = 1;
-            label2.Text = "Work from dev1";
-            // 
             // MainMenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(label2);
             Controls.Add(label1);
             Name = "MainMenuForm";
             Text = "MainMenuForm";
@@ -77,6 +65,5 @@
 
         private Label label1;
         private Label label3;
-        private Label label2;
     }
 }
