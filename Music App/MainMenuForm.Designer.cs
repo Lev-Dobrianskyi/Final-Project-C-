@@ -30,6 +30,7 @@
         {
             label1 = new Label();
             label2 = new Label();
+            label3 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -51,6 +52,16 @@
             label2.Size = new Size(375, 45);
             label2.TabIndex = 1;
             label2.Text = "Label of SignupForm dev";
+            //
+            // label3
+            //
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 24F);
+            label3.Location = new Point(206, 186);
+            label3.Name = "label2";
+            label3.Size = new Size(347, 45);
+            label3.TabIndex = 1;
+            label3.Text = "Label of MainForm dev";
             // 
             // MainMenuForm
             // 
@@ -69,5 +80,6 @@
 
         private Label label1;
         private Label label2;
+        private Label label3;
     }
 }
