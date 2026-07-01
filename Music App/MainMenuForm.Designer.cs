@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            label3 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -41,13 +40,6 @@
             label1.Size = new Size(749, 45);
             label1.TabIndex = 0;
             label1.Text = "Yooo so uhh just use this as the main menu thanks!";
-            // 
-            // label3
-            // 
-            label3.Location = new Point(0, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(100, 23);
-            label3.TabIndex = 0;
             // 
             // MainMenuForm
             // 
@@ -64,6 +56,5 @@
         #endregion
 
         private Label label1;
-        private Label label3;
     }
 }
