@@ -17,7 +17,7 @@ namespace TestStyle
 
         private void SigninButton_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
+            SignupForm loginForm = new SignupForm();
             loginForm.ShowDialog();
         }
     }
