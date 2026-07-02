@@ -1,8 +1,8 @@
 namespace TestStyle
 {
-    public partial class SignupForm : Form
+    public partial class SigninForm : Form
     {
-        public SignupForm()
+        public SigninForm()
         {
             InitializeComponent();
 

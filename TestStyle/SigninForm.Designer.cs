@@ -1,6 +1,6 @@
 ﻿namespace TestStyle
 {
-    partial class SignupForm
+    partial class SigninForm
     {
         /// <summary>
         ///  Required designer variable.
