@@ -28,12 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "MainMenuForm";
+            SigninButton = new Button();
+            SignupButton = new Button();
+            SuspendLayout();
+            // 
+            // SigninButton
+            // 
+            SigninButton.Location = new Point(713, 12);
+            SigninButton.Name = "SigninButton";
+            SigninButton.Size = new Size(75, 23);
+            SigninButton.TabIndex = 0;
+            SigninButton.Text = "Sign in";
+            SigninButton.UseVisualStyleBackColor = true;
+            SigninButton.Click += SigninButton_Click;
+            // 
+            // SignupButton
+            // 
+            SignupButton.Location = new Point(632, 12);
+            SignupButton.Name = "SignupButton";
+            SignupButton.Size = new Size(75, 23);
+            SignupButton.TabIndex = 1;
+            SignupButton.Text = "Sign up";
+            SignupButton.UseVisualStyleBackColor = true;
+            // 
+            // MainMenuForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(SignupButton);
+            Controls.Add(SigninButton);
+            Name = "MainMenuForm";
+            Text = "MainMenuForm";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button SigninButton;
+        private Button SignupButton;
     }
 }

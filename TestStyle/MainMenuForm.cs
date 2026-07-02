@@ -14,5 +14,11 @@ namespace TestStyle
         {
             InitializeComponent();
         }
+
+        private void SigninButton_Click(object sender, EventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            loginForm.ShowDialog();
+        }
     }
 }
