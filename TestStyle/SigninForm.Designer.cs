@@ -142,23 +142,19 @@
             // 
             // button3
             // 
-            button3.BackColor = Color.FromArgb(20, 20, 20);
-            button3.Cursor = Cursors.Hand;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.ForeColor = Color.FromArgb(255, 128, 0);
-            button3.Location = new Point(339, -5);
-            button3.Name = "button3";
-            button3.Size = new Size(45, 45);
-            button3.TabIndex = 8;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = false;
+            lblLogin.Font = new Font("Tempus Sans ITC", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLogin.ForeColor = Color.FromArgb(255, 128, 0);
+            lblLogin.Location = new Point(99, 85);
+            lblLogin.Name = "lblLogin";
+            lblLogin.Size = new Size(270, 105);
+            lblLogin.TabIndex = 9;
+            lblLogin.Text = "Login";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(20, 20, 20);
-            ClientSize = new Size(382, 573);
+            ClientSize = new Size(800, 450);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);

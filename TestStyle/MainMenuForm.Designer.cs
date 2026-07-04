@@ -34,9 +34,10 @@
             // 
             // SigninButton
             // 
-            SigninButton.Location = new Point(713, 12);
+            SigninButton.Location = new Point(815, 16);
+            SigninButton.Margin = new Padding(3, 4, 3, 4);
             SigninButton.Name = "SigninButton";
-            SigninButton.Size = new Size(75, 23);
+            SigninButton.Size = new Size(86, 31);
             SigninButton.TabIndex = 0;
             SigninButton.Text = "Sign in";
             SigninButton.UseVisualStyleBackColor = true;
@@ -44,20 +45,22 @@
             // 
             // SignupButton
             // 
-            SignupButton.Location = new Point(632, 12);
+            SignupButton.Location = new Point(722, 16);
+            SignupButton.Margin = new Padding(3, 4, 3, 4);
             SignupButton.Name = "SignupButton";
-            SignupButton.Size = new Size(75, 23);
+            SignupButton.Size = new Size(86, 31);
             SignupButton.TabIndex = 1;
             SignupButton.Text = "Sign up";
             SignupButton.UseVisualStyleBackColor = true;
             // 
             // MainMenuForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(SignupButton);
             Controls.Add(SigninButton);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "MainMenuForm";
             Text = "MainMenuForm";
             ResumeLayout(false);
