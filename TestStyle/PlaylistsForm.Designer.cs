@@ -48,6 +48,8 @@ namespace TestStyle
             SongAuthorLabel = new Label();
             SongNameLabel = new Label();
             SongPicBox = new PictureBox();
+            SearchTextBoxPL = new TextBox();
+            SearchBtnPL = new Button();
             PlaylistPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PlaylistSongsDGV).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PlaylistPicBox).BeginInit();
@@ -62,9 +64,9 @@ namespace TestStyle
             PlaylistFLP.AutoScroll = true;
             PlaylistFLP.BackColor = Color.FromArgb(40, 40, 40);
             PlaylistFLP.BorderStyle = BorderStyle.FixedSingle;
-            PlaylistFLP.Location = new Point(3, 117);
+            PlaylistFLP.Location = new Point(3, 3);
             PlaylistFLP.Name = "PlaylistFLP";
-            PlaylistFLP.Size = new Size(282, 417);
+            PlaylistFLP.Size = new Size(282, 531);
             PlaylistFLP.TabIndex = 0;
             // 
             // PlaylistPanel
@@ -76,7 +78,7 @@ namespace TestStyle
             PlaylistPanel.Controls.Add(PlaylistAuthorLabel);
             PlaylistPanel.Controls.Add(PlaylistNameLabel);
             PlaylistPanel.Controls.Add(PlaylistPicBox);
-            PlaylistPanel.Location = new Point(306, 12);
+            PlaylistPanel.Location = new Point(306, 90);
             PlaylistPanel.Name = "PlaylistPanel";
             PlaylistPanel.Size = new Size(702, 537);
             PlaylistPanel.TabIndex = 2;
@@ -125,9 +127,8 @@ namespace TestStyle
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 40);
-            panel1.Controls.Add(PlaylistsTEXT);
             panel1.Controls.Add(PlaylistFLP);
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(12, 90);
             panel1.Name = "panel1";
             panel1.Size = new Size(288, 537);
             panel1.TabIndex = 3;
@@ -137,7 +138,7 @@ namespace TestStyle
             PlaylistsTEXT.AutoSize = true;
             PlaylistsTEXT.Font = new Font("Sitka Banner", 25.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
             PlaylistsTEXT.ForeColor = Color.FromArgb(255, 128, 0);
-            PlaylistsTEXT.Location = new Point(3, 52);
+            PlaylistsTEXT.Location = new Point(15, 25);
             PlaylistsTEXT.Name = "PlaylistsTEXT";
             PlaylistsTEXT.Size = new Size(160, 62);
             PlaylistsTEXT.TabIndex = 1;
@@ -155,7 +156,7 @@ namespace TestStyle
             panel2.Controls.Add(SongNameLabel);
             panel2.Controls.Add(SongPicBox);
             panel2.ForeColor = Color.FromArgb(15, 15, 15);
-            panel2.Location = new Point(0, 555);
+            panel2.Location = new Point(0, 633);
             panel2.Name = "panel2";
             panel2.Size = new Size(1019, 129);
             panel2.TabIndex = 4;
@@ -266,28 +267,58 @@ namespace TestStyle
             SongPicBox.TabIndex = 0;
             SongPicBox.TabStop = false;
             // 
+            // SearchTextBoxPL
+            // 
+            SearchTextBoxPL.BackColor = Color.FromArgb(50, 50, 50);
+            SearchTextBoxPL.BorderStyle = BorderStyle.FixedSingle;
+            SearchTextBoxPL.Font = new Font("Sitka Banner", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            SearchTextBoxPL.ForeColor = SystemColors.Control;
+            SearchTextBoxPL.Location = new Point(324, 25);
+            SearchTextBoxPL.Name = "SearchTextBoxPL";
+            SearchTextBoxPL.Size = new Size(266, 41);
+            SearchTextBoxPL.TabIndex = 5;
+            // 
+            // SearchBtnPL
+            // 
+            SearchBtnPL.BackColor = SystemColors.ScrollBar;
+            SearchBtnPL.FlatStyle = FlatStyle.System;
+            SearchBtnPL.Font = new Font("Sitka Banner", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            SearchBtnPL.ForeColor = Color.Black;
+            SearchBtnPL.Location = new Point(596, 25);
+            SearchBtnPL.Name = "SearchBtnPL";
+            SearchBtnPL.Size = new Size(94, 41);
+            SearchBtnPL.TabIndex = 6;
+            SearchBtnPL.Text = "Search";
+            SearchBtnPL.UseVisualStyleBackColor = false;
+            SearchBtnPL.Click += SearchBtnPL_Click;
+            SearchBtnPL.MouseEnter += SearchBtnPL_MouseEnter;
+            SearchBtnPL.MouseLeave += SearchBtnPL_MouseLeave;
+            // 
             // PlaylistsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 20, 20);
-            ClientSize = new Size(1020, 683);
+            ClientSize = new Size(1020, 759);
+            Controls.Add(PlaylistsTEXT);
+            Controls.Add(SearchBtnPL);
+            Controls.Add(SearchTextBoxPL);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(PlaylistPanel);
             Name = "PlaylistsForm";
-            Text = "Form2";
+            Text = "PLaylists";
             Load += Form2_Load;
             PlaylistPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)PlaylistSongsDGV).EndInit();
             ((System.ComponentModel.ISupportInitialize)PlaylistPicBox).EndInit();
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)SongTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)SongPicBox).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -310,5 +341,7 @@ namespace TestStyle
         private TrackBar SongTrackBar;
         private Label MaxSongTimeLabel;
         private Label CurrSongTimeLabel;
+        private TextBox SearchTextBoxPL;
+        private Button SearchBtnPL;
     }
 }

@@ -30,6 +30,8 @@ namespace TestStyle
             int songTime = MaxSongTimeLabel.Text.Length;
 
             SongTrackBar.Maximum = songTime;
+
+            SearchTextBoxPL.PlaceholderText = "Search in playlists...";
         }
         bool isPlaying = false;
         private void Play_PauseBtn_Click(object sender, EventArgs e)
@@ -55,5 +57,21 @@ namespace TestStyle
         {
 
         }
+
+        private void SearchBtnPL_MouseEnter(object sender, EventArgs e)
+        {
+            SearchTextBoxPL.ForeColor = Color.FromArgb(255, 128, 0);
+        }
+
+        private void SearchBtnPL_MouseLeave(object sender, EventArgs e)
+        {
+            SearchTextBoxPL.ForeColor = Color.FromArgb(0, 0, 0);
+        }
+
+        private void SearchBtnPL_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+
