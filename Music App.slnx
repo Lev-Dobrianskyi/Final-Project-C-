@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="MusicAppServer/MusicAppServer.csproj" Id="fb26e22d-e11b-43e8-88d6-5337c56a394a" />
   <Project Path="TestStyle/Music App.csproj" />
 </Solution>
