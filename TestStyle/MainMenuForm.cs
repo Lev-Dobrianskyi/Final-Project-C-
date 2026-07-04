@@ -22,5 +22,25 @@ namespace TestStyle
         }
 
         
+
+        private void SearchBtnRMM_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void PlaylistsBtnRMM_Click(object sender, EventArgs e)
+        {
+            PlaylistsForm playlistForm = new PlaylistsForm();
+            playlistForm.Show();
+        }
+
+        private void HistoryBtnRMM_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CreateSongBtnRMM_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
