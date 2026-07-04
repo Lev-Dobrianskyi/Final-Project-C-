@@ -13,24 +13,6 @@ namespace TestStyle
             this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
         }
 
-        private void txtEmail_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtPassword_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnLogin_MouseEnter(object sender, EventArgs e)
         {
             btnLogin.BackColor = Color.FromArgb(255, 180, 0);  // --- яскравіший оранжевий

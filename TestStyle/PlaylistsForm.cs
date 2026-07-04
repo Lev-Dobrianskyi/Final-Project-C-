@@ -72,6 +72,11 @@ namespace TestStyle
         {
 
         }
+
+        private void PlaylistBox_Enter(object sender, EventArgs e)
+        {
+            // this is a placeholder for the event handler when the user enters the PlaylistBox, open the playlist when THIS event is triggered
+        }
     }
 }
 
