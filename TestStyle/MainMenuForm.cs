@@ -17,30 +17,8 @@ namespace TestStyle
 
         private void SigninButton_Click(object sender, EventArgs e)
         {
-            SigninForm loginForm = new SigninForm();
-            loginForm.ShowDialog();
-        }
-
-        
-
-        private void SearchBtnRMM_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void PlaylistsBtnRMM_Click(object sender, EventArgs e)
-        {
-            PlaylistsForm playlistForm = new PlaylistsForm();
-            playlistForm.Show();
-        }
-
-        private void HistoryBtnRMM_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CreateSongBtnRMM_Click(object sender, EventArgs e)
-        {
-
+            SigninForm SigninForm = new SigninForm();
+            SigninForm.ShowDialog();
         }
     }
 }
