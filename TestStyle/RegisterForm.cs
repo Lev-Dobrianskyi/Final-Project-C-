@@ -5,22 +5,20 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TestStyle
 {
-    public partial class LoginForm : Form
+    public partial class RegisterForm : Form
     {
-        public LoginForm()
+        public RegisterForm()
         {
             InitializeComponent();
 
-            this.MaximumSize = new Size(0, 0);           // знімає обмеження
-            this.FormBorderStyle = FormBorderStyle.None;     // прибирає стандартну рамку
-
+            this.MaximumSize = new Size(0, 0);
+            this.FormBorderStyle = FormBorderStyle.None;
             this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 5, 5));
-        }
 
+        }
 
         //   ---------------- кнопи зверху --------------  //
         //close button
@@ -75,6 +73,7 @@ namespace TestStyle
             );
         }
 
+
         //   ---------------- перетягування форми --------------  //
         private bool isDragging = false;
         private Point lastCursorPos;
@@ -104,29 +103,25 @@ namespace TestStyle
 
 
 
-
-
-
-
-        //=== ---> LOGIN <--- ===//
-
-        //   ---------------- кнопка логіну --------------  //
-        private void btnLogin_MouseEnter(object sender, EventArgs e)
+        //=== ---> REGISTER <--- ===//
+        //   ---------------- кнопка реєстрації --------------  //
+        private void btnRegister_MouseEnter(object sender, EventArgs e)
         {
-            btnLogin.BackColor = Color.FromArgb(255, 180, 0);
-            btnLogin.ForeColor = Color.Black;
-            btnLogin.Size = new Size(btnLogin.Width + 4, btnLogin.Height + 4);
+            btnRegister.BackColor = Color.FromArgb(255, 180, 0);
+            btnRegister.ForeColor = Color.Black;
+            btnRegister.Size = new Size(btnRegister.Width + 4, btnRegister.Height + 4);
         }
 
-        private void btnLogin_MouseLeave(object sender, EventArgs e)
+        private void btnRegister_MouseLeave(object sender, EventArgs e)
         {
-            btnLogin.BackColor = Color.Orange;
-            btnLogin.ForeColor = Color.Black;
-            btnLogin.Size = new Size(btnLogin.Width - 4, btnLogin.Height - 4);
+            btnRegister.BackColor = Color.Orange;
+            btnRegister.ForeColor = Color.Black;
+            btnRegister.Size = new Size(btnRegister.Width - 4, btnRegister.Height - 4);
 
         }
-        //   ---------------- логіка кнопки логіну --------------  //
-        private void btnLogin_Click(object sender, EventArgs e)
+
+        //   ---------------- логіка кнопки реєстрації --------------  //
+        private void btnRegister_Click(object sender, EventArgs e)
         {
             lblEmailMessage.Visible = false;
             lblPasswordMessage.Visible = false;
@@ -161,38 +156,24 @@ namespace TestStyle
             this.Hide();
         }
         //   ---------------- завантаження форми ---------------  //
-        private void LoginForm_Load(object sender, EventArgs e)
+        private void RegisterForm_Load(object sender, EventArgs e)
         {
             txtEmail.PlaceholderText = "Введіть ваш email";
             txtPassword.PlaceholderText = "Введіть ваш пароль";
         }
 
-        private void llRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void llLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            RegisterForm register = new RegisterForm();
-            register.Show();
+            LoginForm login = new LoginForm();
+            login.Show();
             this.Hide();
         }
-
-
 
         [System.Runtime.InteropServices.DllImport("Gdi32.dll")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
 
-
-        private void pnlTitleBar_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblEmailMessage_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 
+
+
 }
-
-
-
-

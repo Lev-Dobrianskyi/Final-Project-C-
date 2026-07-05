@@ -168,6 +168,7 @@
             Controls.Add(txtPassword);
             Controls.Add(txtEmail);
             Controls.Add(lblLogin);
+            ForeColor = SystemColors.ControlText;
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
