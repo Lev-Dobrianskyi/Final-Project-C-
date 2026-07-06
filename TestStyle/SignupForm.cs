@@ -1,8 +1,16 @@
-﻿namespace Music_App
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+
+namespace Music_App
 {
-    public partial class SigninForm : Form
+    public partial class SignupForm : Form
     {
-        public SigninForm()
+        public SignupForm()
         {
             InitializeComponent();
 
@@ -12,7 +20,7 @@
             this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 5, 5));
         }
 
-        private void SigninForm_Load(object sender, EventArgs e)
+        private void SignupForm_Load(object sender, EventArgs e)
         {
             txtEmail.PlaceholderText = "Enter your Email";
             txtPassword.PlaceholderText = "Enter your password";
@@ -95,37 +103,37 @@
             isDragging = false;
         }
 
-        private void btnSignin_MouseEnter(object sender, EventArgs e)
+        private void btnSignup_MouseEnter(object sender, EventArgs e)
         {
-            btnSignin.BackColor = Color.FromArgb(255, 180, 0);
-            btnSignin.ForeColor = Color.Black;
-            btnSignin.Size = new Size(btnSignin.Width + 4, btnSignin.Height + 4);
+            btnSignup.BackColor = Color.FromArgb(255, 180, 0);
+            btnSignup.ForeColor = Color.Black;
+            btnSignup.Size = new Size(btnSignup.Width + 4, btnSignup.Height + 4);
         }
 
-        private void btnSignin_MouseLeave(object sender, EventArgs e)
+        private void btnSignup_MouseLeave(object sender, EventArgs e)
         {
-            btnSignin.BackColor = Color.Orange;
-            btnSignin.ForeColor = Color.Black;
-            btnSignin.Size = new Size(btnSignin.Width - 4, btnSignin.Height - 4);
+            btnSignup.BackColor = Color.Orange;
+            btnSignup.ForeColor = Color.Black;
+            btnSignup.Size = new Size(btnSignup.Width - 4, btnSignup.Height - 4);
         }
 
-        private void btnSignin_Click(object sender, EventArgs e)
+        private void btnSignup_Click(object sender, EventArgs e)
         {
             lblEmailMessage.Visible = false;
             lblPasswordMessage.Visible = false;
 
             bool isValid = true;
 
-            if (string.IsNullOrWhiteSpace(txtEmail.Text)) // or isnt found
+            if (string.IsNullOrWhiteSpace(txtEmail.Text) || !txtEmail.Text.Contains("@"))
             {
-                lblEmailMessage.Text = "Default error message";
+                lblEmailMessage.Text = "Enter a valid email";
                 lblEmailMessage.Visible = true;
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(txtPassword.Text)) // or isnt found
+            if (string.IsNullOrWhiteSpace(txtPassword.Text) || txtPassword.Text.Length < 6)
             {
-                lblPasswordMessage.Text = "Default error message";
+                lblPasswordMessage.Text = "Password must consist of atleast 6 symbols";
                 lblPasswordMessage.Visible = true;
                 isValid = false;
             }
@@ -135,15 +143,5 @@
                 this.Close();
             }
         }
-
-        private void llSignup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            SignupForm signupForm = new SignupForm();
-            signupForm.Show();
-            this.Close();
-        }
-
-        [System.Runtime.InteropServices.DllImport("Gdi32.dll")]
-        private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
     }
 }

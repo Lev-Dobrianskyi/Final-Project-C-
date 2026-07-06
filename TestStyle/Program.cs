@@ -13,7 +13,7 @@ namespace TestStyle
             ApplicationConfiguration.Initialize();
 
             //Application.Run(new MainMenuForm());
-            Application.Run(new LoginForm());
+            Application.Run(new MainMenuForm());
 
 
 

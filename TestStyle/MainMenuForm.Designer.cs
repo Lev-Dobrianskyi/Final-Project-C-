@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             SigninButton = new Button();
-            button1 = new Button();
+            SignupButton = new Button();
             SuspendLayout();
             // 
             // SigninButton
@@ -42,14 +42,15 @@
             SigninButton.UseVisualStyleBackColor = true;
             SigninButton.Click += SigninButton_Click;
             // 
-            // button1
+            // SignupButton
             // 
-            button1.Location = new Point(632, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 3;
-            button1.Text = "Sign up";
-            button1.UseVisualStyleBackColor = true;
+            SignupButton.Location = new Point(632, 12);
+            SignupButton.Name = "SignupButton";
+            SignupButton.Size = new Size(75, 23);
+            SignupButton.TabIndex = 3;
+            SignupButton.Text = "Sign up";
+            SignupButton.UseVisualStyleBackColor = true;
+            SignupButton.Click += SignupButton_Click;
             // 
             // MainMenuForm
             // 
@@ -57,7 +58,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(800, 450);
-            Controls.Add(button1);
+            Controls.Add(SignupButton);
             Controls.Add(SigninButton);
             Name = "MainMenuForm";
             Text = "MainMenuForm";
@@ -66,6 +67,6 @@
 
         #endregion
         private Button SigninButton;
-        private Button button1;
+        private Button SignupButton;
     }
 }

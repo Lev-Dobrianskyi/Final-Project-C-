@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Music_App;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,8 +18,14 @@ namespace TestStyle
 
         private void SigninButton_Click(object sender, EventArgs e)
         {
-            SigninForm SigninForm = new SigninForm();
-            SigninForm.ShowDialog();
+            SigninForm signinForm = new SigninForm();
+            signinForm.Show();
+        }
+
+        private void SignupButton_Click(object sender, EventArgs e)
+        {
+            RegisterForm signupForm = new RegisterForm();
+            signupForm.Show();
         }
     }
 }
