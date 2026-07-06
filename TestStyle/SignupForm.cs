@@ -143,5 +143,8 @@ namespace Music_App
                 this.Close();
             }
         }
+
+        [System.Runtime.InteropServices.DllImport("Gdi32.dll")]
+        private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
     }
 }

@@ -24,7 +24,7 @@ namespace TestStyle
 
         private void SignupButton_Click(object sender, EventArgs e)
         {
-            RegisterForm signupForm = new RegisterForm();
+            SignupForm signupForm = new SignupForm();
             signupForm.Show();
         }
     }
