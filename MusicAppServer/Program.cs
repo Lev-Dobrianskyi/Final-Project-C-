@@ -1,47 +1,52 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 
-namespace MusicAppServer
+namespace MusicAppServer;
+
+/// <summary>
+/// Defines the entry point of the server application, initializing the TCP listener loop.
+/// </summary>
+/// <param name="args">Command-line arguments.</param>
+internal class Program
 {
-    class Sender {
-        public static async Task SendSong(TcpClient client)
-        {
-            _ = Task.Run(async () =>
-            {
-                using (client)
-                using (NetworkStream network = client.GetStream())
-                using (FileStream file = File.OpenRead(@"Music\song.mp3"))
-                {
-                    byte[] buffer = new byte[32768]; // 32 * 1024
-
-                    int bytesRead;
-
-                    while ((bytesRead = await file.ReadAsync(buffer, 0, buffer.Length)) > 0)
-                    {
-                        await network.WriteAsync(buffer, 0, bytesRead);
-                    }
-                }
-
-                Console.WriteLine("Пісня відправлена.");
-            });
-        }
-    };
-
-    internal class Program
+    /// <summary>
+    /// Defines the entry point of the server application, initializing the TCP listener loop.
+    /// </summary>
+    /// <param name="args">Command-line arguments.</param>
+    static async Task Main(string[] args)
     {
-        static async Task Main(string[] args)
+
+        TcpListener listener = new TcpListener(IPAddress.Any, 5000);
+        listener.Start();
+
+        Console.WriteLine(Globals.MsgServerStarted);
+
+        while (true)
         {
-
-            TcpListener listener = new TcpListener(IPAddress.Any, 5000);
-            listener.Start();
-
-            Console.WriteLine("Сервер запущено...");
-
-            while (true)
+            try
             {
                 TcpClient client = await listener.AcceptTcpClientAsync();
 
-                
+                // Fire off the task to handle this specific client without blocking the acceptance of next clients
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        await Sender.SendSongAsync(client, @"Music\song.mp3");
+                    }
+                    catch (MusicServiceException serviceEx)
+                    {
+                        Console.WriteLine($"[Service Error]: {serviceEx.Message}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"[Unexpected Server Error]: {ex.Message}");
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[Connection Accept Error]: {ex.Message}");
             }
         }
     }

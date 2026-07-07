@@ -1,8 +1,20 @@
-﻿namespace MusicAppServer
+﻿namespace MusicAppServer;
+
+/// <summary>
+/// Represents a musical genre category within the music application.
+/// </summary>
+public class SongGenre
 {
-    internal class SongGenre
+    public int Id { get; set; }
+    public string GenreName { get; set; } = string.Empty;
+    public ICollection<Song> Songs { get; set; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SongGenre"/> class.
+    /// </summary>
+    public SongGenre()
     {
-        public int Id { get; set; }
-        public string GenreName { get; set; }
-        public ICollection<Song> Songs { get; set; }
-}}
+        // Initializing the collection prevents NullReferenceExceptions when manipulating relationships
+        Songs = new HashSet<Song>();
+    }
+}
