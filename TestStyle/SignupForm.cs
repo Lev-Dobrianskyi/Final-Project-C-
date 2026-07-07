@@ -144,7 +144,78 @@ namespace Music_App
             }
         }
 
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            // Скидаємо помилки
+            lblUserMessage.Visible = false;
+            lblEmailMessage.Visible = false;
+            lblPasswordMessage.Visible = false;
+            lblConfirmPasswordMessage.Visible = false;
+
+            txtUsername.BackColor = Color.FromArgb(30, 30, 30);
+            txtEmail.BackColor = Color.FromArgb(30, 30, 30);
+            txtPassword.BackColor = Color.FromArgb(30, 30, 30);
+            txtConfirmPassword.BackColor = Color.FromArgb(30, 30, 30);
+
+            bool isValid = true;
+
+            // Username
+            if (string.IsNullOrWhiteSpace(txtUsername.Text) || txtUsername.Text.Length > 24)
+            {
+                lblUserMessage.Text = "Username must be between 1 and 24 characters";
+                lblUserMessage.Visible = true;
+                txtUsername.BackColor = Color.FromArgb(80, 30, 30);
+                isValid = false;
+            }
+
+            // Email
+            if (string.IsNullOrWhiteSpace(txtEmail.Text) || !txtEmail.Text.Contains("@"))
+            {
+                lblEmailMessage.Text = "Please enter a valid email address";
+                lblEmailMessage.Visible = true;
+                txtEmail.BackColor = Color.FromArgb(80, 30, 30);
+                isValid = false;
+            }
+
+            // Password
+            if (string.IsNullOrWhiteSpace(txtPassword.Text) || txtPassword.Text.Length < 6)
+            {
+                lblPasswordMessage.Text = "Password must be at least 6 characters";
+                lblPasswordMessage.Visible = true;
+                txtPassword.BackColor = Color.FromArgb(80, 30, 30);
+                isValid = false;
+            }
+
+            // Confirm Password
+            if (txtPassword.Text != txtConfirmPassword.Text)
+            {
+                lblConfirmPasswordMessage.Text = "Passwords do not match";
+                lblConfirmPasswordMessage.Visible = true;
+                txtConfirmPassword.BackColor = Color.FromArgb(80, 30, 30);
+                isValid = false;
+            }
+
+            if (isValid)
+            {
+                //OpenMainMenu();  <-- тут запуск
+            }
+        }
+
+
+        private void llLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SigninForm login = new SigninForm();
+            login.Show();
+            this.Hide();
+        }
+
+
         [System.Runtime.InteropServices.DllImport("Gdi32.dll")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
+
+        private void lblLogin_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
