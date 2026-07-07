@@ -15,10 +15,39 @@ namespace TestStyle
             InitializeComponent();
         }
 
-        private void SigninButton_Click(object sender, EventArgs e)
+        private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            SigninForm SigninForm = new SigninForm();
-            SigninForm.ShowDialog();
+
+        }
+
+        private void signinButton_MouseEnter(object sender, EventArgs e)
+        {
+            signinButton.ForeColor = Color.BlueViolet;
+        }
+
+        private void signinButton_MouseLeave(object sender, EventArgs e)
+        {
+            signinButton.ForeColor = Color.FromArgb(255, 128, 0);
+        }
+
+        private void signinButton_Click(object sender, EventArgs e)
+        {
+            // open signin form
+        }
+
+        private void signupButton_MouseEnter(object sender, EventArgs e)
+        {
+            signupButton.ForeColor = Color.BlueViolet;
+        }
+
+        private void signupButton_MouseLeave(object sender, EventArgs e)
+        {
+            signupButton.ForeColor = Color.FromArgb(255, 128, 0);
+        }
+
+        private void signupButton_Click(object sender, EventArgs e)
+        {
+            // open signup form
         }
     }
 }

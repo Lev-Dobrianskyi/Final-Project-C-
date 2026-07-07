@@ -21,43 +21,8 @@ namespace TestStyle
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            GraphicsPath path = new GraphicsPath();
-            path.AddEllipse(0, 0, Play_PauseBtn.Width, Play_PauseBtn.Height);
-
-            Play_PauseBtn.Region = new Region(path);
-            SongTrackBar.TickStyle = TickStyle.None;
-
-            int songTime = MaxSongTimeLabel.Text.Length;
-
-            SongTrackBar.Maximum = songTime;
-
             SearchTextBoxPL.PlaceholderText = "Search in playlists...";
         }
-        bool isPlaying = false;
-        private void Play_PauseBtn_Click(object sender, EventArgs e)
-        {
-            if (!isPlaying)
-            {
-                Play_PauseBtn.Text = " ❚❚";
-            }
-            else
-            {
-                Play_PauseBtn.Text = " ▶";
-            }
-
-            isPlaying = !isPlaying;
-        }
-
-        private void PreviousBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void NextBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void SearchBtnPL_MouseEnter(object sender, EventArgs e)
         {
             SearchTextBoxPL.ForeColor = Color.FromArgb(255, 128, 0);
@@ -66,11 +31,6 @@ namespace TestStyle
         private void SearchBtnPL_MouseLeave(object sender, EventArgs e)
         {
             SearchTextBoxPL.ForeColor = Color.FromArgb(0, 0, 0);
-        }
-
-        private void SearchBtnPL_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void PlaylistBox_Enter(object sender, EventArgs e)
