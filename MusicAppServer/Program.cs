@@ -12,7 +12,7 @@ namespace MusicAppServer
                 using (NetworkStream network = client.GetStream())
                 using (FileStream file = File.OpenRead(@"Music\song.mp3"))
                 {
-                    byte[] buffer = new byte[32 * 1024];
+                    byte[] buffer = new byte[32768]; // 32 * 1024
 
                     int bytesRead;
 
