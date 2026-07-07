@@ -217,5 +217,10 @@ namespace Music_App
         {
 
         }
+
+        private void llLogin_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }

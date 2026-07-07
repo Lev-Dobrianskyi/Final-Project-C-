@@ -219,9 +219,9 @@
             label1.ForeColor = Color.FromArgb(255, 128, 0);
             label1.Location = new Point(93, 146);
             label1.Name = "label1";
-            label1.Size = new Size(207, 28);
+            label1.Size = new Size(215, 28);
             label1.TabIndex = 47;
-            label1.Text = "Enter you username ";
+            label1.Text = "Enter your username ";
             // 
             // txtUsername
             // 
@@ -281,13 +281,15 @@
             // 
             llLogin.ActiveLinkColor = Color.FromArgb(255, 192, 128);
             llLogin.AutoSize = true;
+            llLogin.Font = new Font("Sitka Text", 8.25F, FontStyle.Bold);
             llLogin.LinkColor = Color.Yellow;
             llLogin.Location = new Point(12, 644);
             llLogin.Name = "llLogin";
-            llLogin.Size = new Size(227, 20);
+            llLogin.Size = new Size(238, 20);
             llLogin.TabIndex = 53;
             llLogin.TabStop = true;
             llLogin.Text = "Already have an account? Sign in";
+            llLogin.LinkClicked += llLogin_LinkClicked_1;
             llLogin.Click += lblLogin_Click;
             // 
             // SignupForm

@@ -49,9 +49,9 @@
             llSignup.AutoSize = true;
             llSignup.Font = new Font("Sitka Text", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
             llSignup.LinkColor = Color.Yellow;
-            llSignup.Location = new Point(10, 408);
+            llSignup.Location = new Point(12, 544);
             llSignup.Name = "llSignup";
-            llSignup.Size = new Size(171, 16);
+            llSignup.Size = new Size(221, 20);
             llSignup.TabIndex = 34;
             llSignup.TabStop = true;
             llSignup.Text = "Dont have an account? Sign up";
@@ -62,9 +62,9 @@
             lblPasswordMessage.AutoSize = true;
             lblPasswordMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
             lblPasswordMessage.ForeColor = Color.FromArgb(255, 128, 0);
-            lblPasswordMessage.Location = new Point(54, 280);
+            lblPasswordMessage.Location = new Point(62, 359);
             lblPasswordMessage.Name = "lblPasswordMessage";
-            lblPasswordMessage.Size = new Size(110, 13);
+            lblPasswordMessage.Size = new Size(138, 16);
             lblPasswordMessage.TabIndex = 33;
             lblPasswordMessage.Text = "passwordMessage";
             lblPasswordMessage.Visible = false;
@@ -74,20 +74,19 @@
             lblEmailMessage.AutoSize = true;
             lblEmailMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
             lblEmailMessage.ForeColor = Color.FromArgb(255, 128, 0);
-            lblEmailMessage.Location = new Point(54, 182);
+            lblEmailMessage.Location = new Point(62, 229);
             lblEmailMessage.Name = "lblEmailMessage";
-            lblEmailMessage.Size = new Size(86, 13);
+            lblEmailMessage.Size = new Size(109, 16);
             lblEmailMessage.TabIndex = 32;
-            lblEmailMessage.Text = "emailMessage";
+            lblEmailMessage.Text = "nameMessage";
             lblEmailMessage.Visible = false;
             // 
             // pnlTitleBar
             // 
             pnlTitleBar.BackColor = Color.FromArgb(25, 25, 25);
-            pnlTitleBar.Location = new Point(-3, -2);
-            pnlTitleBar.Margin = new Padding(3, 2, 3, 2);
+            pnlTitleBar.Location = new Point(-3, -3);
             pnlTitleBar.Name = "pnlTitleBar";
-            pnlTitleBar.Size = new Size(214, 34);
+            pnlTitleBar.Size = new Size(245, 45);
             pnlTitleBar.TabIndex = 31;
             pnlTitleBar.MouseDown += pnlTitleBar_MouseDown;
             pnlTitleBar.MouseMove += pnlTitleBar_MouseMove;
@@ -100,10 +99,9 @@
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
             btnClose.ForeColor = Color.FromArgb(255, 128, 0);
-            btnClose.Location = new Point(293, 2);
-            btnClose.Margin = new Padding(3, 2, 3, 2);
+            btnClose.Location = new Point(335, 3);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(39, 30);
+            btnClose.Size = new Size(45, 40);
             btnClose.TabIndex = 30;
             btnClose.Text = "×";
             btnClose.UseVisualStyleBackColor = false;
@@ -118,10 +116,9 @@
             btnMaximize.FlatStyle = FlatStyle.Flat;
             btnMaximize.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
             btnMaximize.ForeColor = Color.FromArgb(255, 128, 0);
-            btnMaximize.Location = new Point(253, 2);
-            btnMaximize.Margin = new Padding(3, 2, 3, 2);
+            btnMaximize.Location = new Point(289, 3);
             btnMaximize.Name = "btnMaximize";
-            btnMaximize.Size = new Size(39, 30);
+            btnMaximize.Size = new Size(45, 40);
             btnMaximize.TabIndex = 29;
             btnMaximize.Text = "□";
             btnMaximize.UseVisualStyleBackColor = false;
@@ -135,10 +132,9 @@
             btnMinimize.Cursor = Cursors.Hand;
             btnMinimize.FlatStyle = FlatStyle.Flat;
             btnMinimize.ForeColor = Color.FromArgb(255, 128, 0);
-            btnMinimize.Location = new Point(213, 2);
-            btnMinimize.Margin = new Padding(3, 2, 3, 2);
+            btnMinimize.Location = new Point(243, 3);
             btnMinimize.Name = "btnMinimize";
-            btnMinimize.Size = new Size(39, 30);
+            btnMinimize.Size = new Size(45, 40);
             btnMinimize.TabIndex = 28;
             btnMinimize.Text = "_";
             btnMinimize.UseVisualStyleBackColor = false;
@@ -154,10 +150,9 @@
             btnSignin.FlatStyle = FlatStyle.Flat;
             btnSignin.Font = new Font("Arial Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSignin.ForeColor = SystemColors.ActiveCaptionText;
-            btnSignin.Location = new Point(91, 318);
-            btnSignin.Margin = new Padding(3, 2, 3, 2);
+            btnSignin.Location = new Point(100, 426);
             btnSignin.Name = "btnSignin";
-            btnSignin.Size = new Size(175, 37);
+            btnSignin.Size = new Size(200, 49);
             btnSignin.TabIndex = 27;
             btnSignin.Text = "SIGN IN";
             btnSignin.UseVisualStyleBackColor = false;
@@ -170,9 +165,9 @@
             labelPasword.AutoSize = true;
             labelPasword.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
             labelPasword.ForeColor = Color.FromArgb(255, 128, 0);
-            labelPasword.Location = new Point(82, 221);
+            labelPasword.Location = new Point(94, 281);
             labelPasword.Name = "labelPasword";
-            labelPasword.Size = new Size(165, 21);
+            labelPasword.Size = new Size(206, 28);
             labelPasword.TabIndex = 26;
             labelPasword.Text = "Enter your password";
             // 
@@ -181,11 +176,11 @@
             labelEmail.AutoSize = true;
             labelEmail.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
             labelEmail.ForeColor = Color.FromArgb(255, 128, 0);
-            labelEmail.Location = new Point(91, 126);
+            labelEmail.Location = new Point(104, 154);
             labelEmail.Name = "labelEmail";
-            labelEmail.Size = new Size(136, 21);
+            labelEmail.Size = new Size(209, 28);
             labelEmail.TabIndex = 25;
-            labelEmail.Text = "Enter your email";
+            labelEmail.Text = "Enter your username";
             // 
             // txtPassword
             // 
@@ -194,10 +189,10 @@
             txtPassword.Cursor = Cursors.IBeam;
             txtPassword.Font = new Font("Segoe UI Emoji", 10.8F);
             txtPassword.ForeColor = Color.FromArgb(255, 128, 0);
-            txtPassword.Location = new Point(54, 253);
-            txtPassword.Margin = new Padding(4);
+            txtPassword.Location = new Point(62, 323);
+            txtPassword.Margin = new Padding(5, 5, 5, 5);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(245, 27);
+            txtPassword.Size = new Size(280, 31);
             txtPassword.TabIndex = 24;
             txtPassword.UseSystemPasswordChar = true;
             // 
@@ -208,28 +203,29 @@
             txtEmail.Cursor = Cursors.IBeam;
             txtEmail.Font = new Font("Segoe UI Emoji", 10.8F);
             txtEmail.ForeColor = Color.White;
-            txtEmail.Location = new Point(54, 155);
-            txtEmail.Margin = new Padding(4);
+            txtEmail.Location = new Point(62, 193);
+            txtEmail.Margin = new Padding(5, 5, 5, 5);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(245, 27);
+            txtEmail.Size = new Size(280, 31);
             txtEmail.TabIndex = 23;
             // 
             // lblLogin
             // 
+            lblLogin.BackColor = Color.FromArgb(0, 0, 0, 0);
             lblLogin.Font = new Font("Tempus Sans ITC", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLogin.ForeColor = Color.FromArgb(255, 128, 0);
-            lblLogin.Location = new Point(63, 42);
+            lblLogin.Location = new Point(62, 40);
             lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(229, 96);
+            lblLogin.Size = new Size(280, 128);
             lblLogin.TabIndex = 22;
             lblLogin.Text = "Sign in";
             // 
             // SigninForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 20, 20);
-            ClientSize = new Size(334, 430);
+            ClientSize = new Size(382, 573);
             Controls.Add(llSignup);
             Controls.Add(lblPasswordMessage);
             Controls.Add(lblEmailMessage);
@@ -243,6 +239,7 @@
             Controls.Add(txtPassword);
             Controls.Add(txtEmail);
             Controls.Add(lblLogin);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "SigninForm";
             Text = "SigninForm";
             Load += SigninForm_Load;
