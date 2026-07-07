@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblPasswordMessage = new Label();
-            lblEmailMessage = new Label();
+            labePasswordMessage = new Label();
+            labelEmailMessage = new Label();
             pnlTitleBar = new Panel();
             btnClose = new Button();
             btnMaximize = new Button();
@@ -39,39 +39,39 @@
             labelEmail = new Label();
             txtPassword = new TextBox();
             txtEmail = new TextBox();
-            lblLogin = new Label();
-            label1 = new Label();
+            labelSingup = new Label();
+            labelUsername = new Label();
             txtUsername = new TextBox();
-            lblUserMessage = new Label();
-            lblConfirmPassword = new Label();
-            lblConfirmPasswordMessage = new Label();
+            labelUserMessage = new Label();
+            labelConfirmPassword = new Label();
+            labelConfirmPasswordMessage = new Label();
             txtConfirmPassword = new TextBox();
             llLogin = new LinkLabel();
             SuspendLayout();
             // 
-            // lblPasswordMessage
+            // labePasswordMessage
             // 
-            lblPasswordMessage.AutoSize = true;
-            lblPasswordMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
-            lblPasswordMessage.ForeColor = Color.FromArgb(255, 128, 0);
-            lblPasswordMessage.Location = new Point(60, 428);
-            lblPasswordMessage.Name = "lblPasswordMessage";
-            lblPasswordMessage.Size = new Size(138, 16);
-            lblPasswordMessage.TabIndex = 46;
-            lblPasswordMessage.Text = "passwordMessage";
-            lblPasswordMessage.Visible = false;
+            labePasswordMessage.AutoSize = true;
+            labePasswordMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
+            labePasswordMessage.ForeColor = Color.FromArgb(255, 128, 0);
+            labePasswordMessage.Location = new Point(60, 428);
+            labePasswordMessage.Name = "labePasswordMessage";
+            labePasswordMessage.Size = new Size(138, 16);
+            labePasswordMessage.TabIndex = 46;
+            labePasswordMessage.Text = "passwordMessage";
+            labePasswordMessage.Visible = false;
             // 
-            // lblEmailMessage
+            // labelEmailMessage
             // 
-            lblEmailMessage.AutoSize = true;
-            lblEmailMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
-            lblEmailMessage.ForeColor = Color.FromArgb(255, 128, 0);
-            lblEmailMessage.Location = new Point(60, 314);
-            lblEmailMessage.Name = "lblEmailMessage";
-            lblEmailMessage.Size = new Size(109, 16);
-            lblEmailMessage.TabIndex = 45;
-            lblEmailMessage.Text = "emailMessage";
-            lblEmailMessage.Visible = false;
+            labelEmailMessage.AutoSize = true;
+            labelEmailMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
+            labelEmailMessage.ForeColor = Color.FromArgb(255, 128, 0);
+            labelEmailMessage.Location = new Point(60, 314);
+            labelEmailMessage.Name = "labelEmailMessage";
+            labelEmailMessage.Size = new Size(109, 16);
+            labelEmailMessage.TabIndex = 45;
+            labelEmailMessage.Text = "emailMessage";
+            labelEmailMessage.Visible = false;
             // 
             // pnlTitleBar
             // 
@@ -201,27 +201,27 @@
             txtEmail.Size = new Size(280, 31);
             txtEmail.TabIndex = 36;
             // 
-            // lblLogin
+            // labelSingup
             // 
-            lblLogin.Font = new Font("Tempus Sans ITC", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblLogin.ForeColor = Color.FromArgb(255, 128, 0);
-            lblLogin.Location = new Point(37, 32);
-            lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(318, 128);
-            lblLogin.TabIndex = 35;
-            lblLogin.Text = "Sign up";
-            lblLogin.Click += lblLogin_Click;
+            labelSingup.Font = new Font("Tempus Sans ITC", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelSingup.ForeColor = Color.FromArgb(255, 128, 0);
+            labelSingup.Location = new Point(37, 32);
+            labelSingup.Name = "labelSingup";
+            labelSingup.Size = new Size(318, 128);
+            labelSingup.TabIndex = 35;
+            labelSingup.Text = "Sign up";
+            labelSingup.Click += lblLogin_Click;
             // 
-            // label1
+            // labelUsername
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label1.ForeColor = Color.FromArgb(255, 128, 0);
-            label1.Location = new Point(93, 146);
-            label1.Name = "label1";
-            label1.Size = new Size(215, 28);
-            label1.TabIndex = 47;
-            label1.Text = "Enter your username ";
+            labelUsername.AutoSize = true;
+            labelUsername.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            labelUsername.ForeColor = Color.FromArgb(255, 128, 0);
+            labelUsername.Location = new Point(93, 146);
+            labelUsername.Name = "labelUsername";
+            labelUsername.Size = new Size(215, 28);
+            labelUsername.TabIndex = 47;
+            labelUsername.Text = "Enter your username ";
             // 
             // txtUsername
             // 
@@ -234,38 +234,38 @@
             txtUsername.Size = new Size(280, 31);
             txtUsername.TabIndex = 48;
             // 
-            // lblUserMessage
+            // labelUserMessage
             // 
-            lblUserMessage.AutoSize = true;
-            lblUserMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
-            lblUserMessage.ForeColor = Color.FromArgb(255, 128, 0);
-            lblUserMessage.Location = new Point(60, 211);
-            lblUserMessage.Name = "lblUserMessage";
-            lblUserMessage.Size = new Size(101, 16);
-            lblUserMessage.TabIndex = 49;
-            lblUserMessage.Text = "userMessage";
+            labelUserMessage.AutoSize = true;
+            labelUserMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
+            labelUserMessage.ForeColor = Color.FromArgb(255, 128, 0);
+            labelUserMessage.Location = new Point(60, 211);
+            labelUserMessage.Name = "labelUserMessage";
+            labelUserMessage.Size = new Size(101, 16);
+            labelUserMessage.TabIndex = 49;
+            labelUserMessage.Text = "userMessage";
             // 
-            // lblConfirmPassword
+            // labelConfirmPassword
             // 
-            lblConfirmPassword.AutoSize = true;
-            lblConfirmPassword.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblConfirmPassword.ForeColor = Color.FromArgb(255, 128, 0);
-            lblConfirmPassword.Location = new Point(80, 465);
-            lblConfirmPassword.Name = "lblConfirmPassword";
-            lblConfirmPassword.Size = new Size(232, 28);
-            lblConfirmPassword.TabIndex = 50;
-            lblConfirmPassword.Text = "Confirm your password";
+            labelConfirmPassword.AutoSize = true;
+            labelConfirmPassword.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            labelConfirmPassword.ForeColor = Color.FromArgb(255, 128, 0);
+            labelConfirmPassword.Location = new Point(80, 465);
+            labelConfirmPassword.Name = "labelConfirmPassword";
+            labelConfirmPassword.Size = new Size(232, 28);
+            labelConfirmPassword.TabIndex = 50;
+            labelConfirmPassword.Text = "Confirm your password";
             // 
-            // lblConfirmPasswordMessage
+            // labelConfirmPasswordMessage
             // 
-            lblConfirmPasswordMessage.AutoSize = true;
-            lblConfirmPasswordMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
-            lblConfirmPasswordMessage.ForeColor = Color.FromArgb(255, 128, 0);
-            lblConfirmPasswordMessage.Location = new Point(60, 530);
-            lblConfirmPasswordMessage.Name = "lblConfirmPasswordMessage";
-            lblConfirmPasswordMessage.Size = new Size(189, 16);
-            lblConfirmPasswordMessage.TabIndex = 51;
-            lblConfirmPasswordMessage.Text = "confirmPasswordMessage";
+            labelConfirmPasswordMessage.AutoSize = true;
+            labelConfirmPasswordMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
+            labelConfirmPasswordMessage.ForeColor = Color.FromArgb(255, 128, 0);
+            labelConfirmPasswordMessage.Location = new Point(60, 530);
+            labelConfirmPasswordMessage.Name = "labelConfirmPasswordMessage";
+            labelConfirmPasswordMessage.Size = new Size(189, 16);
+            labelConfirmPasswordMessage.TabIndex = 51;
+            labelConfirmPasswordMessage.Text = "confirmPasswordMessage";
             // 
             // txtConfirmPassword
             // 
@@ -300,13 +300,13 @@
             ClientSize = new Size(382, 673);
             Controls.Add(llLogin);
             Controls.Add(txtConfirmPassword);
-            Controls.Add(lblConfirmPasswordMessage);
-            Controls.Add(lblConfirmPassword);
-            Controls.Add(lblUserMessage);
+            Controls.Add(labelConfirmPasswordMessage);
+            Controls.Add(labelConfirmPassword);
+            Controls.Add(labelUserMessage);
             Controls.Add(txtUsername);
-            Controls.Add(label1);
-            Controls.Add(lblPasswordMessage);
-            Controls.Add(lblEmailMessage);
+            Controls.Add(labelUsername);
+            Controls.Add(labePasswordMessage);
+            Controls.Add(labelEmailMessage);
             Controls.Add(pnlTitleBar);
             Controls.Add(btnClose);
             Controls.Add(btnMaximize);
@@ -316,7 +316,7 @@
             Controls.Add(labelEmail);
             Controls.Add(txtPassword);
             Controls.Add(txtEmail);
-            Controls.Add(lblLogin);
+            Controls.Add(labelSingup);
             Margin = new Padding(3, 4, 3, 4);
             Name = "SignupForm";
             Text = "SignupForm";
@@ -326,8 +326,8 @@
         }
 
         #endregion
-        private Label lblPasswordMessage;
-        private Label lblEmailMessage;
+        private Label labePasswordMessage;
+        private Label labelEmailMessage;
         private Panel pnlTitleBar;
         private Button btnClose;
         private Button btnMaximize;
@@ -337,12 +337,12 @@
         private Label labelEmail;
         private TextBox txtPassword;
         private TextBox txtEmail;
-        private Label lblLogin;
-        private Label label1;
+        private Label labelSingup;
+        private Label labelUsername;
         private TextBox txtUsername;
-        private Label lblUserMessage;
-        private Label lblConfirmPassword;
-        private Label lblConfirmPasswordMessage;
+        private Label labelUserMessage;
+        private Label labelConfirmPassword;
+        private Label labelConfirmPasswordMessage;
         private TextBox txtConfirmPassword;
         private LinkLabel llLogin;
     }

@@ -119,22 +119,22 @@ namespace Music_App
 
         private void btnSignup_Click(object sender, EventArgs e)
         {
-            lblEmailMessage.Visible = false;
-            lblPasswordMessage.Visible = false;
+            labelEmailMessage.Visible = false;
+            labePasswordMessage.Visible = false;
 
             bool isValid = true;
 
             if (string.IsNullOrWhiteSpace(txtEmail.Text) || !txtEmail.Text.Contains("@"))
             {
-                lblEmailMessage.Text = "Enter a valid email";
-                lblEmailMessage.Visible = true;
+                labelEmailMessage.Text = "Enter a valid email";
+                labelEmailMessage.Visible = true;
                 isValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(txtPassword.Text) || txtPassword.Text.Length < 6)
             {
-                lblPasswordMessage.Text = "Password must consist of atleast 6 symbols";
-                lblPasswordMessage.Visible = true;
+                labePasswordMessage.Text = "Password must consist of atleast 6 symbols";
+                labePasswordMessage.Visible = true;
                 isValid = false;
             }
 
@@ -147,10 +147,10 @@ namespace Music_App
         private void btnRegister_Click(object sender, EventArgs e)
         {
             // Скидаємо помилки
-            lblUserMessage.Visible = false;
-            lblEmailMessage.Visible = false;
-            lblPasswordMessage.Visible = false;
-            lblConfirmPasswordMessage.Visible = false;
+            labelUserMessage.Visible = false;
+            labelEmailMessage.Visible = false;
+            labePasswordMessage.Visible = false;
+            labelConfirmPasswordMessage.Visible = false;
 
             txtUsername.BackColor = Color.FromArgb(30, 30, 30);
             txtEmail.BackColor = Color.FromArgb(30, 30, 30);
@@ -162,8 +162,8 @@ namespace Music_App
             // Username
             if (string.IsNullOrWhiteSpace(txtUsername.Text) || txtUsername.Text.Length > 24)
             {
-                lblUserMessage.Text = "Username must be between 1 and 24 characters";
-                lblUserMessage.Visible = true;
+                labelUserMessage.Text = "Username must be between 1 and 24 characters";
+                labelUserMessage.Visible = true;
                 txtUsername.BackColor = Color.FromArgb(80, 30, 30);
                 isValid = false;
             }
@@ -171,8 +171,8 @@ namespace Music_App
             // Email
             if (string.IsNullOrWhiteSpace(txtEmail.Text) || !txtEmail.Text.Contains("@"))
             {
-                lblEmailMessage.Text = "Please enter a valid email address";
-                lblEmailMessage.Visible = true;
+                labelEmailMessage.Text = "Please enter a valid email address";
+                labelEmailMessage.Visible = true;
                 txtEmail.BackColor = Color.FromArgb(80, 30, 30);
                 isValid = false;
             }
@@ -180,8 +180,8 @@ namespace Music_App
             // Password
             if (string.IsNullOrWhiteSpace(txtPassword.Text) || txtPassword.Text.Length < 6)
             {
-                lblPasswordMessage.Text = "Password must be at least 6 characters";
-                lblPasswordMessage.Visible = true;
+                labePasswordMessage.Text = "Password must be at least 6 characters";
+                labePasswordMessage.Visible = true;
                 txtPassword.BackColor = Color.FromArgb(80, 30, 30);
                 isValid = false;
             }
@@ -189,8 +189,8 @@ namespace Music_App
             // Confirm Password
             if (txtPassword.Text != txtConfirmPassword.Text)
             {
-                lblConfirmPasswordMessage.Text = "Passwords do not match";
-                lblConfirmPasswordMessage.Visible = true;
+                labelConfirmPasswordMessage.Text = "Passwords do not match";
+                labelConfirmPasswordMessage.Visible = true;
                 txtConfirmPassword.BackColor = Color.FromArgb(80, 30, 30);
                 isValid = false;
             }

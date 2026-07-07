@@ -14,7 +14,7 @@
 
         private void SigninForm_Load(object sender, EventArgs e)
         {
-            txtEmail.PlaceholderText = "Enter your Email";
+            txtUsername.PlaceholderText = "Enter your Email";
             txtPassword.PlaceholderText = "Enter your password";
         }
 
@@ -111,22 +111,22 @@
 
         private void btnSignin_Click(object sender, EventArgs e)
         {
-            lblEmailMessage.Visible = false;
-            lblPasswordMessage.Visible = false;
+            labelUsernameMessage.Visible = false;
+            labelPasswordMessage.Visible = false;
 
             bool isValid = true;
 
-            if (string.IsNullOrWhiteSpace(txtEmail.Text)) // or isnt found
+            if (string.IsNullOrWhiteSpace(txtUsername.Text)) // or isnt found
             {
-                lblEmailMessage.Text = "Default error message";
-                lblEmailMessage.Visible = true;
+                labelUsernameMessage.Text = "Default error message";
+                labelUsernameMessage.Visible = true;
                 isValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(txtPassword.Text)) // or isnt found
             {
-                lblPasswordMessage.Text = "Default error message";
-                lblPasswordMessage.Visible = true;
+                labelPasswordMessage.Text = "Default error message";
+                labelPasswordMessage.Visible = true;
                 isValid = false;
             }
 
@@ -145,5 +145,10 @@
 
         [System.Runtime.InteropServices.DllImport("Gdi32.dll")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
+
+        private void labelEmail_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
