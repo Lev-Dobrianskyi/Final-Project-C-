@@ -1,3 +1,5 @@
+using Music_App;
+
 namespace TestStyle
 {
     internal static class Program
