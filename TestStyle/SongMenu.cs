@@ -5,14 +5,19 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Text;
+using System.Web;
 using System.Windows.Forms;
 
 namespace Music_App
 {
     public partial class SongMenu : Form
     {
-        public SongMenu()
+        public string songTitle;
+        public string songAuthor; // use these two strings to find a song in the database, these are sent when a song is clicked
+        public SongMenu(string title, string author)
         {
+            songTitle = title;
+            songAuthor = author;
             InitializeComponent();
         }
 
