@@ -1,4 +1,4 @@
-﻿namespace Music_App
+﻿namespace TestStyle
 {
     partial class SongMenu
     {

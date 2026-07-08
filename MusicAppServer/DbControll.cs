@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace MusicAppServer;
 
-namespace MusicAppServer
+/// <summary>
+/// Provides methods for controlling the database, such as resetting it.
+/// </summary>
+public class DbControll
 {
-    internal class DbControll
+
+    /// <summary>
+    /// Resets the database by deleting it and recreating it. This method ensures that the database is in a clean state.
+    /// </summary>
+    public static void ResetDb()
     {
-        public static void ResetDb()
+        using (var context = new AppContext())
         {
-            using (var context = new AppContext())
-            {
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
-            }
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
         }
     }
 }

@@ -1,10 +1,20 @@
-﻿
-namespace MusicAppServer
+﻿namespace MusicAppServer;
+
+/// <summary>
+/// Represents an artist in the music application.
+/// </summary>
+public class Artist
 {
-    internal class Artist
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public ICollection<Song> Songs { get; set; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Artist"/> class.
+    /// </summary>
+    public Artist()
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public ICollection<Song> Songs { get; set; }
+        // Initializing collections prevents NullReferenceException during runtime manipulation
+        Songs = new HashSet<Song>();
     }
 }
