@@ -33,7 +33,8 @@ namespace TestStyle
 
         private void signinButton_Click(object sender, EventArgs e)
         {
-            // open signin form
+            SigninForm form = new SigninForm();
+            form.Show();
         }
 
         private void signupButton_MouseEnter(object sender, EventArgs e)
@@ -48,7 +49,8 @@ namespace TestStyle
 
         private void signupButton_Click(object sender, EventArgs e)
         {
-            // open signup form
+            SignupForm form = new SignupForm();
+            form.Show();
         }
 
         private void songCreationButton_MouseEnter(object sender, EventArgs e)

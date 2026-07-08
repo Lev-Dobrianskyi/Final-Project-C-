@@ -45,8 +45,8 @@
             songTitleLabel = new Label();
             sidePanel = new Panel();
             label4 = new Label();
-            profilePictureBox = new PictureBox();
             songCreationButton = new Button();
+            profilePictureBox = new PictureBox();
             searchBox = new TextBox();
             songPanel.SuspendLayout();
             songBox.SuspendLayout();
@@ -61,9 +61,10 @@
             signupButton.Cursor = Cursors.Hand;
             signupButton.FlatStyle = FlatStyle.Flat;
             signupButton.ForeColor = Color.FromArgb(255, 128, 0);
-            signupButton.Location = new Point(1016, 12);
+            signupButton.Location = new Point(1161, 16);
+            signupButton.Margin = new Padding(3, 4, 3, 4);
             signupButton.Name = "signupButton";
-            signupButton.Size = new Size(75, 25);
+            signupButton.Size = new Size(86, 33);
             signupButton.TabIndex = 3;
             signupButton.Text = "Sign up";
             signupButton.UseVisualStyleBackColor = false;
@@ -77,9 +78,10 @@
             signinButton.Cursor = Cursors.Hand;
             signinButton.FlatStyle = FlatStyle.Flat;
             signinButton.ForeColor = Color.FromArgb(255, 128, 0);
-            signinButton.Location = new Point(1097, 12);
+            signinButton.Location = new Point(1254, 16);
+            signinButton.Margin = new Padding(3, 4, 3, 4);
             signinButton.Name = "signinButton";
-            signinButton.Size = new Size(75, 25);
+            signinButton.Size = new Size(86, 33);
             signinButton.TabIndex = 5;
             signinButton.Text = "Sign in";
             signinButton.UseVisualStyleBackColor = false;
@@ -96,9 +98,10 @@
             songPanel.Controls.Add(orderbyLengthButton);
             songPanel.Controls.Add(orderbyReverseBox);
             songPanel.Controls.Add(songBox);
-            songPanel.Location = new Point(12, 89);
+            songPanel.Location = new Point(14, 119);
+            songPanel.Margin = new Padding(3, 4, 3, 4);
             songPanel.Name = "songPanel";
-            songPanel.Size = new Size(860, 560);
+            songPanel.Size = new Size(983, 747);
             songPanel.TabIndex = 6;
             // 
             // label5
@@ -109,7 +112,7 @@
             label5.ForeColor = Color.FromArgb(255, 128, 0);
             label5.Location = new Point(3, 0);
             label5.Name = "label5";
-            label5.Size = new Size(94, 28);
+            label5.Size = new Size(119, 35);
             label5.TabIndex = 8;
             label5.Text = "Order by:";
             label5.TextAlign = ContentAlignment.BottomCenter;
@@ -121,9 +124,10 @@
             orderbyDateButton.Cursor = Cursors.Hand;
             orderbyDateButton.FlatStyle = FlatStyle.Flat;
             orderbyDateButton.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyDateButton.Location = new Point(103, 3);
+            orderbyDateButton.Location = new Point(128, 4);
+            orderbyDateButton.Margin = new Padding(3, 4, 3, 4);
             orderbyDateButton.Name = "orderbyDateButton";
-            orderbyDateButton.Size = new Size(43, 27);
+            orderbyDateButton.Size = new Size(53, 32);
             orderbyDateButton.TabIndex = 10;
             orderbyDateButton.TabStop = true;
             orderbyDateButton.Text = "Date";
@@ -139,9 +143,10 @@
             orderbyPopularityButton.Cursor = Cursors.Hand;
             orderbyPopularityButton.FlatStyle = FlatStyle.Flat;
             orderbyPopularityButton.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyPopularityButton.Location = new Point(152, 3);
+            orderbyPopularityButton.Location = new Point(187, 4);
+            orderbyPopularityButton.Margin = new Padding(3, 4, 3, 4);
             orderbyPopularityButton.Name = "orderbyPopularityButton";
-            orderbyPopularityButton.Size = new Size(73, 27);
+            orderbyPopularityButton.Size = new Size(87, 32);
             orderbyPopularityButton.TabIndex = 11;
             orderbyPopularityButton.TabStop = true;
             orderbyPopularityButton.Text = "Popularity";
@@ -157,9 +162,10 @@
             orderbyLengthButton.Cursor = Cursors.Hand;
             orderbyLengthButton.FlatStyle = FlatStyle.Flat;
             orderbyLengthButton.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyLengthButton.Location = new Point(231, 3);
+            orderbyLengthButton.Location = new Point(280, 4);
+            orderbyLengthButton.Margin = new Padding(3, 4, 3, 4);
             orderbyLengthButton.Name = "orderbyLengthButton";
-            orderbyLengthButton.Size = new Size(56, 27);
+            orderbyLengthButton.Size = new Size(66, 32);
             orderbyLengthButton.TabIndex = 12;
             orderbyLengthButton.TabStop = true;
             orderbyLengthButton.Text = "Length";
@@ -176,9 +182,10 @@
             orderbyReverseBox.FlatStyle = FlatStyle.Flat;
             orderbyReverseBox.Font = new Font("Segoe UI", 9.5F);
             orderbyReverseBox.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyReverseBox.Location = new Point(293, 3);
+            orderbyReverseBox.Location = new Point(352, 4);
+            orderbyReverseBox.Margin = new Padding(3, 4, 3, 4);
             orderbyReverseBox.Name = "orderbyReverseBox";
-            orderbyReverseBox.Size = new Size(64, 27);
+            orderbyReverseBox.Size = new Size(75, 31);
             orderbyReverseBox.TabIndex = 9;
             orderbyReverseBox.Text = "Reverse";
             orderbyReverseBox.UseVisualStyleBackColor = true;
@@ -195,9 +202,10 @@
             songBox.Controls.Add(songAuthorLabel);
             songBox.Controls.Add(songTitleLabel);
             songBox.Cursor = Cursors.Hand;
-            songBox.Location = new Point(3, 36);
+            songBox.Location = new Point(3, 44);
+            songBox.Margin = new Padding(3, 4, 3, 4);
             songBox.Name = "songBox";
-            songBox.Size = new Size(854, 58);
+            songBox.Size = new Size(976, 77);
             songBox.TabIndex = 10;
             songBox.Click += songBox_Click;
             // 
@@ -205,19 +213,18 @@
             // 
             songGenreLabel.Font = new Font("Sitka Banner", 12F);
             songGenreLabel.ForeColor = SystemColors.ControlDark;
-            songGenreLabel.Location = new Point(363, 29);
+            songGenreLabel.Location = new Point(415, 39);
             songGenreLabel.Name = "songGenreLabel";
-            songGenreLabel.Size = new Size(300, 26);
+            songGenreLabel.Size = new Size(343, 35);
             songGenreLabel.TabIndex = 9;
             songGenreLabel.Text = "Genre";
             // 
             // songPictureBox
             // 
             songPictureBox.Image = (Image)resources.GetObject("songPictureBox.Image");
-            songPictureBox.Location = new Point(8, 7);
-            songPictureBox.Margin = new Padding(3, 2, 3, 2);
+            songPictureBox.Location = new Point(9, 9);
             songPictureBox.Name = "songPictureBox";
-            songPictureBox.Size = new Size(43, 43);
+            songPictureBox.Size = new Size(49, 57);
             songPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             songPictureBox.TabIndex = 5;
             songPictureBox.TabStop = false;
@@ -226,9 +233,9 @@
             // 
             songLengthLabel.Font = new Font("Sitka Banner", 14F);
             songLengthLabel.ForeColor = SystemColors.ControlDark;
-            songLengthLabel.Location = new Point(793, 9);
+            songLengthLabel.Location = new Point(906, 12);
             songLengthLabel.Name = "songLengthLabel";
-            songLengthLabel.Size = new Size(54, 28);
+            songLengthLabel.Size = new Size(62, 37);
             songLengthLabel.TabIndex = 8;
             songLengthLabel.Text = "99:99";
             // 
@@ -236,9 +243,9 @@
             // 
             songAuthorLabel.Font = new Font("Sitka Banner", 12F);
             songAuthorLabel.ForeColor = SystemColors.ControlDark;
-            songAuthorLabel.Location = new Point(57, 29);
+            songAuthorLabel.Location = new Point(65, 39);
             songAuthorLabel.Name = "songAuthorLabel";
-            songAuthorLabel.Size = new Size(300, 26);
+            songAuthorLabel.Size = new Size(343, 35);
             songAuthorLabel.TabIndex = 7;
             songAuthorLabel.Text = "Song Author";
             // 
@@ -247,9 +254,9 @@
             songTitleLabel.AutoEllipsis = true;
             songTitleLabel.Font = new Font("Sylfaen", 16F);
             songTitleLabel.ForeColor = SystemColors.ButtonShadow;
-            songTitleLabel.Location = new Point(57, 2);
+            songTitleLabel.Location = new Point(65, 3);
             songTitleLabel.Name = "songTitleLabel";
-            songTitleLabel.Size = new Size(492, 30);
+            songTitleLabel.Size = new Size(562, 40);
             songTitleLabel.TabIndex = 6;
             songTitleLabel.Text = "Song Title";
             // 
@@ -258,9 +265,10 @@
             sidePanel.AutoScroll = true;
             sidePanel.Controls.Add(label4);
             sidePanel.Controls.Add(songCreationButton);
-            sidePanel.Location = new Point(891, 89);
+            sidePanel.Location = new Point(1018, 119);
+            sidePanel.Margin = new Padding(3, 4, 3, 4);
             sidePanel.Name = "sidePanel";
-            sidePanel.Size = new Size(281, 560);
+            sidePanel.Size = new Size(321, 747);
             sidePanel.TabIndex = 7;
             // 
             // label4
@@ -268,22 +276,11 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 16F);
             label4.ForeColor = Color.FromArgb(255, 128, 0);
-            label4.Location = new Point(7, 3);
+            label4.Location = new Point(8, 4);
             label4.Name = "label4";
-            label4.Size = new Size(266, 30);
+            label4.Size = new Size(327, 37);
             label4.TabIndex = 1;
             label4.Text = "Want to become an artist?";
-            // 
-            // profilePictureBox
-            // 
-            profilePictureBox.Image = (Image)resources.GetObject("profilePictureBox.Image");
-            profilePictureBox.Location = new Point(1092, 3);
-            profilePictureBox.Name = "profilePictureBox";
-            profilePictureBox.Size = new Size(80, 80);
-            profilePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            profilePictureBox.TabIndex = 8;
-            profilePictureBox.TabStop = false;
-            profilePictureBox.Visible = false;
             // 
             // songCreationButton
             // 
@@ -291,9 +288,10 @@
             songCreationButton.Cursor = Cursors.Hand;
             songCreationButton.FlatStyle = FlatStyle.Flat;
             songCreationButton.ForeColor = Color.FromArgb(255, 128, 0);
-            songCreationButton.Location = new Point(65, 36);
+            songCreationButton.Location = new Point(74, 48);
+            songCreationButton.Margin = new Padding(3, 4, 3, 4);
             songCreationButton.Name = "songCreationButton";
-            songCreationButton.Size = new Size(158, 25);
+            songCreationButton.Size = new Size(181, 33);
             songCreationButton.TabIndex = 0;
             songCreationButton.Text = "Create your song!";
             songCreationButton.UseVisualStyleBackColor = false;
@@ -301,26 +299,40 @@
             songCreationButton.MouseEnter += songCreationButton_MouseEnter;
             songCreationButton.MouseLeave += songCreationButton_MouseLeave;
             // 
+            // profilePictureBox
+            // 
+            profilePictureBox.Image = (Image)resources.GetObject("profilePictureBox.Image");
+            profilePictureBox.Location = new Point(1248, 4);
+            profilePictureBox.Margin = new Padding(3, 4, 3, 4);
+            profilePictureBox.Name = "profilePictureBox";
+            profilePictureBox.Size = new Size(91, 107);
+            profilePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            profilePictureBox.TabIndex = 8;
+            profilePictureBox.TabStop = false;
+            profilePictureBox.Visible = false;
+            // 
             // searchBox
             // 
-            searchBox.Location = new Point(337, 14);
+            searchBox.Location = new Point(385, 19);
+            searchBox.Margin = new Padding(3, 4, 3, 4);
             searchBox.Name = "searchBox";
-            searchBox.Size = new Size(535, 23);
+            searchBox.Size = new Size(611, 27);
             searchBox.TabIndex = 9;
             searchBox.Validated += searchBox_Validated;
             // 
             // MainMenuForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 20, 20);
-            ClientSize = new Size(1184, 661);
+            ClientSize = new Size(1353, 881);
             Controls.Add(searchBox);
             Controls.Add(profilePictureBox);
             Controls.Add(signupButton);
             Controls.Add(sidePanel);
             Controls.Add(songPanel);
             Controls.Add(signinButton);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "MainMenuForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainMenuForm";
