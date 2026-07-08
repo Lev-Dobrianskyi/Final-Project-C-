@@ -52,10 +52,9 @@ namespace TestStyle
             PlaylistFLP.AutoScroll = true;
             PlaylistFLP.BackColor = Color.FromArgb(40, 40, 40);
             PlaylistFLP.BorderStyle = BorderStyle.FixedSingle;
-            PlaylistFLP.Location = new Point(3, 2);
-            PlaylistFLP.Margin = new Padding(3, 2, 3, 2);
+            PlaylistFLP.Location = new Point(3, 3);
             PlaylistFLP.Name = "PlaylistFLP";
-            PlaylistFLP.Size = new Size(247, 399);
+            PlaylistFLP.Size = new Size(282, 531);
             PlaylistFLP.TabIndex = 0;
             // 
             // PlaylistPanel
@@ -64,10 +63,9 @@ namespace TestStyle
             PlaylistPanel.BackColor = Color.FromArgb(30, 30, 30);
             PlaylistPanel.BorderStyle = BorderStyle.FixedSingle;
             PlaylistPanel.Controls.Add(PlaylistBox);
-            PlaylistPanel.Location = new Point(268, 68);
-            PlaylistPanel.Margin = new Padding(3, 2, 3, 2);
+            PlaylistPanel.Location = new Point(306, 91);
             PlaylistPanel.Name = "PlaylistPanel";
-            PlaylistPanel.Size = new Size(614, 403);
+            PlaylistPanel.Size = new Size(701, 537);
             PlaylistPanel.TabIndex = 2;
             // 
             // PlaylistBox
@@ -76,9 +74,11 @@ namespace TestStyle
             PlaylistBox.Controls.Add(PlaylistPicBox);
             PlaylistBox.Controls.Add(PlaylistNameLabel);
             PlaylistBox.Controls.Add(PlaylistAuthorLabel);
-            PlaylistBox.Location = new Point(15, 3);
+            PlaylistBox.Location = new Point(17, 4);
+            PlaylistBox.Margin = new Padding(3, 4, 3, 4);
             PlaylistBox.Name = "PlaylistBox";
-            PlaylistBox.Size = new Size(570, 155);
+            PlaylistBox.Padding = new Padding(3, 4, 3, 4);
+            PlaylistBox.Size = new Size(651, 207);
             PlaylistBox.TabIndex = 0;
             PlaylistBox.TabStop = false;
             PlaylistBox.Enter += PlaylistBox_Enter;
@@ -87,19 +87,18 @@ namespace TestStyle
             // 
             PlaylistLengthLabel.Font = new Font("Sitka Banner", 14F);
             PlaylistLengthLabel.ForeColor = SystemColors.ControlDark;
-            PlaylistLengthLabel.Location = new Point(192, 90);
+            PlaylistLengthLabel.Location = new Point(219, 120);
             PlaylistLengthLabel.Name = "PlaylistLengthLabel";
-            PlaylistLengthLabel.Size = new Size(228, 27);
+            PlaylistLengthLabel.Size = new Size(261, 36);
             PlaylistLengthLabel.TabIndex = 3;
             PlaylistLengthLabel.Text = "99:99";
             // 
             // PlaylistPicBox
             // 
             PlaylistPicBox.BorderStyle = BorderStyle.FixedSingle;
-            PlaylistPicBox.Location = new Point(8, 16);
-            PlaylistPicBox.Margin = new Padding(3, 2, 3, 2);
+            PlaylistPicBox.Location = new Point(9, 21);
             PlaylistPicBox.Name = "PlaylistPicBox";
-            PlaylistPicBox.Size = new Size(130, 130);
+            PlaylistPicBox.Size = new Size(148, 173);
             PlaylistPicBox.TabIndex = 0;
             PlaylistPicBox.TabStop = false;
             // 
@@ -108,9 +107,9 @@ namespace TestStyle
             PlaylistNameLabel.AutoEllipsis = true;
             PlaylistNameLabel.Font = new Font("Sylfaen", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
             PlaylistNameLabel.ForeColor = SystemColors.Control;
-            PlaylistNameLabel.Location = new Point(192, 19);
+            PlaylistNameLabel.Location = new Point(219, 25);
             PlaylistNameLabel.Name = "PlaylistNameLabel";
-            PlaylistNameLabel.Size = new Size(236, 38);
+            PlaylistNameLabel.Size = new Size(270, 51);
             PlaylistNameLabel.TabIndex = 1;
             PlaylistNameLabel.Text = "Playlist Name";
             // 
@@ -118,9 +117,9 @@ namespace TestStyle
             // 
             PlaylistAuthorLabel.Font = new Font("Sitka Banner", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point, 0);
             PlaylistAuthorLabel.ForeColor = SystemColors.ControlDark;
-            PlaylistAuthorLabel.Location = new Point(192, 57);
+            PlaylistAuthorLabel.Location = new Point(219, 76);
             PlaylistAuthorLabel.Name = "PlaylistAuthorLabel";
-            PlaylistAuthorLabel.Size = new Size(228, 33);
+            PlaylistAuthorLabel.Size = new Size(261, 44);
             PlaylistAuthorLabel.TabIndex = 2;
             PlaylistAuthorLabel.Text = "Playlist Author";
             // 
@@ -128,10 +127,9 @@ namespace TestStyle
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 40);
             panel1.Controls.Add(PlaylistFLP);
-            panel1.Location = new Point(10, 68);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(11, 91);
             panel1.Name = "panel1";
-            panel1.Size = new Size(252, 403);
+            panel1.Size = new Size(288, 537);
             panel1.TabIndex = 3;
             // 
             // PlaylistsTEXT
@@ -139,9 +137,9 @@ namespace TestStyle
             PlaylistsTEXT.AutoSize = true;
             PlaylistsTEXT.Font = new Font("Sitka Banner", 25.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
             PlaylistsTEXT.ForeColor = Color.FromArgb(255, 128, 0);
-            PlaylistsTEXT.Location = new Point(13, 19);
+            PlaylistsTEXT.Location = new Point(15, 25);
             PlaylistsTEXT.Name = "PlaylistsTEXT";
-            PlaylistsTEXT.Size = new Size(129, 50);
+            PlaylistsTEXT.Size = new Size(160, 62);
             PlaylistsTEXT.TabIndex = 1;
             PlaylistsTEXT.Text = "Playlists";
             // 
@@ -151,10 +149,9 @@ namespace TestStyle
             SearchTextBoxPL.BorderStyle = BorderStyle.FixedSingle;
             SearchTextBoxPL.Font = new Font("Sitka Banner", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point, 204);
             SearchTextBoxPL.ForeColor = SystemColors.Control;
-            SearchTextBoxPL.Location = new Point(284, 19);
-            SearchTextBoxPL.Margin = new Padding(3, 2, 3, 2);
+            SearchTextBoxPL.Location = new Point(325, 25);
             SearchTextBoxPL.Name = "SearchTextBoxPL";
-            SearchTextBoxPL.Size = new Size(233, 35);
+            SearchTextBoxPL.Size = new Size(266, 41);
             SearchTextBoxPL.TabIndex = 5;
             // 
             // SearchBtnPL
@@ -163,10 +160,9 @@ namespace TestStyle
             SearchBtnPL.FlatStyle = FlatStyle.System;
             SearchBtnPL.Font = new Font("Sitka Banner", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 204);
             SearchBtnPL.ForeColor = Color.Black;
-            SearchBtnPL.Location = new Point(522, 19);
-            SearchBtnPL.Margin = new Padding(3, 2, 3, 2);
+            SearchBtnPL.Location = new Point(597, 25);
             SearchBtnPL.Name = "SearchBtnPL";
-            SearchBtnPL.Size = new Size(82, 31);
+            SearchBtnPL.Size = new Size(94, 41);
             SearchBtnPL.TabIndex = 6;
             SearchBtnPL.Text = "Search";
             SearchBtnPL.UseVisualStyleBackColor = false;
@@ -175,16 +171,15 @@ namespace TestStyle
             // 
             // PlaylistsForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 20, 20);
-            ClientSize = new Size(892, 481);
+            ClientSize = new Size(1019, 641);
             Controls.Add(PlaylistsTEXT);
             Controls.Add(SearchBtnPL);
             Controls.Add(SearchTextBoxPL);
             Controls.Add(panel1);
             Controls.Add(PlaylistPanel);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "PlaylistsForm";
             Text = "PLaylists";
             Load += Form2_Load;
