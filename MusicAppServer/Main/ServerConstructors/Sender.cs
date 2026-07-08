@@ -1,8 +1,10 @@
-﻿using System.Net.Sockets;
+﻿using MusicAppServer.Exceptions;
+using MusicAppServer.Data;
+using MusicAppServer.Controllers;
+using System.Net.Sockets;
 using System.Text;
 
-namespace MusicAppServer;
-
+namespace MusicAppServer.Main.ServerConstructors;
 
 /// <summary>
 /// Provides functionality to stream audio files to connected TCP clients.
@@ -75,7 +77,7 @@ public static class Sender
             bool canSign;
 
             // Context is disposed immediately after fetching data
-            using (var context = new AppContext())
+            using (var context = new AppDBContext())
             {
                 var userController = new UserController(context);
                 canSign = !await userController.IsUserExistsByEmailAsync(login);
@@ -127,7 +129,7 @@ public static class Sender
             bool canLog;
 
             // Context is disposed immediately after fetching data
-            using (var context = new AppContext())
+            using (var context = new AppDBContext())
             {
                 var userController = new UserController(context);
                 // Straightforward logic: if credentials match — true, otherwise — false

@@ -1,4 +1,6 @@
-﻿namespace MusicAppServer;
+﻿using MusicAppServer.Data;
+
+namespace MusicAppServer.Controllers;
 
 /// <summary>
 /// Provides methods for controlling the database, such as resetting it.
@@ -11,7 +13,7 @@ public class DbControll
     /// </summary>
     public static void ResetDb()
     {
-        using (var context = new AppContext())
+        using (var context = new AppDBContext())
         {
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MusicAppServer;
+﻿namespace MusicAppServer.Main.ServerConstructors;
 
 /// <summary>
 /// Contains global string constants used for server logging and signaling.

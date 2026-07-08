@@ -1,4 +1,4 @@
-﻿namespace MusicAppServer;
+﻿namespace MusicAppServer.Models;
 
 /// <summary>
 /// Represents a musical genre category within the music application.

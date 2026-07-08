@@ -1,22 +1,23 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MusicAppServer.Data;
+using MusicAppServer.Exceptions;
+using MusicAppServer.Models;
 
-namespace MusicAppServer;
+namespace MusicAppServer.Controllers;
 
 /// <summary>
 /// Provides methods to manage artists in the music application, including adding, retrieving, removing, and updating artist information.
 /// </summary>
 public class ArtistController
 {
-    private readonly AppContext _context;
+    private readonly AppDBContext _context;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ArtistController"/> class with a specified database context.
     /// </summary>
     /// <param name="context">The database context instance used to interact with the storage.</param>
     /// <exception cref="ArgumentNullException">Thrown when the provided <paramref name="context"/> is null.</exception>
-    public ArtistController(AppContext context)
+    public ArtistController(AppDBContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }

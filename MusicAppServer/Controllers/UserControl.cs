@@ -1,20 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MusicAppServer.Data;
+using MusicAppServer.Exceptions;
+using MusicAppServer.Models;
 
-namespace MusicAppServer;
+namespace MusicAppServer.Controllers;
 
 /// <summary>
 /// Provides administrative and authentication operations for managing users within the database.
 /// </summary>
 public class UserController
 {
-    private readonly AppContext _context;
+    private readonly AppDBContext _context;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="UserController"/> class with a specified database context.
     /// </summary>
     /// <param name="context">The database context instance used to interact with the storage.</param>
     /// <exception cref="ArgumentNullException">Thrown when the provided <paramref name="context"/> is null.</exception>
-    public UserController(AppContext context)
+    public UserController(AppDBContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }

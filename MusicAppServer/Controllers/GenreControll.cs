@@ -1,21 +1,22 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MusicAppServer.Exceptions;
+using MusicAppServer.Models;
+using MusicAppServer.Data;
 
-namespace MusicAppServer;
+namespace MusicAppServer.Controllers;
 
 /// <summary>
 /// Provides administrative operations for managing song genres within the database.
 /// </summary>
 public class GenreController
 {
-    private readonly AppContext _context;
+    private readonly AppDBContext _context;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="GenreController"/> class with a specified database context.
     /// </summary>
     /// <param name="context">The database context instance used to interact with the storage.</param>
-    public GenreController(AppContext context)
+    public GenreController(AppDBContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }

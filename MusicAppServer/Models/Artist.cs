@@ -1,4 +1,4 @@
-﻿namespace MusicAppServer;
+﻿namespace MusicAppServer.Models;
 
 /// <summary>
 /// Represents an artist in the music application.
