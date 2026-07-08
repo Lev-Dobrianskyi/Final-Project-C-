@@ -31,11 +31,23 @@ namespace TestStyle
         private Song currentSong;
         //currentSong = await client.GetSongAsync(songTitle, songAuthor);
         //If server will accept request from client and search for song in database,
-        ///then it will return song object with all necessary information, including url to the song file. 
-        ///Then this form will use that url to play the song.
+        //then it will return song object with all necessary information, including url to the song file. 
+        //Then this form will use that url to play the song.
+        //Also require changes if this method will be added to the server.
 
         private void SongMenu_Load(object sender, EventArgs e)
         {
+            timer1.Interval = 500;
+            timer1.Start();
+
+            GraphicsPath buttonRoundingPath = new GraphicsPath();
+            buttonRoundingPath.AddEllipse(0, 0, Play_PauseBtn.Width, Play_PauseBtn.Height);
+
+            Play_PauseBtn.Region = new Region(buttonRoundingPath);
+            SongTrackBar.TickStyle = TickStyle.None;
+
+            LoadSong();
+
             using var context = new MusicAppServer.AppContext();
             currentSong = context.Songs
                 .Include(s => s.Artists)
@@ -49,17 +61,6 @@ namespace TestStyle
                 return;
             }
 
-            timer1.Interval = 500;
-            timer1.Start();
-
-            GraphicsPath buttonRoundingPath = new GraphicsPath();
-            buttonRoundingPath.AddEllipse(0, 0, Play_PauseBtn.Width, Play_PauseBtn.Height);
-
-            Play_PauseBtn.Region = new Region(buttonRoundingPath);
-            SongTrackBar.TickStyle = TickStyle.None;
-
-
-            LoadSong();
         }
         private void LoadSong()
         {
