@@ -135,6 +135,7 @@ namespace TestStyle
         {
             string title = "";
             string author = "";
+            Image songImage = null;
             foreach (Control control in songBox.Controls)
             {
                 if (control is Label label1 && label1.Name == "songTitleLabel")
@@ -145,13 +146,17 @@ namespace TestStyle
                 {
                     author = label2.Text;
                 }
+                if(control is PictureBox pictureBox && pictureBox.Name == "songPictureBox")
+                {
+                    songImage = pictureBox.Image;
+                }
             }
             if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author))
             {
                 MessageBox.Show("Song couldn't be opened");
                 return;
             }
-            SongMenu songMenuForm = new SongMenu(title, author);
+            SongMenu songMenuForm = new SongMenu(title, author, songImage);
             songMenuForm.Show();
         }
     }

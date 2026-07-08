@@ -19,11 +19,14 @@ namespace TestStyle
     {
         public string songTitle;
         public string songAuthor;
-        public SongMenu(string title, string author)
+        public SongMenu(string title, string author, Image image)
         {
+            InitializeComponent();
+
             songTitle = title;
             songAuthor = author;
-            InitializeComponent();
+            SongPicBox.Image = image;
+            SongPicBox.SizeMode = PictureBoxSizeMode.Zoom;
         }
         private AudioFileReader audioFile;
         private WaveOutEvent outputDevice;
@@ -70,6 +73,12 @@ namespace TestStyle
 
             audioFile = new AudioFileReader(currentSong.Url);
 
+            if(audioFile == null)
+            {
+                MessageBox.Show("Failed to load song.");
+                return;
+            }
+
             outputDevice = new WaveOutEvent();
             outputDevice.Init(audioFile);
 
@@ -83,6 +92,7 @@ namespace TestStyle
 
             MaxSongTimeLabel.Text = TimeSpan.FromSeconds(audioFile.TotalTime.TotalSeconds).ToString(@"mm\:ss");
             SongTrackBar.Value = 0;
+
         }
         private void OutputDevice_PlaybackStopped(object sender, StoppedEventArgs e)
         {
