@@ -45,8 +45,8 @@
             songTitleLabel = new Label();
             sidePanel = new Panel();
             label4 = new Label();
-            profilePictureBox = new PictureBox();
             songCreationButton = new Button();
+            profilePictureBox = new PictureBox();
             searchBox = new TextBox();
             songPanel.SuspendLayout();
             songBox.SuspendLayout();
@@ -214,10 +214,10 @@
             // songPictureBox
             // 
             songPictureBox.Image = (Image)resources.GetObject("songPictureBox.Image");
-            songPictureBox.Location = new Point(8, 7);
+            songPictureBox.Location = new Point(7, 9);
             songPictureBox.Margin = new Padding(3, 2, 3, 2);
             songPictureBox.Name = "songPictureBox";
-            songPictureBox.Size = new Size(43, 43);
+            songPictureBox.Size = new Size(45, 38);
             songPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             songPictureBox.TabIndex = 5;
             songPictureBox.TabStop = false;
@@ -274,17 +274,6 @@
             label4.TabIndex = 1;
             label4.Text = "Want to become an artist?";
             // 
-            // profilePictureBox
-            // 
-            profilePictureBox.Image = (Image)resources.GetObject("profilePictureBox.Image");
-            profilePictureBox.Location = new Point(1092, 3);
-            profilePictureBox.Name = "profilePictureBox";
-            profilePictureBox.Size = new Size(80, 80);
-            profilePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            profilePictureBox.TabIndex = 8;
-            profilePictureBox.TabStop = false;
-            profilePictureBox.Visible = false;
-            // 
             // songCreationButton
             // 
             songCreationButton.BackColor = Color.FromArgb(20, 20, 20);
@@ -301,9 +290,21 @@
             songCreationButton.MouseEnter += songCreationButton_MouseEnter;
             songCreationButton.MouseLeave += songCreationButton_MouseLeave;
             // 
+            // profilePictureBox
+            // 
+            profilePictureBox.Image = (Image)resources.GetObject("profilePictureBox.Image");
+            profilePictureBox.Location = new Point(1093, 12);
+            profilePictureBox.Name = "profilePictureBox";
+            profilePictureBox.Size = new Size(79, 68);
+            profilePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            profilePictureBox.TabIndex = 8;
+            profilePictureBox.TabStop = false;
+            profilePictureBox.Visible = false;
+            // 
             // searchBox
             // 
-            searchBox.Location = new Point(337, 14);
+            searchBox.BackColor = Color.FromArgb(30, 30, 30);
+            searchBox.Location = new Point(276, 30);
             searchBox.Name = "searchBox";
             searchBox.Size = new Size(535, 23);
             searchBox.TabIndex = 9;
