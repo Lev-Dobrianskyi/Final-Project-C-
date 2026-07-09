@@ -1,4 +1,4 @@
-﻿namespace MusicAppServer;
+﻿namespace MusicAppServer.Models;
 
 /// <summary>
 /// Represents a user account within the music streaming and social application.

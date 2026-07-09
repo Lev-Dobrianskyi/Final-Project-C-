@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MusicAppServer.Models;
 
-namespace MusicAppServer;
+namespace MusicAppServer.Data;
 
 /// <summary>
 /// Represents the database context for the music application, providing access to the Users, Songs, SongGenres, and Artists tables.
 /// </summary>
-public class AppContext : DbContext
+public class AppDBContext : DbContext
 {
     public DbSet<User> Users { get; set; }
     public DbSet<Song> Songs { get; set; }

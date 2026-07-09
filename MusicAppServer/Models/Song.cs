@@ -1,4 +1,4 @@
-﻿namespace MusicAppServer;
+﻿namespace MusicAppServer.Models;
 
 /// <summary>
 /// Represents a song entity within the music streaming system.

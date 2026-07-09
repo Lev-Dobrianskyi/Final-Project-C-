@@ -1,21 +1,21 @@
-﻿using System.Net;
+﻿using MusicAppServer.Exceptions;
+using MusicAppServer.Main.ServerConstructors;
+using System.Net;
 using System.Net.Sockets;
 
-namespace MusicAppServer;
+namespace MusicAppServer.Main.EnterProgram;
 
 /// <summary>
-/// Defines the entry point of the server application, initializing the TCP listener loop.
+/// Contains the implementation of the server application, including the entry point and TCP listener loop.
 /// </summary>
-/// <param name="args">Command-line arguments.</param>
-internal class Program
+public class Realisation
 {
     /// <summary>
     /// Defines the entry point of the server application, initializing the TCP listener loop.
     /// </summary>
     /// <param name="args">Command-line arguments.</param>
-    static async Task Main(string[] args)
+    public static async Task EnterProgram()
     {
-
         TcpListener listener = new TcpListener(IPAddress.Any, 5000);
         listener.Start();
 

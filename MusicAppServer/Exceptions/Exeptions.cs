@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MusicAppServer;
+﻿namespace MusicAppServer.Exceptions;
 
 /// <summary>
 /// The base abstract class for all exceptions thrown within the MusicApp service.
