@@ -59,9 +59,8 @@
             panel2.Controls.Add(SongPicBox);
             panel2.ForeColor = Color.FromArgb(15, 15, 15);
             panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(892, 97);
+            panel2.Size = new Size(1019, 129);
             panel2.TabIndex = 5;
             // 
             // MaxSongTimeLabel
@@ -69,9 +68,9 @@
             MaxSongTimeLabel.AutoSize = true;
             MaxSongTimeLabel.BackColor = Color.FromArgb(20, 20, 20);
             MaxSongTimeLabel.ForeColor = Color.White;
-            MaxSongTimeLabel.Location = new Point(592, 70);
+            MaxSongTimeLabel.Location = new Point(677, 93);
             MaxSongTimeLabel.Name = "MaxSongTimeLabel";
-            MaxSongTimeLabel.Size = new Size(34, 15);
+            MaxSongTimeLabel.Size = new Size(44, 20);
             MaxSongTimeLabel.TabIndex = 8;
             MaxSongTimeLabel.Text = "99:99";
             // 
@@ -80,18 +79,17 @@
             CurrSongTimeLabel.AutoSize = true;
             CurrSongTimeLabel.BackColor = Color.FromArgb(20, 20, 20);
             CurrSongTimeLabel.ForeColor = Color.White;
-            CurrSongTimeLabel.Location = new Point(258, 70);
+            CurrSongTimeLabel.Location = new Point(295, 93);
             CurrSongTimeLabel.Name = "CurrSongTimeLabel";
-            CurrSongTimeLabel.Size = new Size(34, 15);
+            CurrSongTimeLabel.Size = new Size(44, 20);
             CurrSongTimeLabel.TabIndex = 7;
             CurrSongTimeLabel.Text = "00:00";
             // 
             // SongTrackBar
             // 
-            SongTrackBar.Location = new Point(307, 65);
-            SongTrackBar.Margin = new Padding(3, 2, 3, 2);
+            SongTrackBar.Location = new Point(351, 87);
             SongTrackBar.Name = "SongTrackBar";
-            SongTrackBar.Size = new Size(280, 45);
+            SongTrackBar.Size = new Size(320, 56);
             SongTrackBar.TabIndex = 6;
             // 
             // NextBtn
@@ -102,10 +100,9 @@
             NextBtn.FlatStyle = FlatStyle.Flat;
             NextBtn.Font = new Font("Segoe UI Symbol", 16F);
             NextBtn.ForeColor = Color.FromArgb(255, 128, 0);
-            NextBtn.Location = new Point(481, 15);
-            NextBtn.Margin = new Padding(3, 2, 3, 2);
+            NextBtn.Location = new Point(550, 20);
             NextBtn.Name = "NextBtn";
-            NextBtn.Size = new Size(25, 35);
+            NextBtn.Size = new Size(29, 47);
             NextBtn.TabIndex = 5;
             NextBtn.Text = "⏭";
             NextBtn.UseVisualStyleBackColor = false;
@@ -118,10 +115,10 @@
             PreviousBtn.FlatStyle = FlatStyle.Flat;
             PreviousBtn.Font = new Font("Segoe UI Symbol", 16F);
             PreviousBtn.ForeColor = Color.FromArgb(255, 128, 0);
-            PreviousBtn.Location = new Point(386, 14);
+            PreviousBtn.Location = new Point(441, 19);
             PreviousBtn.Margin = new Padding(0);
             PreviousBtn.Name = "PreviousBtn";
-            PreviousBtn.Size = new Size(24, 37);
+            PreviousBtn.Size = new Size(27, 49);
             PreviousBtn.TabIndex = 4;
             PreviousBtn.Text = "⏮";
             PreviousBtn.UseVisualStyleBackColor = false;
@@ -134,10 +131,10 @@
             Play_PauseBtn.FlatStyle = FlatStyle.Flat;
             Play_PauseBtn.Font = new Font("Arial", 18F, FontStyle.Bold);
             Play_PauseBtn.ForeColor = Color.Black;
-            Play_PauseBtn.Location = new Point(418, 10);
+            Play_PauseBtn.Location = new Point(478, 13);
             Play_PauseBtn.Margin = new Padding(0);
             Play_PauseBtn.Name = "Play_PauseBtn";
-            Play_PauseBtn.Size = new Size(52, 45);
+            Play_PauseBtn.Size = new Size(59, 60);
             Play_PauseBtn.TabIndex = 3;
             Play_PauseBtn.Text = " ▶";
             Play_PauseBtn.UseVisualStyleBackColor = false;
@@ -147,9 +144,9 @@
             // 
             SongAuthorLabel.Font = new Font("Sylfaen", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             SongAuthorLabel.ForeColor = SystemColors.ControlDark;
-            SongAuthorLabel.Location = new Point(101, 39);
+            SongAuthorLabel.Location = new Point(115, 52);
             SongAuthorLabel.Name = "SongAuthorLabel";
-            SongAuthorLabel.Size = new Size(201, 32);
+            SongAuthorLabel.Size = new Size(230, 43);
             SongAuthorLabel.TabIndex = 2;
             SongAuthorLabel.Text = "Song Author";
             // 
@@ -157,33 +154,35 @@
             // 
             SongNameLabel.Font = new Font("Sitka Banner", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point, 204);
             SongNameLabel.ForeColor = SystemColors.Control;
-            SongNameLabel.Location = new Point(101, 10);
+            SongNameLabel.Location = new Point(115, 13);
             SongNameLabel.Name = "SongNameLabel";
-            SongNameLabel.Size = new Size(201, 29);
+            SongNameLabel.Size = new Size(230, 39);
             SongNameLabel.TabIndex = 1;
             SongNameLabel.Text = "Song Name";
             // 
             // SongPicBox
             // 
-            SongPicBox.Location = new Point(10, 10);
-            SongPicBox.Margin = new Padding(3, 2, 3, 2);
+            SongPicBox.Location = new Point(11, 13);
             SongPicBox.Name = "SongPicBox";
-            SongPicBox.Size = new Size(85, 61);
+            SongPicBox.Size = new Size(97, 81);
             SongPicBox.TabIndex = 0;
             SongPicBox.TabStop = false;
             // 
             // songTimer
             // 
             songTimer.Interval = 500;
+            songTimer.Tick += songTimer_Tick;
             // 
             // SongMenu
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(892, 97);
+            ClientSize = new Size(1019, 129);
             Controls.Add(panel2);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "SongMenu";
             Text = "SongMenu";
+            FormClosing += SongMenu_FormClosing;
             Load += SongMenu_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();

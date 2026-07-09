@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using NAudio.Wave;
 using System.Linq;
 using MusicAppServer.Models;
+using MusicAppServer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -33,6 +34,8 @@ public partial class SongMenu : Form
         songAuthor = author;
         SongPicBox.Image = image;
         SongPicBox.SizeMode = PictureBoxSizeMode.Zoom;
+        SongNameLabel.Text = title;
+        SongAuthorLabel.Text = author;
     }
     private AudioFileReader audioFile;
     private WaveOutEvent outputDevice;
@@ -48,7 +51,6 @@ public partial class SongMenu : Form
     {
         songTimer.Start();
 
-
         GraphicsPath buttonRoundingPath = new GraphicsPath();
         buttonRoundingPath.AddEllipse(0, 0, Play_PauseBtn.Width, Play_PauseBtn.Height);
 
@@ -57,7 +59,7 @@ public partial class SongMenu : Form
 
         LoadSong();
 
-        using var context = new MusicAppServer.AppContext();
+        using var context = new MusicAppServer.Data.AppDBContext();
         currentSong = context.Songs
             .Include(s => s.Artists)
             .FirstOrDefault(s =>
@@ -90,29 +92,58 @@ public partial class SongMenu : Form
 
         outputDevice.PlaybackStopped += OutputDevice_PlaybackStopped;
 
-        SongNameLabel.Text = currentSong.Name;
-
-        SongAuthorLabel.Text = string.Join(", ", currentSong.Artists.Select(a => a.Name));
-
         SongTrackBar.Maximum = (int)audioFile.TotalTime.TotalSeconds;
 
         MaxSongTimeLabel.Text = TimeSpan.FromSeconds(audioFile.TotalTime.TotalSeconds).ToString(@"mm\:ss");
         SongTrackBar.Value = 0;
-
     }
-
-    bool isPlaying = false;
+    private void OutputDevice_PlaybackStopped(object sender, StoppedEventArgs e)
+    {
+        if (audioFile != null && audioFile.Position >= audioFile.Length)
+        {
+            BeginInvoke(new Action(() =>
+            {
+                Play_PauseBtn.Text = " ▶";
+                SongTrackBar.Value = 0;
+                CurrSongTimeLabel.Text = "00:00";
+            }));
+        }
+    }
     private void Play_PauseBtn_Click(object sender, EventArgs e)
     {
-        if (!isPlaying)
+        if (outputDevice == null)
         {
-            Play_PauseBtn.Text = " ❚❚";
+            return;
+        }
+        if (outputDevice.PlaybackState == PlaybackState.Playing)
+        {
+            outputDevice.Pause();
+            Play_PauseBtn.Text = " ▶";
         }
         else
         {
-            Play_PauseBtn.Text = " ▶";
-        }
+            if (audioFile.Position >= audioFile.Length)
+            {
+                audioFile.Position = 0;
+            }
 
-        isPlaying = !isPlaying;
+            outputDevice.Play();
+            Play_PauseBtn.Text = " ❚❚";
+        }
+    }
+
+    private void songTimer_Tick(object sender, EventArgs e)
+    {
+        if (audioFile != null && outputDevice != null && outputDevice.PlaybackState == PlaybackState.Playing)
+        {
+            SongTrackBar.Value = Math.Min((int)audioFile.CurrentTime.TotalSeconds, SongTrackBar.Maximum);
+            CurrSongTimeLabel.Text = TimeSpan.FromSeconds(audioFile.CurrentTime.TotalSeconds).ToString(@"mm\:ss");
+        }
+    }
+
+    private void SongMenu_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        outputDevice?.Dispose();
+        audioFile?.Dispose();
     }
 }
