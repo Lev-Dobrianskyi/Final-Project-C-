@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel2 = new Panel();
             MaxSongTimeLabel = new Label();
             CurrSongTimeLabel = new Label();
@@ -38,6 +39,7 @@
             SongAuthorLabel = new Label();
             SongNameLabel = new Label();
             SongPicBox = new PictureBox();
+            songTimer = new System.Windows.Forms.Timer(components);
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SongTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)SongPicBox).BeginInit();
@@ -170,6 +172,10 @@
             SongPicBox.TabIndex = 0;
             SongPicBox.TabStop = false;
             // 
+            // songTimer
+            // 
+            songTimer.Interval = 500;
+            // 
             // SongMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -198,5 +204,6 @@
         private Label SongAuthorLabel;
         private Label SongNameLabel;
         private PictureBox SongPicBox;
+        private System.Windows.Forms.Timer songTimer;
     }
 }

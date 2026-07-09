@@ -29,7 +29,8 @@ public partial class MainMenuForm : Form
 
     private void signinButton_Click(object sender, EventArgs e)
     {
-        // open signin form
+        SigninForm signinForm = new SigninForm();
+        signinForm.Show();
     }
 
     private void signupButton_MouseEnter(object sender, EventArgs e)
@@ -44,7 +45,8 @@ public partial class MainMenuForm : Form
 
     private void signupButton_Click(object sender, EventArgs e)
     {
-        // open signup form
+        SignupForm signupForm = new SignupForm();
+        signupForm.Show();
     }
 
     private void songCreationButton_MouseEnter(object sender, EventArgs e)
@@ -131,6 +133,7 @@ public partial class MainMenuForm : Form
     {
         string title = "";
         string author = "";
+        Image songImage = null;
         foreach (Control control in songBox.Controls)
         {
             if (control is Label label1 && label1.Name == "songTitleLabel")
@@ -141,13 +144,17 @@ public partial class MainMenuForm : Form
             {
                 author = label2.Text;
             }
+            if (control is PictureBox pictureBox && pictureBox.Name == "songPictureBox")
+            {
+                songImage = pictureBox.Image;
+            }
         }
         if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author))
         {
             MessageBox.Show("Song couldn't be opened");
             return;
         }
-        SongMenu songMenuForm = new SongMenu(title, author);
+        SongMenu songMenuForm = new SongMenu(title, author, songImage);
         songMenuForm.Show();
     }
 }
