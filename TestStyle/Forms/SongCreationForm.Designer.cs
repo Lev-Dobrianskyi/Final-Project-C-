@@ -46,6 +46,7 @@
             songTitleLabel = new Label();
             panel3 = new Panel();
             btnCreate = new Button();
+            ProgramPic = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)userImg).BeginInit();
             panel2.SuspendLayout();
@@ -53,10 +54,12 @@
             songBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)songPictureBox).BeginInit();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ProgramPic).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(ProgramPic);
             panel1.Controls.Add(HomeBtn);
             panel1.Controls.Add(userImg);
             panel1.Controls.Add(SCFLbl);
@@ -246,6 +249,16 @@
             btnCreate.UseVisualStyleBackColor = false;
             btnCreate.Click += btnCreate_Click;
             // 
+            // ProgramPic
+            // 
+            ProgramPic.Image = (Image)resources.GetObject("ProgramPic.Image");
+            ProgramPic.Location = new Point(417, 25);
+            ProgramPic.Name = "ProgramPic";
+            ProgramPic.Size = new Size(64, 64);
+            ProgramPic.SizeMode = PictureBoxSizeMode.StretchImage;
+            ProgramPic.TabIndex = 12;
+            ProgramPic.TabStop = false;
+            // 
             // SongCreationForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -266,6 +279,7 @@
             songBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)songPictureBox).EndInit();
             panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ProgramPic).EndInit();
             ResumeLayout(false);
         }
 
@@ -288,5 +302,6 @@
         private Button btnCreate;
         private Button HomeBtn;
         private PictureBox userImg;
+        private PictureBox ProgramPic;
     }
 }
