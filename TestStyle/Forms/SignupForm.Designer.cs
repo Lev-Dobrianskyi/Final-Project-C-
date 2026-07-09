@@ -208,7 +208,7 @@
             // 
             // labelSingup
             // 
-            labelSingup.Font = new Font("Tempus Sans ITC", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelSingup.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelSingup.ForeColor = Color.FromArgb(255, 128, 0);
             labelSingup.Location = new Point(32, 24);
             labelSingup.Name = "labelSingup";
@@ -233,6 +233,7 @@
             txtUsername.BackColor = Color.FromArgb(30, 30, 30);
             txtUsername.BorderStyle = BorderStyle.FixedSingle;
             txtUsername.Font = new Font("Segoe UI Emoji", 10.8F);
+            txtUsername.ForeColor = Color.White;
             txtUsername.Location = new Point(49, 133);
             txtUsername.Margin = new Padding(3, 2, 3, 2);
             txtUsername.MaxLength = 24;
@@ -250,6 +251,7 @@
             labelUserMessage.Size = new Size(81, 13);
             labelUserMessage.TabIndex = 49;
             labelUserMessage.Text = "userMessage";
+            labelUserMessage.Visible = false;
             // 
             // labelConfirmPassword
             // 
@@ -272,17 +274,20 @@
             labelConfirmPasswordMessage.Size = new Size(151, 13);
             labelConfirmPasswordMessage.TabIndex = 51;
             labelConfirmPasswordMessage.Text = "confirmPasswordMessage";
+            labelConfirmPasswordMessage.Visible = false;
             // 
             // txtConfirmPassword
             // 
             txtConfirmPassword.BackColor = Color.FromArgb(30, 30, 30);
             txtConfirmPassword.BorderStyle = BorderStyle.FixedSingle;
             txtConfirmPassword.Font = new Font("Segoe UI Emoji", 10.8F);
+            txtConfirmPassword.ForeColor = Color.FromArgb(255, 128, 0);
             txtConfirmPassword.Location = new Point(49, 372);
             txtConfirmPassword.Margin = new Padding(3, 2, 3, 2);
             txtConfirmPassword.Name = "txtConfirmPassword";
             txtConfirmPassword.Size = new Size(245, 27);
             txtConfirmPassword.TabIndex = 52;
+            txtConfirmPassword.UseSystemPasswordChar = true;
             // 
             // llLogin
             // 
