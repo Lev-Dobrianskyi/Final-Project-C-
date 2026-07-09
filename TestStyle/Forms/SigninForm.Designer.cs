@@ -213,7 +213,7 @@
             // labelSingin
             // 
             labelSingin.BackColor = Color.FromArgb(0, 0, 0, 0);
-            labelSingin.Font = new Font("Tempus Sans ITC", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelSingin.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelSingin.ForeColor = Color.FromArgb(255, 128, 0);
             labelSingin.Location = new Point(62, 40);
             labelSingin.Name = "labelSingin";
