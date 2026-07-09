@@ -11,6 +11,7 @@ using NAudio.Wave;
 using System.Linq;
 using MusicAppServer.Models;
 using MusicAppServer.Data;
+using MusicAppServer.MusicPlayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -37,10 +38,10 @@ public partial class SongMenu : Form
         SongNameLabel.Text = title;
         SongAuthorLabel.Text = author;
     }
-    private AudioFileReader audioFile;
-    private WaveOutEvent outputDevice;
 
     private Song currentSong;
+    private MusicPlayer player = new MusicPlayer();
+    private bool isPlaying;
     //currentSong = await client.GetSongAsync(songTitle, songAuthor);
     //If server will accept request from client and search for song in database,
     //then it will return song object with all necessary information, including url to the song file. 
@@ -49,6 +50,9 @@ public partial class SongMenu : Form
 
     private void SongMenu_Load(object sender, EventArgs e)
     {
+        string fileName = "sabrina-carpenter-espresso.mp3";
+        string songsDirectory = Path.Combine(AppContext.BaseDirectory, "Songs");
+        string filePath = Path.Combine(songsDirectory, fileName);
         songTimer.Start();
 
         GraphicsPath buttonRoundingPath = new GraphicsPath();
@@ -57,14 +61,19 @@ public partial class SongMenu : Form
         Play_PauseBtn.Region = new Region(buttonRoundingPath);
         SongTrackBar.TickStyle = TickStyle.None;
 
-        LoadSong();
+        player.Load(filePath);
 
-        using var context = new MusicAppServer.Data.AppDBContext();
-        currentSong = context.Songs
-            .Include(s => s.Artists)
-            .FirstOrDefault(s =>
-                s.Name.Trim() == songTitle.Trim() &&
-                s.Artists.Any(a => a.Name.Trim() == songAuthor.Trim()));
+        using (var context = new AppDBContext())
+        {
+            Song? song = context.Songs
+                .Include(s => s.Artists)
+                .FirstOrDefault(s =>
+                    s.Name.Trim() == songTitle.Trim() &&
+                    s.Artists.Any(a => a.Name.Trim() == songAuthor.Trim()));
+            currentSong = song;
+        }
+        
+
 
         if (currentSong == null)
         {
@@ -72,34 +81,9 @@ public partial class SongMenu : Form
             return;
         }
     }
-
-    private void LoadSong()
-    {
-        outputDevice?.Stop();
-        outputDevice?.Dispose();
-        audioFile?.Dispose();
-
-        audioFile = new AudioFileReader(currentSong.Url);
-
-        if (audioFile == null)
-        {
-            MessageBox.Show("Failed to load song.");
-            return;
-        }
-
-        outputDevice = new WaveOutEvent();
-        outputDevice.Init(audioFile);
-
-        outputDevice.PlaybackStopped += OutputDevice_PlaybackStopped;
-
-        SongTrackBar.Maximum = (int)audioFile.TotalTime.TotalSeconds;
-
-        MaxSongTimeLabel.Text = TimeSpan.FromSeconds(audioFile.TotalTime.TotalSeconds).ToString(@"mm\:ss");
-        SongTrackBar.Value = 0;
-    }
     private void OutputDevice_PlaybackStopped(object sender, StoppedEventArgs e)
     {
-        if (audioFile != null && audioFile.Position >= audioFile.Length)
+        if (player.audioFile != null && player.audioFile.Position >= player.audioFile.Length)
         {
             BeginInvoke(new Action(() =>
             {
@@ -111,39 +95,66 @@ public partial class SongMenu : Form
     }
     private void Play_PauseBtn_Click(object sender, EventArgs e)
     {
-        if (outputDevice == null)
+        string fileName = "sabrina-carpenter-espresso.mp3";
+        string songsDirectory = Path.Combine(AppContext.BaseDirectory, "Songs");
+        string filePath = Path.Combine(songsDirectory, fileName);
+
+        if (!isPlaying)
         {
-            return;
-        }
-        if (outputDevice.PlaybackState == PlaybackState.Playing)
-        {
-            outputDevice.Pause();
-            Play_PauseBtn.Text = " ▶";
+            try
+            {
+                player.Load("D:\\Desktop\\Папки\\IT & Життя\\kontrolni\\FinalProject C#\\FinalProject copy2\\MusicAppServer\\Songs\\sabrina-carpenter-espresso.mp3");
+                player.Play();
+                isPlaying = true;
+                Play_PauseBtn.Text = "⏸";
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error playing song: {ex.Message}");
+            }
         }
         else
         {
-            if (audioFile.Position >= audioFile.Length)
-            {
-                audioFile.Position = 0;
-            }
-
-            outputDevice.Play();
-            Play_PauseBtn.Text = " ❚❚";
+            player.Pause();
+            isPlaying = false;
+            Play_PauseBtn.Text = "▶";
         }
     }
 
     private void songTimer_Tick(object sender, EventArgs e)
     {
-        if (audioFile != null && outputDevice != null && outputDevice.PlaybackState == PlaybackState.Playing)
+        if (player.audioFile != null && player.outputDevice != null && player.outputDevice.PlaybackState == PlaybackState.Playing)
         {
-            SongTrackBar.Value = Math.Min((int)audioFile.CurrentTime.TotalSeconds, SongTrackBar.Maximum);
-            CurrSongTimeLabel.Text = TimeSpan.FromSeconds(audioFile.CurrentTime.TotalSeconds).ToString(@"mm\:ss");
+            SongTrackBar.Value = Math.Min((int)player.audioFile.CurrentTime.TotalSeconds, SongTrackBar.Maximum);
+            CurrSongTimeLabel.Text = TimeSpan.FromSeconds(player.audioFile.CurrentTime.TotalSeconds).ToString(@"mm\:ss");
         }
     }
 
     private void SongMenu_FormClosing(object sender, FormClosingEventArgs e)
     {
-        outputDevice?.Dispose();
-        audioFile?.Dispose();
+        player.outputDevice?.Stop();
+        player.audioFile?.Dispose();
+    }
+
+    private void NextBtn_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void PreviousBtn_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void SongTrackBar_Scroll(object sender, EventArgs e)
+    {
+        int currentTick = SongTrackBar.Value;
+        int allTime = player.GetAllTimeOfMusic();
+        int currentTime = player.GetCurrentTimeOfMusic();
+        int newTime = (int)((double)currentTick / SongTrackBar.Maximum * allTime);
+        player.Seek(newTime);
+
+
     }
 }
