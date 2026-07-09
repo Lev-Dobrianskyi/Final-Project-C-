@@ -221,10 +221,11 @@
             // 
             // songPictureBox
             // 
-            songPictureBox.Image = Music_App.Properties.Resources.espresso___sabrina_carpenter;
-            songPictureBox.Location = new Point(9, 9);
+            songPictureBox.Image = (Image)resources.GetObject("songPictureBox.Image");
+            songPictureBox.Location = new Point(7, 9);
+            songPictureBox.Margin = new Padding(3, 2, 3, 2);
             songPictureBox.Name = "songPictureBox";
-            songPictureBox.Size = new Size(49, 57);
+            songPictureBox.Size = new Size(45, 38);
             songPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             songPictureBox.TabIndex = 5;
             songPictureBox.TabStop = false;
@@ -302,10 +303,9 @@
             // profilePictureBox
             // 
             profilePictureBox.Image = (Image)resources.GetObject("profilePictureBox.Image");
-            profilePictureBox.Location = new Point(1232, 19);
-            profilePictureBox.Margin = new Padding(3, 4, 3, 4);
+            profilePictureBox.Location = new Point(1093, 12);
             profilePictureBox.Name = "profilePictureBox";
-            profilePictureBox.Size = new Size(91, 107);
+            profilePictureBox.Size = new Size(79, 68);
             profilePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             profilePictureBox.TabIndex = 8;
             profilePictureBox.TabStop = false;
@@ -313,8 +313,8 @@
             // 
             // searchBox
             // 
-            searchBox.Location = new Point(385, 19);
-            searchBox.Margin = new Padding(3, 4, 3, 4);
+            searchBox.BackColor = Color.FromArgb(30, 30, 30);
+            searchBox.Location = new Point(276, 30);
             searchBox.Name = "searchBox";
             searchBox.Size = new Size(611, 27);
             searchBox.TabIndex = 9;

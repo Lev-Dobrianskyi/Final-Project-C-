@@ -1,4 +1,5 @@
 ﻿using Music_App;
+using Music_App.Forms;
 
 namespace TestStyle;
 
@@ -59,9 +60,12 @@ public partial class MainMenuForm : Form
         songCreationButton.ForeColor = Color.FromArgb(255, 128, 0);
     }
 
+
+
     private void songCreationButton_Click(object sender, EventArgs e)
     {
-        // open song creation form
+        SongCreationForm creationForm = new SongCreationForm();
+        creationForm.ShowDialog();
     }
 
     private void orderbyDateButton_MouseEnter(object sender, EventArgs e)
