@@ -48,6 +48,7 @@ public partial class SongMenu : Form
     {
         songTimer.Start();
 
+
         GraphicsPath buttonRoundingPath = new GraphicsPath();
         buttonRoundingPath.AddEllipse(0, 0, Play_PauseBtn.Width, Play_PauseBtn.Height);
 
