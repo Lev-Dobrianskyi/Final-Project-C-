@@ -23,5 +23,5 @@ public static class Globals
     /// <summary>
     /// Message logged when a client request is rejected.
     /// </summary>
-    public const string MsgRejectClientRequest = "Approve";
+    public const string MsgRejectClientRequest = "Reject";
 }

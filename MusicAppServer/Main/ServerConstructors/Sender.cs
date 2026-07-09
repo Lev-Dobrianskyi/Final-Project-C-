@@ -1,6 +1,7 @@
-﻿using MusicAppServer.Exceptions;
+﻿using MusicAppServer.Controllers;
 using MusicAppServer.Data;
-using MusicAppServer.Controllers;
+using MusicAppServer.Exceptions;
+using MusicAppServer.Models;
 using System.Net.Sockets;
 using System.Text;
 
@@ -22,7 +23,15 @@ public static class Sender
     public static async Task SendSongAsync(TcpClient client, string filePath)
     {
         if (client == null)
-            throw new ArgumentNullException(nameof(client));
+        {
+            using (client)
+            using (NetworkStream networkStream = client.GetStream())
+            {
+                byte[] buffer = Encoding.UTF8.GetBytes(nameof(client));
+                await networkStream.WriteAsync(buffer, 0, buffer.Length);
+                throw new ArgumentNullException(nameof(client));
+            }
+        }
 
         if (!File.Exists(filePath))
         {
@@ -57,14 +66,17 @@ public static class Sender
     }
 
     /// <summary>
-    /// Asynchronously processes a user sign-up request by verifying the email and sending the appropriate encoded global response message to the client.
+    /// Asynchronously processes a user sign-up request by verifying email uniqueness, 
+    /// creating a new user account if available, and transmitting the response status to the client.
     /// </summary>
     /// <param name="client">The active TCP client connection.</param>
-    /// <param name="login">The email address or login identifier submitted by the client.</param>
-    /// <returns>A task that represents the asynchronous verification and response operation.</returns>
-    /// <exception cref="ArgumentNullException">Thrown when <paramref name="client"/> or <paramref name="login"/> is null.</exception>
-    /// <exception cref="DatabaseException">Thrown when the database queries fail during verification.</exception>
-    public static async Task IsSignUpAsync(TcpClient client, string login)
+    /// <param name="login">The email address submitted by the client as their unique identifier.</param>
+    /// <param name="password">The securely hashed password for the new account.</param>
+    /// <param name="name">The display name or username for the new account.</param>
+    /// <returns>A task that represents the asynchronous verification, database persistence, and response operation.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="client"/>, <paramref name="login"/>, <paramref name="password"/>, or <paramref name="name"/> is null.</exception>
+    /// <exception cref="DatabaseException">Thrown when a database or network communication failure occurs during execution.</exception>
+    public static async Task IsSignUpAsync(TcpClient client, string login, string password, string name)
     {
         if (client == null)
             throw new ArgumentNullException(nameof(client));
@@ -72,23 +84,47 @@ public static class Sender
         if (login == null)
             throw new ArgumentNullException(nameof(login));
 
+        if (password == null)
+            throw new ArgumentNullException(nameof(password));
+
+        if (name == null)
+            throw new ArgumentNullException(nameof(name));
+
         try
         {
             bool canSign;
 
-            // Context is disposed immediately after fetching data
+            // Step 1: Check if the user email is already taken
             using (var context = new AppDBContext())
             {
                 var userController = new UserController(context);
+                // If user does NOT exist, email is available (canSign = true)
                 canSign = !await userController.IsUserExistsByEmailAsync(login);
             }
 
+            // Step 2: Choose the response buffer based on existence check
             byte[] buffer = canSign
                 ? Encoding.UTF8.GetBytes(Globals.MsgApproveClientRequest)
                 : Encoding.UTF8.GetBytes(Globals.MsgRejectClientRequest);
 
-            // Safely use networkStream. It will be disposed at the end of the block,
-            // but client will remain alive because we don't own the socket here.
+            // Step 3: If email is clear, save the new user record into the database
+            if (canSign)
+            {
+                using (var context = new AppDBContext())
+                {
+                    var uc = new UserController(context);
+                    var u = new User()
+                    {
+                        Name = name,
+                        Email = login,
+                        Password = password
+                    };
+                    await uc.AddUserAsync(u);
+                }
+            }
+
+            // Step 4: Safely transmit the final feedback to the client application
+            // It will be disposed at the end of the block, but client remains alive.
             using (NetworkStream networkStream = new NetworkStream(client.Client, ownsSocket: false))
             {
                 await networkStream.WriteAsync(buffer, 0, buffer.Length);
@@ -96,11 +132,13 @@ public static class Sender
         }
         catch (MusicServiceException)
         {
+            // Re-throw our custom handled domain exceptions directly
             throw;
         }
         catch (Exception ex)
         {
-            throw new DatabaseException("An unexpected error occurred during sign-up verification transmission.", ex);
+            // Wrap any unexpected database/network framework crashes into a safe DatabaseException
+            throw new DatabaseException("An unexpected error occurred during sign-up processing or transmission.", ex);
         }
     }
 
