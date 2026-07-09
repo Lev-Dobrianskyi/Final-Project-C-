@@ -54,7 +54,7 @@
             labePasswordMessage.AutoSize = true;
             labePasswordMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
             labePasswordMessage.ForeColor = Color.FromArgb(255, 128, 0);
-            labePasswordMessage.Location = new Point(59, 431);
+            labePasswordMessage.Location = new Point(59, 408);
             labePasswordMessage.Name = "labePasswordMessage";
             labePasswordMessage.Size = new Size(138, 16);
             labePasswordMessage.TabIndex = 46;
@@ -66,7 +66,7 @@
             labelEmailMessage.AutoSize = true;
             labelEmailMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
             labelEmailMessage.ForeColor = Color.FromArgb(255, 128, 0);
-            labelEmailMessage.Location = new Point(59, 316);
+            labelEmailMessage.Location = new Point(59, 297);
             labelEmailMessage.Name = "labelEmailMessage";
             labelEmailMessage.Size = new Size(109, 16);
             labelEmailMessage.TabIndex = 45;
@@ -142,13 +142,13 @@
             btnSignup.FlatStyle = FlatStyle.Flat;
             btnSignup.Font = new Font("Arial Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSignup.ForeColor = SystemColors.ActiveCaptionText;
-            btnSignup.Location = new Point(99, 565);
+            btnSignup.Location = new Point(91, 565);
             btnSignup.Name = "btnSignup";
             btnSignup.Size = new Size(200, 49);
             btnSignup.TabIndex = 40;
             btnSignup.Text = "SIGN UP";
             btnSignup.UseVisualStyleBackColor = false;
-            btnSignup.Click += this.btnSignup_Click;
+            btnSignup.Click += btnSignup_Click;
             btnSignup.MouseEnter += btnSignup_MouseEnter;
             btnSignup.MouseLeave += btnSignup_MouseLeave;
             // 
@@ -157,7 +157,7 @@
             labelPasword.AutoSize = true;
             labelPasword.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
             labelPasword.ForeColor = Color.FromArgb(255, 128, 0);
-            labelPasword.Location = new Point(93, 361);
+            labelPasword.Location = new Point(59, 339);
             labelPasword.Name = "labelPasword";
             labelPasword.Size = new Size(206, 28);
             labelPasword.TabIndex = 39;
@@ -168,7 +168,7 @@
             labelEmail.AutoSize = true;
             labelEmail.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
             labelEmail.ForeColor = Color.FromArgb(255, 128, 0);
-            labelEmail.Location = new Point(112, 245);
+            labelEmail.Location = new Point(59, 228);
             labelEmail.Name = "labelEmail";
             labelEmail.Size = new Size(169, 28);
             labelEmail.TabIndex = 38;
@@ -181,7 +181,7 @@
             txtPassword.Cursor = Cursors.IBeam;
             txtPassword.Font = new Font("Segoe UI Emoji", 10.8F);
             txtPassword.ForeColor = Color.FromArgb(255, 128, 0);
-            txtPassword.Location = new Point(56, 392);
+            txtPassword.Location = new Point(59, 372);
             txtPassword.Margin = new Padding(5);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(280, 31);
@@ -195,7 +195,7 @@
             txtEmail.Cursor = Cursors.IBeam;
             txtEmail.Font = new Font("Segoe UI Emoji", 10.8F);
             txtEmail.ForeColor = Color.White;
-            txtEmail.Location = new Point(56, 277);
+            txtEmail.Location = new Point(59, 261);
             txtEmail.Margin = new Padding(5);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(280, 31);
@@ -217,7 +217,7 @@
             labelUsername.AutoSize = true;
             labelUsername.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             labelUsername.ForeColor = Color.FromArgb(255, 128, 0);
-            labelUsername.Location = new Point(93, 147);
+            labelUsername.Location = new Point(59, 132);
             labelUsername.Name = "labelUsername";
             labelUsername.Size = new Size(215, 28);
             labelUsername.TabIndex = 47;
@@ -229,7 +229,7 @@
             txtUsername.BorderStyle = BorderStyle.FixedSingle;
             txtUsername.Font = new Font("Segoe UI Emoji", 10.8F);
             txtUsername.ForeColor = Color.White;
-            txtUsername.Location = new Point(49, 133);
+            txtUsername.Location = new Point(59, 162);
             txtUsername.Margin = new Padding(3, 2, 3, 2);
             txtUsername.MaxLength = 24;
             txtUsername.Name = "txtUsername";
@@ -241,7 +241,7 @@
             labelUserMessage.AutoSize = true;
             labelUserMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
             labelUserMessage.ForeColor = Color.FromArgb(255, 128, 0);
-            labelUserMessage.Location = new Point(59, 216);
+            labelUserMessage.Location = new Point(59, 195);
             labelUserMessage.Name = "labelUserMessage";
             labelUserMessage.Size = new Size(101, 16);
             labelUserMessage.TabIndex = 49;
@@ -253,7 +253,7 @@
             labelConfirmPassword.AutoSize = true;
             labelConfirmPassword.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             labelConfirmPassword.ForeColor = Color.FromArgb(255, 128, 0);
-            labelConfirmPassword.Location = new Point(80, 465);
+            labelConfirmPassword.Location = new Point(59, 465);
             labelConfirmPassword.Name = "labelConfirmPassword";
             labelConfirmPassword.Size = new Size(232, 28);
             labelConfirmPassword.TabIndex = 50;
@@ -264,7 +264,7 @@
             labelConfirmPasswordMessage.AutoSize = true;
             labelConfirmPasswordMessage.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Bold | FontStyle.Italic);
             labelConfirmPasswordMessage.ForeColor = Color.FromArgb(255, 128, 0);
-            labelConfirmPasswordMessage.Location = new Point(59, 535);
+            labelConfirmPasswordMessage.Location = new Point(59, 528);
             labelConfirmPasswordMessage.Name = "labelConfirmPasswordMessage";
             labelConfirmPasswordMessage.Size = new Size(189, 16);
             labelConfirmPasswordMessage.TabIndex = 51;
@@ -277,7 +277,7 @@
             txtConfirmPassword.BorderStyle = BorderStyle.FixedSingle;
             txtConfirmPassword.Font = new Font("Segoe UI Emoji", 10.8F);
             txtConfirmPassword.ForeColor = Color.FromArgb(255, 128, 0);
-            txtConfirmPassword.Location = new Point(49, 372);
+            txtConfirmPassword.Location = new Point(59, 495);
             txtConfirmPassword.Margin = new Padding(3, 2, 3, 2);
             txtConfirmPassword.Name = "txtConfirmPassword";
             txtConfirmPassword.Size = new Size(280, 31);
