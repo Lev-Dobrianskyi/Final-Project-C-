@@ -1,4 +1,10 @@
-﻿namespace Music_App;
+﻿using Microsoft.AspNetCore.Identity;
+using Music_App.Client_class;
+using System.Net.Sockets;
+using System.Text;
+using System.Text.Json;
+
+namespace Music_App;
 
 public partial class SignupForm : Form
 {
@@ -112,8 +118,9 @@ public partial class SignupForm : Form
         btnSignup.Size = new Size(btnSignup.Width - 4, btnSignup.Height - 4);
     }
 
-    private void btnSignup_Click(object sender, EventArgs e)
+    private async void btnSignup_Click(object sender, EventArgs e)
     {
+
         labelEmailMessage.Visible = false;
         labePasswordMessage.Visible = false;
 
@@ -133,8 +140,40 @@ public partial class SignupForm : Form
             isValid = false;
         }
 
+
+
         if (isValid)
         {
+            if (txtPassword.Text != txtConfirmPassword.Text)
+            {
+                labelConfirmPasswordMessage.Text = "You wrote incorrect psw";
+                return;
+            }
+            // 1. Хешуємо та пакуємо в JSON
+            var hasher = new PasswordHasher<string>();
+            string hashedPassword = hasher.HashPassword("user_placeholder", txtPassword.Text);
+
+            var request = new SignupRequestModel { Name = txtUsername.Text, Email = txtEmail.Text, Password = hashedPassword };
+            byte[] requestBuffer = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
+
+            // 2. Підключаємось та відправляємо
+            using TcpClient tcpClient = new TcpClient();
+            await tcpClient.ConnectAsync("127.0.0.1", 5000); // Краще асинхронно
+
+            using NetworkStream stream = tcpClient.GetStream();
+            await stream.WriteAsync(requestBuffer, 0, requestBuffer.Length);
+
+            // 3. Читаємо відповідь у новий буфер
+            byte[] responseBuffer = new byte[1024];
+            int length = await stream.ReadAsync(responseBuffer, 0, responseBuffer.Length);
+            string response = Encoding.UTF8.GetString(responseBuffer, 0, length);
+
+            if (response != "Approve")
+            {
+                MessageBox.Show("Registration failed: " + response, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Registration is OK: " + response, "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
     }
