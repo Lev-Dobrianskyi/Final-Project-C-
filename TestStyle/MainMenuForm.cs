@@ -146,7 +146,7 @@ namespace TestStyle
                 {
                     author = label2.Text;
                 }
-                if(control is PictureBox pictureBox && pictureBox.Name == "songPictureBox")
+                if (control is PictureBox pictureBox && pictureBox.Name == "songPictureBox")
                 {
                     songImage = pictureBox.Image;
                 }
