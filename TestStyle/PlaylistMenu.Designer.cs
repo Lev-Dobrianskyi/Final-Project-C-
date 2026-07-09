@@ -37,7 +37,6 @@
             PlsongTitleLabel1 = new Label();
             PlsongAuthorLabel1 = new Label();
             PlaylistLabel = new Label();
-            BackButton = new RadioButton();
             panelSongs.SuspendLayout();
             pnlSong1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PlsongPictureBox1).BeginInit();
@@ -66,6 +65,7 @@
             pnlSong1.Name = "pnlSong1";
             pnlSong1.Size = new Size(589, 103);
             pnlSong1.TabIndex = 0;
+            pnlSong1.Click += pnlSong1_Click;
             // 
             // PlsongGenreLabel1
             // 
@@ -124,28 +124,12 @@
             PlaylistLabel.BackColor = Color.Transparent;
             PlaylistLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
             PlaylistLabel.ForeColor = Color.FromArgb(255, 128, 0);
-            PlaylistLabel.Location = new Point(308, 9);
+            PlaylistLabel.Location = new Point(265, 9);
             PlaylistLabel.Name = "PlaylistLabel";
             PlaylistLabel.Size = new Size(109, 41);
             PlaylistLabel.TabIndex = 9;
             PlaylistLabel.Text = "Playlist";
             PlaylistLabel.TextAlign = ContentAlignment.BottomCenter;
-            // 
-            // BackButton
-            // 
-            BackButton.Appearance = Appearance.Button;
-            BackButton.AutoSize = true;
-            BackButton.Cursor = Cursors.Hand;
-            BackButton.FlatStyle = FlatStyle.Flat;
-            BackButton.ForeColor = Color.FromArgb(255, 128, 0);
-            BackButton.Location = new Point(43, 13);
-            BackButton.Margin = new Padding(3, 4, 3, 4);
-            BackButton.Name = "BackButton";
-            BackButton.Size = new Size(37, 32);
-            BackButton.TabIndex = 11;
-            BackButton.TabStop = true;
-            BackButton.Text = "<-";
-            BackButton.UseVisualStyleBackColor = true;
             // 
             // PlaylistMenu
             // 
@@ -153,12 +137,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 20, 20);
             ClientSize = new Size(674, 686);
-            Controls.Add(BackButton);
             Controls.Add(PlaylistLabel);
             Controls.Add(panelSongs);
             Name = "PlaylistMenu";
             Text = "PlaylistMenu";
-            Load += PlaylistMenu_Load;
             panelSongs.ResumeLayout(false);
             pnlSong1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)PlsongPictureBox1).EndInit();
@@ -176,6 +158,5 @@
         private PictureBox PlsongPictureBox1;
         private Label PlsongLengthLabel1;
         private Label PlaylistLabel;
-        private RadioButton BackButton;
     }
 }

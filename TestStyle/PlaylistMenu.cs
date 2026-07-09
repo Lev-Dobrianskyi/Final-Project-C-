@@ -15,9 +15,9 @@ namespace Music_App
             InitializeComponent();
         }
 
-        private void PlaylistMenu_Load(object sender, EventArgs e)
+        private void pnlSong1_Click(object sender, EventArgs e)
         {
-
+            //open song menu
         }
     }
 }
