@@ -1,4 +1,6 @@
-﻿namespace Music_App;
+﻿using Music_App.Client_class;
+
+namespace Music_App;
 
 public partial class SigninForm : Form
 {
@@ -17,7 +19,7 @@ public partial class SigninForm : Form
 
     private void SigninForm_Load(object sender, EventArgs e)
     {
-        txtUsername.PlaceholderText = "Enter your Email";
+        txtEmail.PlaceholderText = "Enter your Email";
         txtPassword.PlaceholderText = "Enter your password";
     }
 
@@ -114,15 +116,15 @@ public partial class SigninForm : Form
 
     private void btnSignin_Click(object sender, EventArgs e)
     {
-        labelUsernameMessage.Visible = false;
+        labelEmailMessage.Visible = false;
         labelPasswordMessage.Visible = false;
 
         bool isValid = true;
 
-        if (string.IsNullOrWhiteSpace(txtUsername.Text)) // or isnt found
+        if (string.IsNullOrWhiteSpace(txtEmail.Text)) // or isnt found
         {
-            labelUsernameMessage.Text = "Default error message";
-            labelUsernameMessage.Visible = true;
+            labelEmailMessage.Text = "Default error message";
+            labelEmailMessage.Visible = true;
             isValid = false;
         }
 
