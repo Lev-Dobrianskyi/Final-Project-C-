@@ -92,6 +92,23 @@ public class UserController
     }
 
     /// <summary>
+    /// Asynchronously retrieves a user entity by its email address.
+    /// </summary>
+    /// <param name="email"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="UserNotFoundException"></exception>
+    public async Task<User> GetUserByEmailAsync(string email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+            throw new ArgumentException("Email cannot be null or empty.", nameof(email));
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
+        if (user == null)
+            throw new UserNotFoundException();
+        return user;
+    }
+
+    /// <summary>
     /// Asynchronously updates the profile name of an existing user.
     /// </summary>
     /// <param name="userId">The unique identifier of the user to be updated.</param>
