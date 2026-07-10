@@ -11,6 +11,9 @@ public class MusicPlayer : IDisposable
     {
         DisposePlayer();
 
+        if (!File.Exists(filePath))
+            throw new FileNotFoundException("Song file not found.", filePath);
+
         audioFile = new AudioFileReader(filePath);
 
         outputDevice = new WaveOutEvent();
@@ -33,7 +36,7 @@ public class MusicPlayer : IDisposable
             return;
 
         outputDevice.Stop();
-        audioFile.Position = 0;
+        audioFile.CurrentTime = TimeSpan.Zero;
     }
 
     public void Seek(double seconds)
