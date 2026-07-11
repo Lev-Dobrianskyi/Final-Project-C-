@@ -1,4 +1,6 @@
-﻿using Music_App.Client_class;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Music_App.Client_class;
 using MusicAppServer.Controllers;
 using MusicAppServer.Data;
 using MusicAppServer.Exceptions;
@@ -14,6 +16,8 @@ namespace MusicAppServer.Main.ServerConstructors;
 /// </summary>
 public static class Sender
 {
+    private static readonly PasswordHasher<string> _hasher = new PasswordHasher<string>();
+
     /// <summary>
     /// Asynchronously streams a specific audio file to the connected <see cref="TcpClient"/>.
     /// </summary>
@@ -115,7 +119,9 @@ public static class Sender
                 }));
 
             // Step 3: If email is clear, save the new user record into the database
-            
+
+            string hashedPassword = _hasher.HashPassword(login, password);
+
             using (var context = new AppDBContext())
             {
                 var uc = new UserController(context);
@@ -123,7 +129,7 @@ public static class Sender
                 {
                     Name = name,
                     Email = login,
-                    Password = password
+                    Password = hashedPassword
                 };
                 await uc.AddUserAsync(u);
             }
@@ -180,14 +186,14 @@ public static class Sender
             {
                 var userController = new UserController(context);
                 // Straightforward logic: if credentials match — true, otherwise — false
-                bool canLog = await userController.VerifyUserCredentialsAsync(login, password);
+                var dbUser = await userController.GetUserByEmailAsync(login);
 
-                if (!canLog)
+                if (_hasher.VerifyHashedPassword(login, dbUser.Password, password) == PasswordVerificationResult.Failed)
                 {
-                    throw new AuthenticationException("The provided credentials are invalid. Please check your email and password and try again.");
+                    throw new AuthenticationException("Invalid email or password.");
                 }
 
-                string userName = (await userController.GetUserByEmailAsync(login)).Name;
+                string userName = dbUser.Name;
 
                 // If credentials are valid -> APPROVE the access. If invalid -> REJECT the request.
                 byte[] buffer = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(new LoginResponseModel()
