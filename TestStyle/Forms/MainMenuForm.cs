@@ -161,4 +161,14 @@ public partial class MainMenuForm : Form
         SongMenu songMenuForm = new SongMenu(title, author, songImage);
         songMenuForm.Show();
     }
+
+    private void songBox_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
+
+    private void songTitleLabel_Click(object sender, EventArgs e)
+    {
+
+    }
 }

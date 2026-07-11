@@ -208,6 +208,7 @@
             songBox.Size = new Size(976, 77);
             songBox.TabIndex = 10;
             songBox.Click += songBox_Click;
+            songBox.Paint += songBox_Paint;
             // 
             // songGenreLabel
             // 
@@ -260,6 +261,7 @@
             songTitleLabel.Size = new Size(562, 40);
             songTitleLabel.TabIndex = 6;
             songTitleLabel.Text = "Song Title";
+            songTitleLabel.Click += songTitleLabel_Click;
             // 
             // sidePanel
             // 

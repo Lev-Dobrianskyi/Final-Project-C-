@@ -141,11 +141,7 @@ public partial class SigninForm : Form
 
         if (isValid)
         {
-            // 1. Хешуємо та пакуємо в JSON
-            var hasher = new PasswordHasher<string>();
-            string hashedPassword = hasher.HashPassword("user_placeholder", txtPassword.Text);
-
-            var request = new LoginRequestModel { Email = txtEmail.Text, Password = hashedPassword };
+            var request = new LoginRequestModel { Email = txtEmail.Text, Password = txtPassword.Text };
             byte[] requestBuffer = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 
             // 2. Підключаємось та відправляємо
@@ -182,7 +178,7 @@ public partial class SigninForm : Form
                     var messageModel = JsonSerializer.Deserialize<LoginResponseModel>(jsonResponse);
                     MessageBox.Show("Login is OK: " + messageModel.MessageContent, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //save user info to local storage-------------------------------------------------------------------------
-
+                    File.WriteAllBytes("UserInfo.json", Encoding.UTF8.GetBytes($"{txtEmail.Text}\n{txtPassword.Text}\n{messageModel.Name}"));
 
                     //--------------------------------------------------------------------------------------------------------
                     this.Close();
