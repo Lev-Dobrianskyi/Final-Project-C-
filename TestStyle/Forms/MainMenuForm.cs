@@ -60,8 +60,6 @@ public partial class MainMenuForm : Form
         songCreationButton.ForeColor = Color.FromArgb(255, 128, 0);
     }
 
-
-
     private void songCreationButton_Click(object sender, EventArgs e)
     {
         SongCreationForm creationForm = new SongCreationForm();
@@ -160,15 +158,5 @@ public partial class MainMenuForm : Form
         }
         SongMenu songMenuForm = new SongMenu(title, author, songImage);
         songMenuForm.Show();
-    }
-
-    private void songBox_Paint(object sender, PaintEventArgs e)
-    {
-
-    }
-
-    private void songTitleLabel_Click(object sender, EventArgs e)
-    {
-
     }
 }
