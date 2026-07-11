@@ -32,17 +32,17 @@
             signupButton = new Button();
             signinButton = new Button();
             songPanel = new FlowLayoutPanel();
-            label5 = new Label();
-            orderbyDateButton = new RadioButton();
-            orderbyPopularityButton = new RadioButton();
-            orderbyLengthButton = new RadioButton();
-            orderbyReverseBox = new CheckBox();
             songBox = new Panel();
             songGenreLabel = new Label();
             songPictureBox = new PictureBox();
             songLengthLabel = new Label();
             songAuthorLabel = new Label();
             songTitleLabel = new Label();
+            label5 = new Label();
+            orderbyDateButton = new RadioButton();
+            orderbyPopularityButton = new RadioButton();
+            orderbyLengthButton = new RadioButton();
+            orderbyReverseBox = new CheckBox();
             sidePanel = new Panel();
             label4 = new Label();
             songCreationButton = new Button();
@@ -92,106 +92,12 @@
             // songPanel
             // 
             songPanel.AutoScroll = true;
-            songPanel.Controls.Add(label5);
-            songPanel.Controls.Add(orderbyDateButton);
-            songPanel.Controls.Add(orderbyPopularityButton);
-            songPanel.Controls.Add(orderbyLengthButton);
-            songPanel.Controls.Add(orderbyReverseBox);
             songPanel.Controls.Add(songBox);
             songPanel.Location = new Point(14, 119);
             songPanel.Margin = new Padding(3, 4, 3, 4);
             songPanel.Name = "songPanel";
             songPanel.Size = new Size(983, 747);
             songPanel.TabIndex = 6;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Segoe UI", 15F);
-            label5.ForeColor = Color.FromArgb(255, 128, 0);
-            label5.Location = new Point(3, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(119, 35);
-            label5.TabIndex = 8;
-            label5.Text = "Order by:";
-            label5.TextAlign = ContentAlignment.BottomCenter;
-            // 
-            // orderbyDateButton
-            // 
-            orderbyDateButton.Appearance = Appearance.Button;
-            orderbyDateButton.AutoSize = true;
-            orderbyDateButton.Cursor = Cursors.Hand;
-            orderbyDateButton.FlatStyle = FlatStyle.Flat;
-            orderbyDateButton.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyDateButton.Location = new Point(128, 4);
-            orderbyDateButton.Margin = new Padding(3, 4, 3, 4);
-            orderbyDateButton.Name = "orderbyDateButton";
-            orderbyDateButton.Size = new Size(53, 32);
-            orderbyDateButton.TabIndex = 10;
-            orderbyDateButton.TabStop = true;
-            orderbyDateButton.Text = "Date";
-            orderbyDateButton.UseVisualStyleBackColor = true;
-            orderbyDateButton.CheckedChanged += orderbyDateButton_CheckedChanged;
-            orderbyDateButton.MouseEnter += orderbyDateButton_MouseEnter;
-            orderbyDateButton.MouseLeave += orderbyDateButton_MouseLeave;
-            // 
-            // orderbyPopularityButton
-            // 
-            orderbyPopularityButton.Appearance = Appearance.Button;
-            orderbyPopularityButton.AutoSize = true;
-            orderbyPopularityButton.Cursor = Cursors.Hand;
-            orderbyPopularityButton.FlatStyle = FlatStyle.Flat;
-            orderbyPopularityButton.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyPopularityButton.Location = new Point(187, 4);
-            orderbyPopularityButton.Margin = new Padding(3, 4, 3, 4);
-            orderbyPopularityButton.Name = "orderbyPopularityButton";
-            orderbyPopularityButton.Size = new Size(87, 32);
-            orderbyPopularityButton.TabIndex = 11;
-            orderbyPopularityButton.TabStop = true;
-            orderbyPopularityButton.Text = "Popularity";
-            orderbyPopularityButton.UseVisualStyleBackColor = true;
-            orderbyPopularityButton.CheckedChanged += orderbyPopularityButton_CheckedChanged;
-            orderbyPopularityButton.MouseEnter += orderbyPopularityButton_MouseEnter;
-            orderbyPopularityButton.MouseLeave += orderbyPopularityButton_MouseLeave;
-            // 
-            // orderbyLengthButton
-            // 
-            orderbyLengthButton.Appearance = Appearance.Button;
-            orderbyLengthButton.AutoSize = true;
-            orderbyLengthButton.Cursor = Cursors.Hand;
-            orderbyLengthButton.FlatStyle = FlatStyle.Flat;
-            orderbyLengthButton.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyLengthButton.Location = new Point(280, 4);
-            orderbyLengthButton.Margin = new Padding(3, 4, 3, 4);
-            orderbyLengthButton.Name = "orderbyLengthButton";
-            orderbyLengthButton.Size = new Size(66, 32);
-            orderbyLengthButton.TabIndex = 12;
-            orderbyLengthButton.TabStop = true;
-            orderbyLengthButton.Text = "Length";
-            orderbyLengthButton.UseVisualStyleBackColor = true;
-            orderbyLengthButton.CheckedChanged += orderbyLengthButton_CheckedChanged;
-            orderbyLengthButton.MouseEnter += orderbyLengthButton_MouseEnter;
-            orderbyLengthButton.MouseLeave += orderbyLengthButton_MouseLeave;
-            // 
-            // orderbyReverseBox
-            // 
-            orderbyReverseBox.Appearance = Appearance.Button;
-            orderbyReverseBox.AutoSize = true;
-            orderbyReverseBox.Cursor = Cursors.Hand;
-            orderbyReverseBox.FlatStyle = FlatStyle.Flat;
-            orderbyReverseBox.Font = new Font("Segoe UI", 9.5F);
-            orderbyReverseBox.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyReverseBox.Location = new Point(352, 4);
-            orderbyReverseBox.Margin = new Padding(3, 4, 3, 4);
-            orderbyReverseBox.Name = "orderbyReverseBox";
-            orderbyReverseBox.Size = new Size(75, 31);
-            orderbyReverseBox.TabIndex = 9;
-            orderbyReverseBox.Text = "Reverse";
-            orderbyReverseBox.UseVisualStyleBackColor = true;
-            orderbyReverseBox.CheckedChanged += orderbyReverseBox_CheckedChanged;
-            orderbyReverseBox.MouseEnter += orderbyReverseBox_MouseEnter;
-            orderbyReverseBox.MouseLeave += orderbyReverseBox_MouseLeave;
             // 
             // songBox
             // 
@@ -202,11 +108,11 @@
             songBox.Controls.Add(songAuthorLabel);
             songBox.Controls.Add(songTitleLabel);
             songBox.Cursor = Cursors.Hand;
-            songBox.Location = new Point(3, 44);
+            songBox.Location = new Point(3, 4);
             songBox.Margin = new Padding(3, 4, 3, 4);
             songBox.Name = "songBox";
             songBox.Size = new Size(976, 77);
-            songBox.TabIndex = 10;
+            songBox.TabIndex = 1;
             songBox.Click += songBox_Click;
             // 
             // songGenreLabel
@@ -217,7 +123,7 @@
             songGenreLabel.Name = "songGenreLabel";
             songGenreLabel.Size = new Size(343, 35);
             songGenreLabel.TabIndex = 9;
-            songGenreLabel.Text = "Genre";
+            songGenreLabel.Text = "Dance-Pop";
             // 
             // songPictureBox
             // 
@@ -238,7 +144,7 @@
             songLengthLabel.Name = "songLengthLabel";
             songLengthLabel.Size = new Size(62, 37);
             songLengthLabel.TabIndex = 8;
-            songLengthLabel.Text = "99:99";
+            songLengthLabel.Text = "2:56";
             // 
             // songAuthorLabel
             // 
@@ -248,7 +154,7 @@
             songAuthorLabel.Name = "songAuthorLabel";
             songAuthorLabel.Size = new Size(343, 35);
             songAuthorLabel.TabIndex = 7;
-            songAuthorLabel.Text = "Song Author";
+            songAuthorLabel.Text = "Sabrina Carpenter";
             // 
             // songTitleLabel
             // 
@@ -259,7 +165,96 @@
             songTitleLabel.Name = "songTitleLabel";
             songTitleLabel.Size = new Size(562, 40);
             songTitleLabel.TabIndex = 6;
-            songTitleLabel.Text = "Song Title";
+            songTitleLabel.Text = "Espresso";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Segoe UI", 15F);
+            label5.ForeColor = Color.FromArgb(255, 128, 0);
+            label5.Location = new Point(18, 76);
+            label5.Name = "label5";
+            label5.Size = new Size(119, 35);
+            label5.TabIndex = 8;
+            label5.Text = "Order by:";
+            label5.TextAlign = ContentAlignment.BottomCenter;
+            // 
+            // orderbyDateButton
+            // 
+            orderbyDateButton.Appearance = Appearance.Button;
+            orderbyDateButton.AutoSize = true;
+            orderbyDateButton.Cursor = Cursors.Hand;
+            orderbyDateButton.FlatStyle = FlatStyle.Flat;
+            orderbyDateButton.ForeColor = Color.FromArgb(255, 128, 0);
+            orderbyDateButton.Location = new Point(143, 80);
+            orderbyDateButton.Margin = new Padding(3, 4, 3, 4);
+            orderbyDateButton.Name = "orderbyDateButton";
+            orderbyDateButton.Size = new Size(53, 32);
+            orderbyDateButton.TabIndex = 10;
+            orderbyDateButton.TabStop = true;
+            orderbyDateButton.Text = "Date";
+            orderbyDateButton.UseVisualStyleBackColor = true;
+            orderbyDateButton.CheckedChanged += orderbyDateButton_CheckedChanged;
+            orderbyDateButton.MouseEnter += orderbyDateButton_MouseEnter;
+            orderbyDateButton.MouseLeave += orderbyDateButton_MouseLeave;
+            // 
+            // orderbyPopularityButton
+            // 
+            orderbyPopularityButton.Appearance = Appearance.Button;
+            orderbyPopularityButton.AutoSize = true;
+            orderbyPopularityButton.Cursor = Cursors.Hand;
+            orderbyPopularityButton.FlatStyle = FlatStyle.Flat;
+            orderbyPopularityButton.ForeColor = Color.FromArgb(255, 128, 0);
+            orderbyPopularityButton.Location = new Point(202, 80);
+            orderbyPopularityButton.Margin = new Padding(3, 4, 3, 4);
+            orderbyPopularityButton.Name = "orderbyPopularityButton";
+            orderbyPopularityButton.Size = new Size(87, 32);
+            orderbyPopularityButton.TabIndex = 11;
+            orderbyPopularityButton.TabStop = true;
+            orderbyPopularityButton.Text = "Popularity";
+            orderbyPopularityButton.UseVisualStyleBackColor = true;
+            orderbyPopularityButton.CheckedChanged += orderbyPopularityButton_CheckedChanged;
+            orderbyPopularityButton.MouseEnter += orderbyPopularityButton_MouseEnter;
+            orderbyPopularityButton.MouseLeave += orderbyPopularityButton_MouseLeave;
+            // 
+            // orderbyLengthButton
+            // 
+            orderbyLengthButton.Appearance = Appearance.Button;
+            orderbyLengthButton.AutoSize = true;
+            orderbyLengthButton.Cursor = Cursors.Hand;
+            orderbyLengthButton.FlatStyle = FlatStyle.Flat;
+            orderbyLengthButton.ForeColor = Color.FromArgb(255, 128, 0);
+            orderbyLengthButton.Location = new Point(295, 80);
+            orderbyLengthButton.Margin = new Padding(3, 4, 3, 4);
+            orderbyLengthButton.Name = "orderbyLengthButton";
+            orderbyLengthButton.Size = new Size(66, 32);
+            orderbyLengthButton.TabIndex = 12;
+            orderbyLengthButton.TabStop = true;
+            orderbyLengthButton.Text = "Length";
+            orderbyLengthButton.UseVisualStyleBackColor = true;
+            orderbyLengthButton.CheckedChanged += orderbyLengthButton_CheckedChanged;
+            orderbyLengthButton.MouseEnter += orderbyLengthButton_MouseEnter;
+            orderbyLengthButton.MouseLeave += orderbyLengthButton_MouseLeave;
+            // 
+            // orderbyReverseBox
+            // 
+            orderbyReverseBox.Appearance = Appearance.Button;
+            orderbyReverseBox.AutoSize = true;
+            orderbyReverseBox.Cursor = Cursors.Hand;
+            orderbyReverseBox.FlatStyle = FlatStyle.Flat;
+            orderbyReverseBox.Font = new Font("Segoe UI", 9.5F);
+            orderbyReverseBox.ForeColor = Color.FromArgb(255, 128, 0);
+            orderbyReverseBox.Location = new Point(367, 80);
+            orderbyReverseBox.Margin = new Padding(3, 4, 3, 4);
+            orderbyReverseBox.Name = "orderbyReverseBox";
+            orderbyReverseBox.Size = new Size(75, 31);
+            orderbyReverseBox.TabIndex = 9;
+            orderbyReverseBox.Text = "Reverse";
+            orderbyReverseBox.UseVisualStyleBackColor = true;
+            orderbyReverseBox.CheckedChanged += orderbyReverseBox_CheckedChanged;
+            orderbyReverseBox.MouseEnter += orderbyReverseBox_MouseEnter;
+            orderbyReverseBox.MouseLeave += orderbyReverseBox_MouseLeave;
             // 
             // sidePanel
             // 
@@ -326,10 +321,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 20, 20);
             ClientSize = new Size(1353, 881);
+            Controls.Add(label5);
             Controls.Add(searchBox);
+            Controls.Add(orderbyDateButton);
             Controls.Add(profilePictureBox);
+            Controls.Add(orderbyPopularityButton);
             Controls.Add(signupButton);
+            Controls.Add(orderbyLengthButton);
             Controls.Add(sidePanel);
+            Controls.Add(orderbyReverseBox);
             Controls.Add(songPanel);
             Controls.Add(signinButton);
             Margin = new Padding(3, 4, 3, 4);
@@ -338,7 +338,6 @@
             Text = "MainMenuForm";
             Load += MainMenuForm_Load;
             songPanel.ResumeLayout(false);
-            songPanel.PerformLayout();
             songBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)songPictureBox).EndInit();
             sidePanel.ResumeLayout(false);

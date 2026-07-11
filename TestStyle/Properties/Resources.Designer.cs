@@ -63,6 +63,16 @@ namespace Music_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap espresso___sabrina_carpenter {
+            get {
+                object obj = ResourceManager.GetObject("espresso_-_sabrina_carpenter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_play_в_круге_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8-play-в-круге-24", resourceCulture);

@@ -70,9 +70,9 @@
             MaxSongTimeLabel.ForeColor = Color.White;
             MaxSongTimeLabel.Location = new Point(677, 93);
             MaxSongTimeLabel.Name = "MaxSongTimeLabel";
-            MaxSongTimeLabel.Size = new Size(44, 20);
+            MaxSongTimeLabel.Size = new Size(36, 20);
             MaxSongTimeLabel.TabIndex = 8;
-            MaxSongTimeLabel.Text = "99:99";
+            MaxSongTimeLabel.Text = "2:56";
             // 
             // CurrSongTimeLabel
             // 
@@ -88,9 +88,11 @@
             // SongTrackBar
             // 
             SongTrackBar.Location = new Point(351, 87);
+            SongTrackBar.Maximum = 100;
             SongTrackBar.Name = "SongTrackBar";
             SongTrackBar.Size = new Size(320, 56);
             SongTrackBar.TabIndex = 6;
+            SongTrackBar.Scroll += SongTrackBar_Scroll;
             // 
             // NextBtn
             // 
@@ -106,6 +108,7 @@
             NextBtn.TabIndex = 5;
             NextBtn.Text = "⏭";
             NextBtn.UseVisualStyleBackColor = false;
+            NextBtn.Click += NextBtn_Click;
             // 
             // PreviousBtn
             // 
@@ -122,6 +125,7 @@
             PreviousBtn.TabIndex = 4;
             PreviousBtn.Text = "⏮";
             PreviousBtn.UseVisualStyleBackColor = false;
+            PreviousBtn.Click += PreviousBtn_Click;
             // 
             // Play_PauseBtn
             // 
