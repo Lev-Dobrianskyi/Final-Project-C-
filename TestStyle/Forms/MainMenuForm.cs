@@ -278,8 +278,6 @@ public partial class MainMenuForm : Form
         songCreationButton.ForeColor = Color.FromArgb(255, 128, 0);
     }
 
-
-
     private void songCreationButton_Click(object sender, EventArgs e)
     {
         SongCreationForm creationForm = new SongCreationForm();

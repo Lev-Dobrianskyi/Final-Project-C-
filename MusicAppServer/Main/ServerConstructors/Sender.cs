@@ -1,9 +1,13 @@
-﻿using MusicAppServer.Controllers;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Music_App.Client_class;
+using MusicAppServer.Controllers;
 using MusicAppServer.Data;
 using MusicAppServer.Exceptions;
 using MusicAppServer.Models;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.Json;
 
 namespace MusicAppServer.Main.ServerConstructors;
 
@@ -12,6 +16,8 @@ namespace MusicAppServer.Main.ServerConstructors;
 /// </summary>
 public static class Sender
 {
+    private static readonly PasswordHasher<string> _hasher = new PasswordHasher<string>();
+
     /// <summary>
     /// Asynchronously streams a specific audio file to the connected <see cref="TcpClient"/>.
     /// </summary>
@@ -102,26 +108,32 @@ public static class Sender
                 canSign = !await userController.IsUserExistsByEmailAsync(login);
             }
 
+            if (!canSign)
+            {
+                throw new AuthenticationException("The provided email is already registered. Please use a different email address.");
+            }
             // Step 2: Choose the response buffer based on existence check
-            byte[] buffer = canSign
-                ? Encoding.UTF8.GetBytes(Globals.MsgApproveClientRequest)
-                : Encoding.UTF8.GetBytes(Globals.MsgRejectClientRequest);
+            byte[] buffer = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(new MessageRequestModel() { 
+                    IsSuccess = true,
+                    MessageContent = Globals.MsgApproveClientRequest
+                }));
 
             // Step 3: If email is clear, save the new user record into the database
-            if (canSign)
+
+            string hashedPassword = _hasher.HashPassword(login, password);
+
+            using (var context = new AppDBContext())
             {
-                using (var context = new AppDBContext())
+                var uc = new UserController(context);
+                var u = new User()
                 {
-                    var uc = new UserController(context);
-                    var u = new User()
-                    {
-                        Name = name,
-                        Email = login,
-                        Password = password
-                    };
-                    await uc.AddUserAsync(u);
-                }
+                    Name = name,
+                    Email = login,
+                    Password = hashedPassword
+                };
+                await uc.AddUserAsync(u);
             }
+            
 
             // Step 4: Safely transmit the final feedback to the client application
             // It will be disposed at the end of the block, but client remains alive.
@@ -129,6 +141,10 @@ public static class Sender
             {
                 await networkStream.WriteAsync(buffer, 0, buffer.Length);
             }
+        }
+        catch (AuthenticationException authEx)
+        {
+            throw authEx;
         }
         catch (MusicServiceException)
         {
@@ -164,27 +180,36 @@ public static class Sender
 
         try
         {
-            bool canLog;
 
             // Context is disposed immediately after fetching data
             using (var context = new AppDBContext())
             {
                 var userController = new UserController(context);
                 // Straightforward logic: if credentials match — true, otherwise — false
-                canLog = await userController.VerifyUserCredentialsAsync(login, password);
+                var dbUser = await userController.GetUserByEmailAsync(login);
+
+                if (_hasher.VerifyHashedPassword(login, dbUser.Password, password) == PasswordVerificationResult.Failed)
+                {
+                    throw new AuthenticationException("Invalid email or password.");
+                }
+
+                string userName = dbUser.Name;
+
+                // If credentials are valid -> APPROVE the access. If invalid -> REJECT the request.
+                byte[] buffer = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(new LoginResponseModel()
+                {
+                    Name = userName,
+                    MessageContent = Globals.MsgApproveClientRequest
+                }));
+
+                // Safely use networkStream. It will be disposed at the end of the block,
+                // but client will remain alive because we don't own the socket here.
+                using (NetworkStream networkStream = new NetworkStream(client.Client, ownsSocket: false))
+                {
+                    await networkStream.WriteAsync(buffer, 0, buffer.Length);
+                }
             }
 
-            // If credentials are valid -> APPROVE the access. If invalid -> REJECT the request.
-            byte[] buffer = canLog
-                ? Encoding.UTF8.GetBytes(Globals.MsgApproveClientRequest)
-                : Encoding.UTF8.GetBytes(Globals.MsgRejectClientRequest);
-
-            // Safely use networkStream. It will be disposed at the end of the block,
-            // but client will remain alive because we don't own the socket here.
-            using (NetworkStream networkStream = new NetworkStream(client.Client, ownsSocket: false))
-            {
-                await networkStream.WriteAsync(buffer, 0, buffer.Length);
-            }
         }
         catch (MusicServiceException)
         {

@@ -1,4 +1,8 @@
-﻿using Music_App.Client_class;
+﻿using Microsoft.AspNetCore.Identity;
+using Music_App.Client_class;
+using System.Net.Sockets;
+using System.Text;
+using System.Text.Json;
 
 namespace Music_App;
 
@@ -114,7 +118,7 @@ public partial class SigninForm : Form
         btnSignin.Size = new Size(btnSignin.Width - 4, btnSignin.Height - 4);
     }
 
-    private void btnSignin_Click(object sender, EventArgs e)
+    private async void btnSignin_Click(object sender, EventArgs e)
     {
         labelEmailMessage.Visible = false;
         labelPasswordMessage.Visible = false;
@@ -137,7 +141,49 @@ public partial class SigninForm : Form
 
         if (isValid)
         {
-            this.Close();
+            var request = new LoginRequestModel { Email = txtEmail.Text, Password = txtPassword.Text };
+            byte[] requestBuffer = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
+
+            // 2. Підключаємось та відправляємо
+            using TcpClient tcpClient = new TcpClient();
+            await tcpClient.ConnectAsync("127.0.0.1", 5000); // Краще асинхронно
+
+            using NetworkStream stream = tcpClient.GetStream();
+            await stream.WriteAsync(requestBuffer, 0, requestBuffer.Length);
+
+            // 3. Читаємо відповідь у новий буфер
+            byte[] responseBuffer = new byte[1024];
+            int length = await stream.ReadAsync(responseBuffer, 0, responseBuffer.Length);
+            string jsonResponse = Encoding.UTF8.GetString(responseBuffer, 0, length);
+
+            using (JsonDocument doc = JsonDocument.Parse(jsonResponse))
+            {
+                if (!doc.RootElement.TryGetProperty("Action", out JsonElement actionElement))
+                {
+                    MessageBox.Show("Missing 'Action' property in request.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (actionElement.GetString() == "sendMessage")
+                {
+                    var messageModel = JsonSerializer.Deserialize<MessageRequestModel>(jsonResponse);
+                    if (!messageModel.IsSuccess)
+                    {
+                        MessageBox.Show("Registration failed: " + messageModel.MessageContent, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                else if (actionElement.GetString() == "loginResponse")
+                {
+                    var messageModel = JsonSerializer.Deserialize<LoginResponseModel>(jsonResponse);
+                    MessageBox.Show("Login is OK: " + messageModel.MessageContent, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //save user info to local storage-------------------------------------------------------------------------
+                    File.WriteAllBytes("UserInfo.json", Encoding.UTF8.GetBytes($"{txtEmail.Text}\n{txtPassword.Text}\n{messageModel.Name}"));
+
+                    //--------------------------------------------------------------------------------------------------------
+                    this.Close();
+                }
+            }
         }
     }
 
