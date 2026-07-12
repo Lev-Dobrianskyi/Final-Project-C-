@@ -185,10 +185,10 @@ namespace TestStyle
             orderbyPopularityButton.Cursor = Cursors.Hand;
             orderbyPopularityButton.FlatStyle = FlatStyle.Flat;
             orderbyPopularityButton.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyPopularityButton.Location = new Point(143, 79);
+            orderbyPopularityButton.Location = new Point(116, 62);
             orderbyPopularityButton.Margin = new Padding(3, 4, 3, 4);
             orderbyPopularityButton.Name = "orderbyPopularityButton";
-            orderbyPopularityButton.Size = new Size(61, 32);
+            orderbyPopularityButton.Size = new Size(51, 27);
             orderbyPopularityButton.TabIndex = 11;
             orderbyPopularityButton.TabStop = true;
             orderbyPopularityButton.Text = "Name";
@@ -204,10 +204,10 @@ namespace TestStyle
             orderbyLengthButton.Cursor = Cursors.Hand;
             orderbyLengthButton.FlatStyle = FlatStyle.Flat;
             orderbyLengthButton.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyLengthButton.Location = new Point(210, 79);
+            orderbyLengthButton.Location = new Point(173, 62);
             orderbyLengthButton.Margin = new Padding(3, 4, 3, 4);
             orderbyLengthButton.Name = "orderbyLengthButton";
-            orderbyLengthButton.Size = new Size(60, 32);
+            orderbyLengthButton.Size = new Size(50, 27);
             orderbyLengthButton.TabIndex = 12;
             orderbyLengthButton.TabStop = true;
             orderbyLengthButton.Text = "Genre";
@@ -224,7 +224,7 @@ namespace TestStyle
             orderbyReverseBox.FlatStyle = FlatStyle.Flat;
             orderbyReverseBox.Font = new Font("Segoe UI", 9.5F);
             orderbyReverseBox.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyReverseBox.Location = new Point(276, 80);
+            orderbyReverseBox.Location = new Point(229, 62);
             orderbyReverseBox.Margin = new Padding(3, 4, 3, 4);
             orderbyReverseBox.Name = "orderbyReverseBox";
             orderbyReverseBox.Size = new Size(64, 27);
@@ -288,6 +288,7 @@ namespace TestStyle
             // searchBox
             // 
             searchBox.BackColor = Color.FromArgb(30, 30, 30);
+            searchBox.ForeColor = Color.White;
             searchBox.Location = new Point(242, 22);
             searchBox.Margin = new Padding(3, 2, 3, 2);
             searchBox.Name = "searchBox";
