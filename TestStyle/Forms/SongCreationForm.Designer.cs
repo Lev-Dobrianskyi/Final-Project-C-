@@ -60,9 +60,10 @@
             panel1.Controls.Add(HomeBtn);
             panel1.Controls.Add(userImg);
             panel1.Controls.Add(SCFLbl);
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(10, 9);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1340, 125);
+            panel1.Size = new Size(1172, 94);
             panel1.TabIndex = 0;
             // 
             // HomeBtn
@@ -71,9 +72,10 @@
             HomeBtn.FlatStyle = FlatStyle.Popup;
             HomeBtn.Font = new Font("Tempus Sans ITC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             HomeBtn.ForeColor = Color.FromArgb(255, 128, 0);
-            HomeBtn.Location = new Point(1089, 35);
+            HomeBtn.Location = new Point(953, 26);
+            HomeBtn.Margin = new Padding(3, 2, 3, 2);
             HomeBtn.Name = "HomeBtn";
-            HomeBtn.Size = new Size(120, 40);
+            HomeBtn.Size = new Size(105, 30);
             HomeBtn.TabIndex = 11;
             HomeBtn.Text = "HOME";
             HomeBtn.UseVisualStyleBackColor = false;
@@ -81,10 +83,12 @@
             // 
             // userImg
             // 
+            userImg.BorderStyle = BorderStyle.FixedSingle;
             userImg.Image = (Image)resources.GetObject("userImg.Image");
-            userImg.Location = new Point(1233, 25);
+            userImg.Location = new Point(1087, 9);
+            userImg.Margin = new Padding(3, 2, 3, 2);
             userImg.Name = "userImg";
-            userImg.Size = new Size(64, 64);
+            userImg.Size = new Size(75, 75);
             userImg.SizeMode = PictureBoxSizeMode.StretchImage;
             userImg.TabIndex = 10;
             userImg.TabStop = false;
@@ -94,9 +98,9 @@
             SCFLbl.AutoSize = true;
             SCFLbl.Font = new Font("Tempus Sans ITC", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             SCFLbl.ForeColor = Color.FromArgb(255, 128, 0);
-            SCFLbl.Location = new Point(25, 25);
+            SCFLbl.Location = new Point(22, 19);
             SCFLbl.Name = "SCFLbl";
-            SCFLbl.Size = new Size(362, 49);
+            SCFLbl.Size = new Size(298, 39);
             SCFLbl.TabIndex = 0;
             SCFLbl.Text = "Song Creation Menu";
             // 
@@ -107,21 +111,22 @@
             panel2.Controls.Add(txtGenre);
             panel2.Controls.Add(txtTitle);
             panel2.Controls.Add(pnlDynamicContent);
-            panel2.Location = new Point(12, 143);
+            panel2.Location = new Point(10, 107);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1340, 332);
+            panel2.Size = new Size(1172, 249);
             panel2.TabIndex = 1;
-            panel2.Paint += panel2_Paint;
             // 
             // txtDate
             // 
             txtDate.BackColor = Color.FromArgb(25, 25, 25);
             txtDate.BorderStyle = BorderStyle.FixedSingle;
             txtDate.ForeColor = Color.FromArgb(255, 128, 0);
-            txtDate.Location = new Point(23, 122);
+            txtDate.Location = new Point(20, 92);
+            txtDate.Margin = new Padding(3, 2, 3, 2);
             txtDate.Name = "txtDate";
             txtDate.PlaceholderText = "DD.MM.YYYY";
-            txtDate.Size = new Size(250, 27);
+            txtDate.Size = new Size(219, 23);
             txtDate.TabIndex = 4;
             // 
             // txtGenre
@@ -129,10 +134,11 @@
             txtGenre.BackColor = Color.FromArgb(25, 25, 25);
             txtGenre.BorderStyle = BorderStyle.FixedSingle;
             txtGenre.ForeColor = Color.FromArgb(255, 128, 0);
-            txtGenre.Location = new Point(23, 69);
+            txtGenre.Location = new Point(20, 52);
+            txtGenre.Margin = new Padding(3, 2, 3, 2);
             txtGenre.Name = "txtGenre";
             txtGenre.PlaceholderText = "Genre";
-            txtGenre.Size = new Size(250, 27);
+            txtGenre.Size = new Size(219, 23);
             txtGenre.TabIndex = 2;
             txtGenre.TextChanged += txtGenre_TextChanged;
             // 
@@ -141,10 +147,11 @@
             txtTitle.BackColor = Color.FromArgb(25, 25, 25);
             txtTitle.BorderStyle = BorderStyle.FixedSingle;
             txtTitle.ForeColor = Color.FromArgb(255, 128, 0);
-            txtTitle.Location = new Point(23, 17);
+            txtTitle.Location = new Point(20, 13);
+            txtTitle.Margin = new Padding(3, 2, 3, 2);
             txtTitle.Name = "txtTitle";
             txtTitle.PlaceholderText = "Name";
-            txtTitle.Size = new Size(250, 27);
+            txtTitle.Size = new Size(219, 23);
             txtTitle.TabIndex = 1;
             txtTitle.TextChanged += txtTitle_TextChanged;
             // 
@@ -152,9 +159,10 @@
             // 
             pnlDynamicContent.BackColor = Color.FromArgb(27, 27, 27);
             pnlDynamicContent.Controls.Add(songBox);
-            pnlDynamicContent.Location = new Point(279, 17);
+            pnlDynamicContent.Location = new Point(244, 13);
+            pnlDynamicContent.Margin = new Padding(3, 2, 3, 2);
             pnlDynamicContent.Name = "pnlDynamicContent";
-            pnlDynamicContent.Size = new Size(1038, 284);
+            pnlDynamicContent.Size = new Size(908, 213);
             pnlDynamicContent.TabIndex = 0;
             // 
             // songBox
@@ -166,28 +174,29 @@
             songBox.Controls.Add(songAuthorLabel);
             songBox.Controls.Add(songTitleLabel);
             songBox.Cursor = Cursors.Hand;
-            songBox.Location = new Point(15, 15);
-            songBox.Margin = new Padding(3, 4, 3, 4);
+            songBox.Location = new Point(13, 11);
             songBox.Name = "songBox";
-            songBox.Size = new Size(976, 77);
+            songBox.Size = new Size(854, 58);
             songBox.TabIndex = 11;
             // 
             // songGenreLabel
             // 
             songGenreLabel.Font = new Font("Sitka Banner", 12F);
             songGenreLabel.ForeColor = SystemColors.ControlDark;
-            songGenreLabel.Location = new Point(415, 39);
+            songGenreLabel.Location = new Point(363, 29);
             songGenreLabel.Name = "songGenreLabel";
-            songGenreLabel.Size = new Size(343, 35);
+            songGenreLabel.Size = new Size(300, 26);
             songGenreLabel.TabIndex = 9;
             songGenreLabel.Text = "Genre";
             // 
             // songPictureBox
             // 
+            songPictureBox.BorderStyle = BorderStyle.FixedSingle;
             songPictureBox.Image = (Image)resources.GetObject("songPictureBox.Image");
-            songPictureBox.Location = new Point(8, 12);
+            songPictureBox.Location = new Point(8, 8);
+            songPictureBox.Margin = new Padding(3, 2, 3, 2);
             songPictureBox.Name = "songPictureBox";
-            songPictureBox.Size = new Size(51, 51);
+            songPictureBox.Size = new Size(40, 40);
             songPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             songPictureBox.TabIndex = 5;
             songPictureBox.TabStop = false;
@@ -196,9 +205,9 @@
             // 
             songLengthLabel.Font = new Font("Sitka Banner", 14F);
             songLengthLabel.ForeColor = SystemColors.ControlDark;
-            songLengthLabel.Location = new Point(906, 12);
+            songLengthLabel.Location = new Point(793, 9);
             songLengthLabel.Name = "songLengthLabel";
-            songLengthLabel.Size = new Size(62, 37);
+            songLengthLabel.Size = new Size(54, 28);
             songLengthLabel.TabIndex = 8;
             songLengthLabel.Text = "99:99";
             // 
@@ -206,9 +215,9 @@
             // 
             songAuthorLabel.Font = new Font("Sitka Banner", 12F);
             songAuthorLabel.ForeColor = SystemColors.ControlDark;
-            songAuthorLabel.Location = new Point(65, 39);
+            songAuthorLabel.Location = new Point(57, 29);
             songAuthorLabel.Name = "songAuthorLabel";
-            songAuthorLabel.Size = new Size(343, 35);
+            songAuthorLabel.Size = new Size(300, 26);
             songAuthorLabel.TabIndex = 7;
             songAuthorLabel.Text = "Song Author";
             // 
@@ -217,20 +226,20 @@
             songTitleLabel.AutoEllipsis = true;
             songTitleLabel.Font = new Font("Sylfaen", 16F);
             songTitleLabel.ForeColor = SystemColors.ButtonShadow;
-            songTitleLabel.Location = new Point(65, 3);
+            songTitleLabel.Location = new Point(57, 2);
             songTitleLabel.Name = "songTitleLabel";
-            songTitleLabel.Size = new Size(562, 40);
+            songTitleLabel.Size = new Size(492, 30);
             songTitleLabel.TabIndex = 6;
             songTitleLabel.Text = "Song Title";
             // 
             // panel3
             // 
             panel3.Controls.Add(btnCreate);
-            panel3.Location = new Point(12, 481);
+            panel3.Location = new Point(10, 361);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1340, 150);
+            panel3.Size = new Size(1172, 112);
             panel3.TabIndex = 2;
-            panel3.Paint += panel3_Paint;
             // 
             // btnCreate
             // 
@@ -238,9 +247,10 @@
             btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Tempus Sans ITC", 18F, FontStyle.Bold);
             btnCreate.ForeColor = Color.FromArgb(255, 128, 0);
-            btnCreate.Location = new Point(658, 45);
+            btnCreate.Location = new Point(576, 34);
+            btnCreate.Margin = new Padding(3, 2, 3, 2);
             btnCreate.Name = "btnCreate";
-            btnCreate.Size = new Size(150, 60);
+            btnCreate.Size = new Size(131, 45);
             btnCreate.TabIndex = 0;
             btnCreate.Text = "CREATE";
             btnCreate.UseVisualStyleBackColor = false;
@@ -248,13 +258,15 @@
             // 
             // SongCreationForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 20, 20);
-            ClientSize = new Size(1364, 643);
+            ClientSize = new Size(1194, 482);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
             Name = "SongCreationForm";
             Text = "SongCreationForm";
             panel1.ResumeLayout(false);

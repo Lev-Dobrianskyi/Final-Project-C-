@@ -30,6 +30,7 @@ namespace TestStyle
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlaylistsForm));
             PlaylistFLP = new FlowLayoutPanel();
             PlaylistPanel = new Panel();
             PlaylistBox = new GroupBox();
@@ -96,10 +97,12 @@ namespace TestStyle
             // PlaylistPicBox
             // 
             PlaylistPicBox.BorderStyle = BorderStyle.FixedSingle;
+            PlaylistPicBox.Image = Music_App.Properties.Resources.img2;
             PlaylistPicBox.Location = new Point(8, 16);
             PlaylistPicBox.Margin = new Padding(3, 2, 3, 2);
             PlaylistPicBox.Name = "PlaylistPicBox";
             PlaylistPicBox.Size = new Size(130, 130);
+            PlaylistPicBox.SizeMode = PictureBoxSizeMode.StretchImage;
             PlaylistPicBox.TabIndex = 0;
             PlaylistPicBox.TabStop = false;
             // 
@@ -184,6 +187,7 @@ namespace TestStyle
             Controls.Add(SearchTextBoxPL);
             Controls.Add(panel1);
             Controls.Add(PlaylistPanel);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "PlaylistsForm";
             Text = "PLaylists";

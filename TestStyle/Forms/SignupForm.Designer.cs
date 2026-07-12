@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignupForm));
             labePasswordMessage = new Label();
             labelEmailMessage = new Label();
             pnlTitleBar = new Panel();
@@ -187,7 +188,7 @@
             txtPassword.Font = new Font("Segoe UI Emoji", 10.8F);
             txtPassword.ForeColor = Color.FromArgb(255, 128, 0);
             txtPassword.Location = new Point(52, 279);
-            txtPassword.Margin = new Padding(4, 4, 4, 4);
+            txtPassword.Margin = new Padding(4);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(245, 27);
             txtPassword.TabIndex = 37;
@@ -201,7 +202,7 @@
             txtEmail.Font = new Font("Segoe UI Emoji", 10.8F);
             txtEmail.ForeColor = Color.White;
             txtEmail.Location = new Point(52, 196);
-            txtEmail.Margin = new Padding(4, 4, 4, 4);
+            txtEmail.Margin = new Padding(4);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(245, 27);
             txtEmail.TabIndex = 36;
@@ -329,6 +330,7 @@
             Controls.Add(txtPassword);
             Controls.Add(txtEmail);
             Controls.Add(labelSingup);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "SignupForm";
             Text = "SignupForm";
             Load += SignupForm_Load;
