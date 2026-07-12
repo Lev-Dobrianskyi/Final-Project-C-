@@ -17,8 +17,15 @@ public partial class SignupForm : Form
 
     private void SignupForm_Load(object sender, EventArgs e)
     {
+        txtUsername.PlaceholderText = "Enter your username";
         txtEmail.PlaceholderText = "Enter your Email";
         txtPassword.PlaceholderText = "Enter your password";
+        txtConfirmPassword.PlaceholderText = "Confirm your password";
+
+        labelUserMessage.Visible = false;
+        labelEmailMessage.Visible = false;
+        labePasswordMessage.Visible = false;
+        labelConfirmPasswordMessage.Visible = false;
     }
 
     private void btnClose_MouseEnter(object sender, EventArgs e)
@@ -112,32 +119,6 @@ public partial class SignupForm : Form
         btnSignup.Size = new Size(btnSignup.Width - 4, btnSignup.Height - 4);
     }
 
-    private void btnSignup_Click(object sender, EventArgs e)
-    {
-        labelEmailMessage.Visible = false;
-        labePasswordMessage.Visible = false;
-
-        bool isValid = true;
-
-        if (string.IsNullOrWhiteSpace(txtEmail.Text) || !txtEmail.Text.Contains("@"))
-        {
-            labelEmailMessage.Text = "Enter a valid email";
-            labelEmailMessage.Visible = true;
-            isValid = false;
-        }
-
-        if (string.IsNullOrWhiteSpace(txtPassword.Text) || txtPassword.Text.Length < 6)
-        {
-            labePasswordMessage.Text = "Password must consist of atleast 6 symbols";
-            labePasswordMessage.Visible = true;
-            isValid = false;
-        }
-
-        if (isValid)
-        {
-            this.Close();
-        }
-    }
 
     private void btnRegister_Click(object sender, EventArgs e)
     {
@@ -208,13 +189,5 @@ public partial class SignupForm : Form
     [System.Runtime.InteropServices.DllImport("Gdi32.dll")]
     private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
 
-    private void lblLogin_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void llLogin_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
-    {
-
-    }
 }
+

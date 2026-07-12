@@ -346,6 +346,7 @@
             Controls.Add(sidePanel);
             Controls.Add(songPanel);
             Controls.Add(signinButton);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             Name = "MainMenuForm";
             StartPosition = FormStartPosition.CenterScreen;

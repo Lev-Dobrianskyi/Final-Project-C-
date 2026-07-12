@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SongMenu));
             panel2 = new Panel();
             MaxSongTimeLabel = new Label();
             CurrSongTimeLabel = new Label();
@@ -179,6 +180,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1019, 129);
             Controls.Add(panel2);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             Name = "SongMenu";
             Text = "SongMenu";

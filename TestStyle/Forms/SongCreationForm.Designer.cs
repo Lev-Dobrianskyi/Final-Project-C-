@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SongCreationForm));
             panel1 = new Panel();
+            ProgramPic = new PictureBox();
             HomeBtn = new Button();
             userImg = new PictureBox();
             SCFLbl = new Label();
@@ -46,15 +47,14 @@
             songTitleLabel = new Label();
             panel3 = new Panel();
             btnCreate = new Button();
-            ProgramPic = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ProgramPic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)userImg).BeginInit();
             panel2.SuspendLayout();
             pnlDynamicContent.SuspendLayout();
             songBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)songPictureBox).BeginInit();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ProgramPic).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -67,6 +67,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1340, 125);
             panel1.TabIndex = 0;
+            // 
+            // ProgramPic
+            // 
+            ProgramPic.Image = (Image)resources.GetObject("ProgramPic.Image");
+            ProgramPic.Location = new Point(417, 25);
+            ProgramPic.Name = "ProgramPic";
+            ProgramPic.Size = new Size(64, 64);
+            ProgramPic.SizeMode = PictureBoxSizeMode.StretchImage;
+            ProgramPic.TabIndex = 12;
+            ProgramPic.TabStop = false;
             // 
             // HomeBtn
             // 
@@ -249,16 +259,6 @@
             btnCreate.UseVisualStyleBackColor = false;
             btnCreate.Click += btnCreate_Click;
             // 
-            // ProgramPic
-            // 
-            ProgramPic.Image = (Image)resources.GetObject("ProgramPic.Image");
-            ProgramPic.Location = new Point(417, 25);
-            ProgramPic.Name = "ProgramPic";
-            ProgramPic.Size = new Size(64, 64);
-            ProgramPic.SizeMode = PictureBoxSizeMode.StretchImage;
-            ProgramPic.TabIndex = 12;
-            ProgramPic.TabStop = false;
-            // 
             // SongCreationForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -268,10 +268,12 @@
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "SongCreationForm";
             Text = "SongCreationForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ProgramPic).EndInit();
             ((System.ComponentModel.ISupportInitialize)userImg).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -279,7 +281,6 @@
             songBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)songPictureBox).EndInit();
             panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)ProgramPic).EndInit();
             ResumeLayout(false);
         }
 
