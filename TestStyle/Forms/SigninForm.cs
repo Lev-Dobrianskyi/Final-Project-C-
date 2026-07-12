@@ -178,7 +178,7 @@ public partial class SigninForm : Form
                     var messageModel = JsonSerializer.Deserialize<LoginResponseModel>(jsonResponse);
                     MessageBox.Show("Login is OK: " + messageModel.MessageContent, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //save user info to local storage-------------------------------------------------------------------------
-                    File.WriteAllBytes("UserInfo.json", Encoding.UTF8.GetBytes($"{txtEmail.Text}\n{txtPassword.Text}\n{messageModel.Name}"));
+                    File.WriteAllBytes("UserInfo.txt", Encoding.UTF8.GetBytes($"{txtEmail.Text}\n{txtPassword.Text}\n{messageModel.Name}"));
 
                     //--------------------------------------------------------------------------------------------------------
                     this.Close();

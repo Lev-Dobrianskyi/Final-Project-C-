@@ -12,6 +12,7 @@ public class Song
     public SongGenre? Genre { get; set; }
     public ICollection<User> Users { get; set; }
     public ICollection<Artist> Artists { get; set; }
+    public int LengthInSeconds { get; set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Song"/> class.

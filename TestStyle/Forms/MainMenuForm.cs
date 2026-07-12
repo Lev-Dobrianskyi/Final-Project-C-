@@ -1,6 +1,10 @@
 ﻿using Music_App;
+using Music_App.Client_class;
 using Music_App.Forms;
 using MusicAppServer.Models;
+using System.Net.Sockets;
+using System.Text;
+using System.Text.Json;
 
 namespace TestStyle;
 
@@ -98,79 +102,69 @@ public partial class MainMenuForm : Form
         
 
 **/
-    private string GetAuthor(Song song)
+    private string orderByMode = "ASC"; // Default order by mode
+    private string orderByField = "Name"; // Default order by field
+
+    private async void GetSongsFromServer()
     {
-        switch (song.Name)
+        var request = new SongsRequestModel { OrderBy = orderByField, OrderDirection = orderByMode };
+        byte[] requestBuffer = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
+
+        // 2. Підключаємось та відправляємо
+        using TcpClient tcpClient = new TcpClient();
+        await tcpClient.ConnectAsync("127.0.0.1", 5000); // Краще асинхронно
+
+        using NetworkStream stream = tcpClient.GetStream();
+        await stream.WriteAsync(requestBuffer, 0, requestBuffer.Length);
+
+        // 3. Читаємо відповідь у новий буфер
+        byte[] responseBuffer = new byte[1024];
+        int length = await stream.ReadAsync(responseBuffer, 0, responseBuffer.Length);
+        string jsonResponse = Encoding.UTF8.GetString(responseBuffer, 0, length);
+
+        using (JsonDocument doc = JsonDocument.Parse(jsonResponse))
         {
-            case "Espresso":
-                return "Sabrina Carpenter";
-
-            case "67 Six Seven":
-                return "Gazan";
-
-            default:
-                return "Unknown";
-        }
-    }
-    private string GetSongLength(Song song)
-    {
-        switch (song.Name)
-        {
-            case "Espresso":
-                return "2:56";
-
-            case "67 Six Seven":
-                return "1:23";
-
-            default:
-                return "--:--";
-        }
-    }
-    private void CreateSongBoxes()
-    {
-        songPanel.Controls.Clear();
-
-        string serverSongs = Path.GetFullPath(
-            Path.Combine(AppContext.BaseDirectory,
-            @"..\..\..\..\MusicAppServer\Songs"));
-
-        string[] files = Directory.GetFiles(serverSongs, "*.mp3");
-
-        foreach (string file in files)
-        {
-            Song song = new Song();
-
-            string fileName = Path.GetFileName(file);
-
-            if (fileName == "sabrina-carpenter-espresso.mp3")
+            if (!doc.RootElement.TryGetProperty("Action", out JsonElement actionElement))
             {
-                song.Name = "Espresso";
-                song.Url = file;
-
-                song.Genre = new SongGenre()
-                {
-                    GenreName = "Dance-Pop"
-                };
+                MessageBox.Show("Missing 'Action' property in request.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else if (fileName == "Gazan_-_67_Six_Seven_(Sam_pisav).mp3")
-            {
-                song.Name = "67 Six Seven";
-                song.Url = file;
 
-                song.Genre = new SongGenre()
-                {
-                    GenreName = "Prank-Song"
-                };
+            if (actionElement.GetString() == "songsResponse")
+            {
+                var messageModel = JsonSerializer.Deserialize<SongsResponseModel>(jsonResponse);
+                var Sonds = messageModel.Songs;
+                var SongToInfo = messageModel.SongsToInf;
+                CreateSongBoxes(Sonds, SongToInfo);
             }
             else
             {
-                continue;
+                MessageBox.Show($"Unexpected action: {actionElement.GetString()}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-
-            AddSongBox(song);
         }
     }
-    private void AddSongBox(Song song)
+    private void CreateSongBoxes(List<Song> songs, List<SongToInf> SongsToInf)
+    {
+        songPanel.Controls.Clear();
+
+        foreach (Song song in songs)
+        {
+            var info = SongsToInf.FirstOrDefault(x => x.songId == song.Id);
+
+            AddSongBox(song, info.Artists, info.Genres);
+        }
+    }
+    private string FormatSecondsToTime(int totalSeconds)
+    {
+        if (totalSeconds <= 0) return "--:--";
+
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+
+        return $"{minutes}:{seconds:D2}";
+    }
+    private void AddSongBox(Song song, string artists, string genres)
     {
         Panel panel = new Panel();
 
@@ -193,21 +187,21 @@ public partial class MainMenuForm : Form
         title.Size = new Size(562, 40);
 
         Label author = new Label();
-        author.Text = GetAuthor(song);
+        author.Text = artists;
         author.Font = new Font("Sitka Banner", 12);
         author.ForeColor = SystemColors.ControlDark;
         author.Location = new Point(65, 39);
         author.Size = new Size(343, 35);
 
         Label genre = new Label();
-        genre.Text = song.Genre?.GenreName ?? "";
+        genre.Text = genres;
         genre.Font = new Font("Sitka Banner", 12);
         genre.ForeColor = SystemColors.ControlDark;
         genre.Location = new Point(415, 39);
         genre.Size = new Size(343, 35);
 
         Label length = new Label();
-        length.Text = GetSongLength(song);
+        length.Text = FormatSecondsToTime(song.LengthInSeconds);
         length.Font = new Font("Sitka Banner", 14);
         length.ForeColor = SystemColors.ControlDark;
         length.Location = new Point(906, 12);
@@ -221,19 +215,19 @@ public partial class MainMenuForm : Form
 
         panel.Tag = song;
 
-        panel.Click += songBox_Click;
-        picture.Click += songBox_Click;
-        title.Click += songBox_Click;
-        author.Click += songBox_Click;
-        genre.Click += songBox_Click;
-        length.Click += songBox_Click;
+        panel.Click += (s, e) => songBox_Click(s, e, artists);
+        picture.Click += (s, e) => songBox_Click(s, e, artists);
+        title.Click += (s, e) => songBox_Click(s, e, artists);
+        author.Click += (s, e) => songBox_Click(s, e, artists);
+        genre.Click += (s, e) => songBox_Click(s, e, artists);
+        length.Click += (s, e) => songBox_Click(s, e, artists);
 
         songPanel.Controls.Add(panel);
     }
     private void MainMenuForm_Load(object sender, EventArgs e)
     {
         searchBox.PlaceholderText = "Search for songs...";
-        CreateSongBoxes();
+        GetSongsFromServer();
     }
 
     private void signinButton_MouseEnter(object sender, EventArgs e)
@@ -284,16 +278,6 @@ public partial class MainMenuForm : Form
         creationForm.ShowDialog();
     }
 
-    private void orderbyDateButton_MouseEnter(object sender, EventArgs e)
-    {
-        orderbyDateButton.ForeColor = Color.BlueViolet;
-    }
-
-    private void orderbyDateButton_MouseLeave(object sender, EventArgs e)
-    {
-        orderbyDateButton.ForeColor = Color.FromArgb(255, 128, 0);
-    }
-
     private void orderbyDateButton_CheckedChanged(object sender, EventArgs e)
     {
         // order by date (or not)
@@ -312,6 +296,10 @@ public partial class MainMenuForm : Form
     private void orderbyPopularityButton_CheckedChanged(object sender, EventArgs e)
     {
         // order by popularity (or not)
+        if (orderbyPopularityButton.Checked) {
+            orderByField = "Name";//live this field
+            GetSongsFromServer();
+        }
     }
 
     private void orderbyLengthButton_MouseEnter(object sender, EventArgs e)
@@ -327,6 +315,11 @@ public partial class MainMenuForm : Form
     private void orderbyLengthButton_CheckedChanged(object sender, EventArgs e)
     {
         // order by length (or not)
+        if (orderbyLengthButton.Checked)
+        {
+            orderByField = "Genre";//live this field
+            GetSongsFromServer();
+        }
     }
 
     private void orderbyReverseBox_MouseEnter(object sender, EventArgs e)
@@ -342,6 +335,9 @@ public partial class MainMenuForm : Form
     private void orderbyReverseBox_CheckedChanged(object sender, EventArgs e)
     {
         // order by reverse (or not)
+        orderByMode = orderbyReverseBox.Checked ? "DESC" : "ASC";
+
+        GetSongsFromServer();
     }
 
     private void searchBox_Validated(object sender, EventArgs e)
@@ -349,7 +345,7 @@ public partial class MainMenuForm : Form
         // search for songs (title and author)
     }
 
-    private void songBox_Click(object sender, EventArgs e)
+    private void songBox_Click(object sender, EventArgs e, string artists)
     {
         Control control = sender as Control;
 
@@ -362,8 +358,14 @@ public partial class MainMenuForm : Form
 
         SongMenu menu = new SongMenu(
             song,
-            ((PictureBox)panel.Controls[0]).Image);
+            ((PictureBox)panel.Controls[0]).Image,
+            artists);
 
         menu.Show();
+    }
+
+    private void songBox_Paint(object sender, PaintEventArgs e)
+    {
+
     }
 }

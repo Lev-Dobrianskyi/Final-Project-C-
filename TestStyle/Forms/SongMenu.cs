@@ -1,19 +1,22 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Music_App.Client_class;
+using MusicAppServer.Data;
+using MusicAppServer.Models;
+using MusicAppServer.MusicPlayer;
+using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Net.Sockets;
 using System.Text;
+using System.Text.Json;
 using System.Web;
 using System.Windows.Forms;
-using NAudio.Wave;
-using System.Linq;
-using MusicAppServer.Models;
-using MusicAppServer.Data;
-using MusicAppServer.MusicPlayer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Music_App;
 
@@ -28,8 +31,10 @@ public partial class SongMenu : Form
     private Song currentSong;
     private readonly MusicPlayer player = new MusicPlayer();
     private bool isPlaying;
+    private bool isUserScrolling = false;
+    private int trackStartSecond = 0;
 
-    public SongMenu(Song song, Image image)
+    public SongMenu(Song song, Image image, string artists)
     {
         InitializeComponent();
 
@@ -39,13 +44,35 @@ public partial class SongMenu : Form
         SongPicBox.SizeMode = PictureBoxSizeMode.Zoom;
 
         SongNameLabel.Text = song.Name;
-        SongAuthorLabel.Text = song.Artists.FirstOrDefault()?.Name ?? "Unknown";
+        SongAuthorLabel.Text = artists;
     }
     //currentSong = await client.GetSongAsync(songTitle, songAuthor);
     //If server will accept request from client and search for song in database,
     //then it will return song object with all necessary information, including url to the song file. 
     //Then this form will use that url to play the song.
     //Also require changes if this method will be added to the server.
+    private async Task<NetworkStream> GetAudioStreamFromServerAsync(string songPath, int startPositionSec)
+    {
+        TcpClient client = new TcpClient();
+        await client.ConnectAsync("127.0.0.1", 5000);
+
+        NetworkStream stream = client.GetStream();
+
+        var requestModel = new ListenRequestModel
+        {
+            SongPath = songPath,
+            startPositionSec = startPositionSec
+        };
+
+        string jsonRequest = JsonSerializer.Serialize(requestModel);
+        byte[] requestBuffer = Encoding.UTF8.GetBytes(jsonRequest);
+
+        // Відправляємо запит серверу
+        await stream.WriteAsync(requestBuffer, 0, requestBuffer.Length);
+
+        // Повертаємо стрім. Закривати його тут не можна, бо з нього читатиме NAudio
+        return stream;
+    }
 
     private void SongMenu_Load(object sender, EventArgs e)
     {
@@ -78,7 +105,7 @@ public partial class SongMenu : Form
             CurrSongTimeLabel.Text = "00:00";
         }));
     }
-    private void PlayPause()
+    private async void PlayPause()
     {
         if (currentSong == null)
             return;
@@ -89,16 +116,22 @@ public partial class SongMenu : Form
             {
                 if (player.audioFile == null)
                 {
-                    player.Load(currentSong.Url);
+                    Play_PauseBtn.Enabled = false;
+                    Play_PauseBtn.Text = "/";
+                    trackStartSecond = SongTrackBar.Value;
+                    NetworkStream audioStream = await GetAudioStreamFromServerAsync(currentSong.Url, trackStartSecond);
 
-                    SongTrackBar.Maximum = player.GetAllTimeOfMusic();
+                    player.Load(audioStream);
+
+                    if (SongTrackBar.Maximum == 100 && player.GetAllTimeOfMusic() > 0)
+                    {
+                        SongTrackBar.Maximum = player.GetAllTimeOfMusic();
+                    }
+                    Play_PauseBtn.Enabled = true;
                 }
-
                 player.Play();
-
                 isPlaying = true;
-
-                Play_PauseBtn.Text = "⏸";
+                Play_PauseBtn.Text = "| |";
             }
             else
             {
@@ -121,19 +154,23 @@ public partial class SongMenu : Form
 
     private void songTimer_Tick(object sender, EventArgs e)
     {
-        if (player.audioFile == null)
-            return;
-
-        if (player.outputDevice == null)
+        if (isUserScrolling || player.audioFile == null || player.outputDevice == null)
             return;
 
         if (player.outputDevice.PlaybackState != PlaybackState.Playing)
             return;
 
-        SongTrackBar.Value = player.GetCurrentTimeOfMusic();
+        int actualCurrentSecond = trackStartSecond + player.GetCurrentTimeOfMusic();
 
-        CurrSongTimeLabel.Text =
-            player.audioFile.CurrentTime.ToString(@"mm\:ss");
+        if (actualCurrentSecond <= SongTrackBar.Maximum)
+        {
+            SongTrackBar.Value = actualCurrentSecond;
+            CurrSongTimeLabel.Text = TimeSpan.FromSeconds(actualCurrentSecond).ToString(@"mm\:ss");
+        }
+        else
+        {
+            player.outputDevice.Stop();
+        }
     }
 
     private void SongMenu_FormClosing(object sender, FormClosingEventArgs e)
@@ -156,11 +193,49 @@ public partial class SongMenu : Form
 
     }
 
-    private void SongTrackBar_Scroll(object sender, EventArgs e)
+    private async void SongTrackBar_Scroll(object sender, EventArgs e)
     {
-        if (player.audioFile == null)
-            return;
+        try
+        {
+            isUserScrolling = true;
 
-        player.Seek(SongTrackBar.Value);
+            player.outputDevice?.Stop();
+
+            player.ResetAudioFile();
+
+            int targetSecond = SongTrackBar.Value;
+            trackStartSecond = targetSecond;
+
+            CurrSongTimeLabel.Text = TimeSpan.FromSeconds(targetSecond).ToString(@"mm\:ss");
+
+            if (isPlaying)
+            {
+                Play_PauseBtn.Enabled = false;
+                Play_PauseBtn.Text = "/";
+
+                NetworkStream newStream = await GetAudioStreamFromServerAsync(currentSong.Url, targetSecond);
+                player.Load(newStream);
+
+                player.Play();
+                Play_PauseBtn.Enabled = true;
+                Play_PauseBtn.Text = "| |";
+            }
+            else
+            {
+            }
+        }
+        catch (Exception ex)
+        {
+            Play_PauseBtn.Enabled = true;
+            MessageBox.Show($"Помилка перемотування: {ex.Message}");
+        }
+        finally
+        {
+            isUserScrolling = false;
+        }
+    }
+
+    private void panel2_Paint(object sender, PaintEventArgs e)
+    {
     }
 }
