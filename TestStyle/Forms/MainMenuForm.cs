@@ -169,13 +169,13 @@ public partial class MainMenuForm : Form
         Panel panel = new Panel();
 
         panel.BorderStyle = BorderStyle.FixedSingle;
-        panel.Size = new Size(976, 77);
+        panel.Size = new Size(854, 58);
         panel.Cursor = Cursors.Hand;
-        panel.Margin = new Padding(3, 4, 3, 4);
+        panel.Margin = new Padding(3, 3, 3, 3);
 
         PictureBox picture = new PictureBox();
-        picture.Location = new Point(7, 9);
-        picture.Size = new Size(45, 38);
+        picture.Location = new Point(8, 8);
+        picture.Size = new Size(40, 40);
         picture.SizeMode = PictureBoxSizeMode.StretchImage;
         picture.Image = songPictureBox.Image;
 
@@ -183,29 +183,29 @@ public partial class MainMenuForm : Form
         title.Text = song.Name;
         title.Font = new Font("Sylfaen", 16);
         title.ForeColor = SystemColors.ButtonShadow;
-        title.Location = new Point(65, 3);
-        title.Size = new Size(562, 40);
+        title.Location = new Point(57, 2);
+        title.Size = new Size(492, 30);
 
         Label author = new Label();
         author.Text = artists;
         author.Font = new Font("Sitka Banner", 12);
         author.ForeColor = SystemColors.ControlDark;
-        author.Location = new Point(65, 39);
-        author.Size = new Size(343, 35);
+        author.Location = new Point(57, 29);
+        author.Size = new Size(300, 26);
 
         Label genre = new Label();
         genre.Text = genres;
         genre.Font = new Font("Sitka Banner", 12);
         genre.ForeColor = SystemColors.ControlDark;
-        genre.Location = new Point(415, 39);
-        genre.Size = new Size(343, 35);
+        genre.Location = new Point(363, 29);
+        genre.Size = new Size(300, 26);
 
         Label length = new Label();
         length.Text = FormatSecondsToTime(song.LengthInSeconds);
         length.Font = new Font("Sitka Banner", 14);
         length.ForeColor = SystemColors.ControlDark;
-        length.Location = new Point(906, 12);
-        length.Size = new Size(62, 37);
+        length.Location = new Point(793, 9);
+        length.Size = new Size(54, 28);
 
         panel.Controls.Add(picture);
         panel.Controls.Add(title);
