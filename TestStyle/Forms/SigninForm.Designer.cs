@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SigninForm));
             llSignup = new LinkLabel();
             labelPasswordMessage = new Label();
             labelEmailMessage = new Label();
@@ -196,7 +197,7 @@
             txtPassword.Font = new Font("Segoe UI Emoji", 10.8F);
             txtPassword.ForeColor = Color.FromArgb(255, 128, 0);
             txtPassword.Location = new Point(54, 242);
-            txtPassword.Margin = new Padding(4, 4, 4, 4);
+            txtPassword.Margin = new Padding(4);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(245, 27);
             txtPassword.TabIndex = 24;
@@ -210,7 +211,7 @@
             txtEmail.Font = new Font("Segoe UI Emoji", 10.8F);
             txtEmail.ForeColor = Color.White;
             txtEmail.Location = new Point(54, 145);
-            txtEmail.Margin = new Padding(4, 4, 4, 4);
+            txtEmail.Margin = new Padding(4);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(245, 27);
             txtEmail.TabIndex = 23;
@@ -245,6 +246,7 @@
             Controls.Add(txtPassword);
             Controls.Add(txtEmail);
             Controls.Add(labelSingin);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "SigninForm";
             Text = "SigninForm";
             Load += SigninForm_Load;
