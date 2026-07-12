@@ -1,4 +1,6 @@
-﻿namespace Music_App.Client_class;
+﻿using MusicAppServer.Models;
+
+namespace Music_App.Client_class;
 
 /// <summary>
 /// Represents the Data Transfer Object (DTO) containing user registration details sent from the client to the server.
@@ -39,7 +41,8 @@ public class ListenRequestModel
     /// <summary>
     /// Gets or sets the name or identifier of the song that the client wants to stream.
     /// </summary>
-    public string SongName { get; set; }
+    public string SongPath { get; set; }
+    public int startPositionSec { get; set; } = 0;
 }
 
 /// <summary>
@@ -85,4 +88,24 @@ public class LoginResponseModel
     public string Action { get; set; } = "loginResponse";
     public string MessageContent { get; set; }
     public string Name { get; set; }
+}
+
+public class SongsRequestModel
+{
+    public string Action { get; set; } = "songsRequest";
+    public string OrderBy { get; set; } = "Name";
+    public string OrderDirection { get; set; } = "ASC";
+}
+public class SongToInf
+{
+    public int songId { get; set; }
+    public string Artists { get; set; }
+    public string Genres { get; set; }
+}
+
+public class SongsResponseModel
+{
+    public string Action { get; set; } = "songsResponse";
+    public List<Song> Songs { get; set; }
+    public List<SongToInf> SongsToInf { get; set; }
 }

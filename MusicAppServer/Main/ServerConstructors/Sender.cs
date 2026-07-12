@@ -8,6 +8,7 @@ using MusicAppServer.Models;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
+using NAudio.Wave;
 
 namespace MusicAppServer.Main.ServerConstructors;
 
@@ -26,39 +27,48 @@ public static class Sender
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="client"/> is null.</exception>
     /// <exception cref="FileNotFoundExceptionEx">Thrown when the requested audio file does not exist on disk.</exception>
     /// <exception cref="PlaybackException">Thrown when a network streaming error occurs during playback transmission.</exception>
-    public static async Task SendSongAsync(TcpClient client, string filePath)
-    {
+    public static async Task SendSongAsync(TcpClient client, string fileName, int startPositionSec = 0) {
         if (client == null)
         {
-            using (client)
-            using (NetworkStream networkStream = client.GetStream())
-            {
-                byte[] buffer = Encoding.UTF8.GetBytes(nameof(client));
-                await networkStream.WriteAsync(buffer, 0, buffer.Length);
-                throw new ArgumentNullException(nameof(client));
-            }
+            throw new ArgumentNullException(nameof(client));
         }
+
+        string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+
+        string filePath = Path.Combine(baseDir, "Songs", fileName);
+
+        if (!Directory.Exists(Path.Combine(baseDir, "Songs")))
+        {
+            filePath = Path.Combine(baseDir, "..", "..", "..", "Songs", fileName);
+        }
+
+        filePath = Path.GetFullPath(filePath);
+
+        Console.WriteLine($"[Server Log] Attempting to stream file from path: {filePath}");
 
         if (!File.Exists(filePath))
         {
-            client.Close();
+            Console.WriteLine($"[Server Error] File not found: {filePath}");
             throw new FileNotFoundExceptionEx();
         }
 
         try
         {
-            // Using declaration ensures streams are disposed of immediately after the scope ends
-            using (client)
-            using (NetworkStream networkStream = client.GetStream())
-            using (FileStream fileStream = File.OpenRead(filePath))
-            {
-                byte[] buffer = new byte[32768]; // 32 KB buffer size
-                int bytesRead;
+            NetworkStream networkStream = client.GetStream();
 
-                // Read chunks asynchronously from disk and stream them directly onto the network
-                while ((bytesRead = await fileStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+            using (var mp3Reader = new Mp3FileReader(filePath))
+            {
+                if (startPositionSec > 0 && startPositionSec < mp3Reader.TotalTime.TotalSeconds)
                 {
-                    await networkStream.WriteAsync(buffer, 0, bytesRead);
+                    mp3Reader.CurrentTime = TimeSpan.FromSeconds(startPositionSec);
+                }
+
+                Mp3Frame frame;
+
+                while ((frame = mp3Reader.ReadNextFrame()) != null)
+                {
+                    await networkStream.WriteAsync(frame.RawData, 0, frame.RawData.Length);
                 }
             }
 
@@ -219,6 +229,63 @@ public static class Sender
         {
             // Fixed the error message here to correctly reflect the log-in context instead of sign-up
             throw new DatabaseException("An unexpected error occurred during log-in verification transmission.", ex);
+        }
+    }
+    private static string FormatArtistToString(ICollection<Artist> artists)
+    {
+        if (artists == null || artists.Count == 0)
+            return "Unknown";
+        return string.Join(", ", artists.Select(a => a.Name));
+    }
+
+
+    public static async Task SendSongListAsync(TcpClient client, string orderBy, string orderDirection)
+    {
+        if (client == null)
+            throw new ArgumentNullException(nameof(client));
+        try
+        {
+            using (var context = new AppDBContext())
+            {
+                var songController = new SongController(context);
+                var songs = await songController.GetAllSongsAsync(orderBy, orderDirection);
+                var songsToInf = new List<SongToInf>();
+                foreach (var song in songs)
+                {
+                    Console.WriteLine(FormatArtistToString(song.Artists));
+                    var songToInf = new SongToInf()
+                    {
+                        songId = song.Id,
+                        Artists = FormatArtistToString(song.Artists),
+                        Genres = song.Genre?.GenreName ?? "Unknown"
+                    };
+                    songsToInf.Add(songToInf);
+
+                    song.Genre = null;
+                    song.Artists = new List<Artist>();
+                    song.Users = new List<User>();
+                }
+                byte[] buffer = Encoding.UTF8.GetBytes(
+                    JsonSerializer.Serialize(
+                        new SongsResponseModel() { 
+                            Songs = songs,
+                            SongsToInf = songsToInf
+                        }
+                    )
+                );
+                using (NetworkStream networkStream = new NetworkStream(client.Client, ownsSocket: false))
+                {
+                    await networkStream.WriteAsync(buffer, 0, buffer.Length);
+                }
+            }
+        }
+        catch (MusicServiceException)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            throw new DatabaseException("An unexpected error occurred while sending the song list.", ex);
         }
     }
 }

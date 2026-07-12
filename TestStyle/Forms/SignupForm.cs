@@ -184,7 +184,7 @@ public partial class SignupForm : Form
                     }
                     MessageBox.Show("Registration is OK: " + messageModel.MessageContent, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //save user info to local storage-------------------------------------------------------------------------
-                    File.WriteAllBytes("UserInfo.json", Encoding.UTF8.GetBytes($"{txtEmail.Text}\n{txtPassword.Text}\n{txtUsername.Text}"));
+                    File.WriteAllBytes("UserInfo.txt", Encoding.UTF8.GetBytes($"{txtEmail.Text}\n{txtPassword.Text}\n{txtUsername.Text}"));
 
                     //--------------------------------------------------------------------------------------------------------
                     this.Close();

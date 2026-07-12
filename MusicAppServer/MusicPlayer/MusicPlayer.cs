@@ -1,11 +1,15 @@
 ﻿using NAudio.Wave;
+using System;
+using System.IO;
 
 namespace MusicAppServer.MusicPlayer;
 
 public class MusicPlayer : IDisposable
 {
-    public WaveOutEvent? outputDevice {  get; private set; }
-    public AudioFileReader? audioFile { get; private set; }
+    public WaveOutEvent? outputDevice { get; private set; }
+
+    public WaveStream? audioFile { get; set; }
+
 
     public void Load(string filePath)
     {
@@ -18,6 +22,25 @@ public class MusicPlayer : IDisposable
 
         outputDevice = new WaveOutEvent();
         outputDevice.Init(audioFile);
+    }
+    public void Load(Stream audioStream)
+    {
+        DisposePlayer();
+
+        var memoryStream = new MemoryStream();
+        audioStream.CopyTo(memoryStream);
+        memoryStream.Position = 0;
+
+        audioFile = new Mp3FileReader(memoryStream);
+
+        outputDevice = new WaveOutEvent();
+        outputDevice.Init(audioFile);
+    }
+
+    public void ResetAudioFile()
+    {
+        audioFile?.Dispose();
+        audioFile = null;
     }
 
     public void Play()
@@ -63,7 +86,6 @@ public class MusicPlayer : IDisposable
         return (int)totalTime.TotalSeconds;
     }
 
-
     public double CurrentTime
     {
         get
@@ -90,12 +112,22 @@ public class MusicPlayer : IDisposable
     {
         get
         {
-            return audioFile?.Volume ?? 0;
+            if (audioFile is AudioFileReader localFile)
+            {
+                return localFile.Volume;
+            }
+            return outputDevice?.Volume ?? 1f;
         }
         set
         {
-            if (audioFile != null)
-                audioFile.Volume = value;
+            if (audioFile is AudioFileReader localFile)
+            {
+                localFile.Volume = value;
+            }
+            else if (outputDevice != null)
+            {
+                outputDevice.Volume = value;
+            }
         }
     }
 

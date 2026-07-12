@@ -74,13 +74,14 @@ public class Realisation
 
                                     case "listenSong":
                                         var listenModel = JsonSerializer.Deserialize<ListenRequestModel>(jsonRequest);
-                                        // Передаємо стрім та назву пісні для відправки треку
-                                        await Sender.SendSongAsync(client, listenModel.SongName);
+                                        // Передаємо стрім та шлях пісні для відправки треку
+                                        await Sender.SendSongAsync(client, listenModel.SongPath, listenModel.startPositionSec);
                                         break;
 
-                                    //case "GetSongList":
-                                    //    await Sender.SendSongListAsync(stream);
-                                    //    break;
+                                    case "songsRequest":
+                                        var songsRequestModel = JsonSerializer.Deserialize<SongsRequestModel>(jsonRequest);
+                                        await Sender.SendSongListAsync(client, songsRequestModel.OrderBy, songsRequestModel.OrderDirection);
+                                        break;
 
                                     default:
                                         throw new AuthenticationException($"Invalid action: {action}");

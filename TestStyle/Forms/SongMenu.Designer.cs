@@ -64,6 +64,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(892, 97);
             panel2.TabIndex = 5;
+            panel2.Paint += panel2_Paint;
             // 
             // MaxSongTimeLabel
             // 

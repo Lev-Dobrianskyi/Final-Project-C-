@@ -1,4 +1,6 @@
-﻿namespace TestStyle
+﻿using MusicAppServer.Models;
+
+namespace TestStyle
 {
     partial class MainMenuForm
     {
@@ -39,7 +41,6 @@
             songAuthorLabel = new Label();
             songTitleLabel = new Label();
             label5 = new Label();
-            orderbyDateButton = new RadioButton();
             orderbyPopularityButton = new RadioButton();
             orderbyLengthButton = new RadioButton();
             orderbyReverseBox = new CheckBox();
@@ -109,7 +110,7 @@
             songBox.Name = "songBox";
             songBox.Size = new Size(854, 58);
             songBox.TabIndex = 1;
-            songBox.Click += songBox_Click;
+            songBox.Paint += songBox_Paint;
             // 
             // songGenreLabel
             // 
@@ -177,24 +178,6 @@
             label5.Text = "Order by:";
             label5.TextAlign = ContentAlignment.BottomCenter;
             // 
-            // orderbyDateButton
-            // 
-            orderbyDateButton.Appearance = Appearance.Button;
-            orderbyDateButton.AutoSize = true;
-            orderbyDateButton.Cursor = Cursors.Hand;
-            orderbyDateButton.FlatStyle = FlatStyle.Flat;
-            orderbyDateButton.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyDateButton.Location = new Point(125, 60);
-            orderbyDateButton.Name = "orderbyDateButton";
-            orderbyDateButton.Size = new Size(43, 27);
-            orderbyDateButton.TabIndex = 10;
-            orderbyDateButton.TabStop = true;
-            orderbyDateButton.Text = "Date";
-            orderbyDateButton.UseVisualStyleBackColor = true;
-            orderbyDateButton.CheckedChanged += orderbyDateButton_CheckedChanged;
-            orderbyDateButton.MouseEnter += orderbyDateButton_MouseEnter;
-            orderbyDateButton.MouseLeave += orderbyDateButton_MouseLeave;
-            // 
             // orderbyPopularityButton
             // 
             orderbyPopularityButton.Appearance = Appearance.Button;
@@ -202,12 +185,13 @@
             orderbyPopularityButton.Cursor = Cursors.Hand;
             orderbyPopularityButton.FlatStyle = FlatStyle.Flat;
             orderbyPopularityButton.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyPopularityButton.Location = new Point(177, 60);
+            orderbyPopularityButton.Location = new Point(143, 79);
+            orderbyPopularityButton.Margin = new Padding(3, 4, 3, 4);
             orderbyPopularityButton.Name = "orderbyPopularityButton";
-            orderbyPopularityButton.Size = new Size(73, 27);
+            orderbyPopularityButton.Size = new Size(61, 32);
             orderbyPopularityButton.TabIndex = 11;
             orderbyPopularityButton.TabStop = true;
-            orderbyPopularityButton.Text = "Popularity";
+            orderbyPopularityButton.Text = "Name";
             orderbyPopularityButton.UseVisualStyleBackColor = true;
             orderbyPopularityButton.CheckedChanged += orderbyPopularityButton_CheckedChanged;
             orderbyPopularityButton.MouseEnter += orderbyPopularityButton_MouseEnter;
@@ -220,12 +204,13 @@
             orderbyLengthButton.Cursor = Cursors.Hand;
             orderbyLengthButton.FlatStyle = FlatStyle.Flat;
             orderbyLengthButton.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyLengthButton.Location = new Point(258, 60);
+            orderbyLengthButton.Location = new Point(210, 79);
+            orderbyLengthButton.Margin = new Padding(3, 4, 3, 4);
             orderbyLengthButton.Name = "orderbyLengthButton";
-            orderbyLengthButton.Size = new Size(56, 27);
+            orderbyLengthButton.Size = new Size(60, 32);
             orderbyLengthButton.TabIndex = 12;
             orderbyLengthButton.TabStop = true;
-            orderbyLengthButton.Text = "Length";
+            orderbyLengthButton.Text = "Genre";
             orderbyLengthButton.UseVisualStyleBackColor = true;
             orderbyLengthButton.CheckedChanged += orderbyLengthButton_CheckedChanged;
             orderbyLengthButton.MouseEnter += orderbyLengthButton_MouseEnter;
@@ -239,7 +224,8 @@
             orderbyReverseBox.FlatStyle = FlatStyle.Flat;
             orderbyReverseBox.Font = new Font("Segoe UI", 9.5F);
             orderbyReverseBox.ForeColor = Color.FromArgb(255, 128, 0);
-            orderbyReverseBox.Location = new Point(321, 60);
+            orderbyReverseBox.Location = new Point(276, 80);
+            orderbyReverseBox.Margin = new Padding(3, 4, 3, 4);
             orderbyReverseBox.Name = "orderbyReverseBox";
             orderbyReverseBox.Size = new Size(64, 27);
             orderbyReverseBox.TabIndex = 9;
@@ -317,7 +303,6 @@
             ClientSize = new Size(1184, 661);
             Controls.Add(label5);
             Controls.Add(searchBox);
-            Controls.Add(orderbyDateButton);
             Controls.Add(profilePictureBox);
             Controls.Add(orderbyPopularityButton);
             Controls.Add(signupButton);
@@ -351,7 +336,6 @@
         private Label label4;
         private Label label5;
         private CheckBox orderbyReverseBox;
-        private RadioButton orderbyDateButton;
         private RadioButton orderbyPopularityButton;
         private RadioButton orderbyLengthButton;
         private TextBox searchBox;
