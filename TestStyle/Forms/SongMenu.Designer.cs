@@ -171,6 +171,7 @@
             // 
             // SongPicBox
             // 
+            SongPicBox.BorderStyle = BorderStyle.FixedSingle;
             SongPicBox.ErrorImage = Properties.Resources.img2;
             SongPicBox.Image = Properties.Resources.img2;
             SongPicBox.InitialImage = Properties.Resources.img2;
