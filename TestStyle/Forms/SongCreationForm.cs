@@ -67,15 +67,5 @@ namespace Music_App.Forms
                 songGenreLabel.Text = txtGenre.Text;
             }
         }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
