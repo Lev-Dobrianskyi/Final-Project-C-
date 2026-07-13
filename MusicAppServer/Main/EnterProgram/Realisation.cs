@@ -80,7 +80,7 @@ public class Realisation
 
                                     case "songsRequest":
                                         var songsRequestModel = JsonSerializer.Deserialize<SongsRequestModel>(jsonRequest);
-                                        await Sender.SendSongListAsync(client, songsRequestModel.OrderBy, songsRequestModel.OrderDirection);
+                                        await Sender.SendSongListAsync(client, songsRequestModel.OrderBy, songsRequestModel.OrderDirection, songsRequestModel.SearchText);
                                         break;
 
                                     default:

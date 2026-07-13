@@ -239,7 +239,7 @@ public static class Sender
     }
 
 
-    public static async Task SendSongListAsync(TcpClient client, string orderBy, string orderDirection)
+    public static async Task SendSongListAsync(TcpClient client, string orderBy, string orderDirection, string searchText)
     {
         if (client == null)
             throw new ArgumentNullException(nameof(client));
@@ -248,7 +248,7 @@ public static class Sender
             using (var context = new AppDBContext())
             {
                 var songController = new SongController(context);
-                var songs = await songController.GetAllSongsAsync(orderBy, orderDirection);
+                var songs = await songController.GetSongsAsync(orderBy, orderDirection, searchText);
                 var songsToInf = new List<SongToInf>();
                 foreach (var song in songs)
                 {

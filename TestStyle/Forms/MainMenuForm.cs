@@ -1,4 +1,5 @@
-﻿using Music_App;
+﻿using Microsoft.IdentityModel.Tokens;
+using Music_App;
 using Music_App.Client_class;
 using Music_App.Forms;
 using MusicAppServer.Models;
@@ -107,7 +108,7 @@ public partial class MainMenuForm : Form
 
     private async void GetSongsFromServer()
     {
-        var request = new SongsRequestModel { OrderBy = orderByField, OrderDirection = orderByMode };
+        var request = new SongsRequestModel { OrderBy = orderByField, OrderDirection = orderByMode, SearchText = searchBox.Text };
         byte[] requestBuffer = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 
         // 2. Підключаємось та відправляємо
@@ -226,7 +227,6 @@ public partial class MainMenuForm : Form
     }
     private void MainMenuForm_Load(object sender, EventArgs e)
     {
-        searchBox.PlaceholderText = "Search for songs...";
         GetSongsFromServer();
     }
 
@@ -243,7 +243,13 @@ public partial class MainMenuForm : Form
     private void signinButton_Click(object sender, EventArgs e)
     {
         SigninForm signinForm = new SigninForm();
-        signinForm.Show();
+        signinForm.ShowDialog();
+
+        if (!UserSession.Username.IsNullOrEmpty()) {
+            profilePictureBox.Visible = true;
+            signinButton.Visible = false;
+            signupButton.Visible = false;
+        }
     }
 
     private void signupButton_MouseEnter(object sender, EventArgs e)
@@ -259,7 +265,14 @@ public partial class MainMenuForm : Form
     private void signupButton_Click(object sender, EventArgs e)
     {
         SignupForm signupForm = new SignupForm();
-        signupForm.Show();
+        signupForm.ShowDialog();
+
+        if (!UserSession.Username.IsNullOrEmpty())
+        {
+            profilePictureBox.Visible = true;
+            signinButton.Visible = false;
+            signupButton.Visible = false;
+        }
     }
 
     private void songCreationButton_MouseEnter(object sender, EventArgs e)
@@ -296,7 +309,8 @@ public partial class MainMenuForm : Form
     private void orderbyPopularityButton_CheckedChanged(object sender, EventArgs e)
     {
         // order by popularity (or not)
-        if (orderbyPopularityButton.Checked) {
+        if (orderbyPopularityButton.Checked)
+        {
             orderByField = "Name";//live this field
             GetSongsFromServer();
         }
@@ -342,7 +356,7 @@ public partial class MainMenuForm : Form
 
     private void searchBox_Validated(object sender, EventArgs e)
     {
-        // search for songs (title and author)
+        GetSongsFromServer();
     }
 
     private void songBox_Click(object sender, EventArgs e, string artists)
@@ -362,10 +376,5 @@ public partial class MainMenuForm : Form
             artists);
 
         menu.Show();
-    }
-
-    private void songBox_Paint(object sender, PaintEventArgs e)
-    {
-
     }
 }
