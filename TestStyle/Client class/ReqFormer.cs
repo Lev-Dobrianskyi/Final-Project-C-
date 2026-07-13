@@ -97,6 +97,7 @@ public class  SongsRequestModel
     public string Action { get; set; } = "songsRequest";
     public string OrderBy { get; set; } = "Name";
     public string OrderDirection { get; set; } = "ASC";
+    public string SearchText { get; set; } = "";
 }
 public class SongToInf
 {

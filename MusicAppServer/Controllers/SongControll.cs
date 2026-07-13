@@ -125,57 +125,55 @@ public class SongController
         }
     }
 
-    public async Task<List<Song>> GetAllSongsAsync(string orderBy, string orderDirection)
+    public async Task<List<Song>> GetSongsAsync(string orderBy, string orderDirection, string searchText)
     {
         try
         {
-            switch (orderDirection)
+            IQueryable<Song> query = _context.Songs
+                .Include(s => s.Genre)
+                .Include(s => s.Artists);
+
+            // Search
+            if (!string.IsNullOrWhiteSpace(searchText))
             {
-                case "ASC":
-                    switch (orderBy)
-                    {
-                        case "Name":
-                            return await _context.Songs
-                                .Include(s => s.Genre)
-                                .Include(s => s.Artists)
-                                .OrderBy(s => s.Name)
-                                .ToListAsync();
-                        case "Genre":
-                            return await _context.Songs
-                                .Include(s => s.Genre)
-                                .Include(s => s.Artists)
-                                .OrderBy(s => s.Genre.GenreName)
-                                .ToListAsync();
-                        default:
-                            throw new ArgumentException("Invalid order by field. Use 'Name' or 'Genre'.", nameof(orderBy));
-                    }
-                case "DESC":
-                    switch (orderBy)
-                    {
-                        case "Name":
-                            return await _context.Songs
-                                .Include(s => s.Genre)
-                                .Include(s => s.Artists)
-                                .OrderByDescending(s => s.Name)
-                                .ToListAsync();
-                        case "Genre":
-                            return await _context.Songs
-                                .Include(s => s.Genre)
-                                .Include(s => s.Artists)
-                                .OrderByDescending(s => s.Genre.GenreName)
-                                .ToListAsync();
-                        default:
-                            throw new ArgumentException("Invalid order by field. Use 'Name' or 'Genre'.", nameof(orderBy));
-                    }
-                default:
-                    throw new ArgumentException("Invalid order direction. Use 'ASC' or 'DESC'.", nameof(orderDirection));
+                searchText = searchText.Trim().ToLower();
+
+                query = query.Where(s =>
+                    s.Name.ToLower().Contains(searchText) ||
+                    s.Artists.Any(a => a.Name.ToLower().Contains(searchText)));
             }
+
+            // Ordering
+            switch (orderBy)
+            {
+                case "Name":
+                    query = orderDirection == "ASC"
+                        ? query.OrderBy(s => s.Name)
+                        : query.OrderByDescending(s => s.Name);
+                    break;
+
+                case "Genre":
+                    query = orderDirection == "ASC"
+                        ? query.OrderBy(s => s.Genre.GenreName)
+                        : query.OrderByDescending(s => s.Genre.GenreName);
+                    break;
+
+                default:
+                    throw new ArgumentException(
+                        "Invalid order by field. Use 'Name' or 'Genre'.",
+                        nameof(orderBy));
+            }
+
+            return await query.ToListAsync();
         }
         catch (Exception ex)
         {
-            throw new DatabaseException("An error occurred while retrieving songs from the database.", ex);
+            throw new DatabaseException(
+                "An error occurred while retrieving songs.",
+                ex);
         }
     }
+
     public static int GetAudioFileLengthInSeconds(string relativePath)
     {
         try

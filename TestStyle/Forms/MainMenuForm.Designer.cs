@@ -49,6 +49,7 @@ namespace TestStyle
             songCreationButton = new Button();
             profilePictureBox = new PictureBox();
             searchBox = new TextBox();
+            fakeButton = new Button();
             songPanel.SuspendLayout();
             songBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)songPictureBox).BeginInit();
@@ -110,7 +111,6 @@ namespace TestStyle
             songBox.Name = "songBox";
             songBox.Size = new Size(854, 58);
             songBox.TabIndex = 1;
-            songBox.Paint += songBox_Paint;
             // 
             // songGenreLabel
             // 
@@ -292,9 +292,24 @@ namespace TestStyle
             searchBox.Location = new Point(242, 22);
             searchBox.Margin = new Padding(3, 2, 3, 2);
             searchBox.Name = "searchBox";
+            searchBox.PlaceholderText = "Search for songs...";
             searchBox.Size = new Size(535, 23);
             searchBox.TabIndex = 9;
             searchBox.Validated += searchBox_Validated;
+            // 
+            // fakeButton
+            // 
+            fakeButton.BackColor = Color.FromArgb(20, 20, 20);
+            fakeButton.Cursor = Cursors.Hand;
+            fakeButton.FlatStyle = FlatStyle.Flat;
+            fakeButton.Font = new Font("Segoe UI", 8F);
+            fakeButton.ForeColor = Color.FromArgb(255, 128, 0);
+            fakeButton.Location = new Point(783, 22);
+            fakeButton.Name = "fakeButton";
+            fakeButton.Size = new Size(51, 23);
+            fakeButton.TabIndex = 14;
+            fakeButton.Text = "Search";
+            fakeButton.UseVisualStyleBackColor = false;
             // 
             // MainMenuForm
             // 
@@ -302,6 +317,7 @@ namespace TestStyle
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 20, 20);
             ClientSize = new Size(1184, 661);
+            Controls.Add(fakeButton);
             Controls.Add(label5);
             Controls.Add(searchBox);
             Controls.Add(profilePictureBox);
@@ -346,5 +362,6 @@ namespace TestStyle
         private Label songLengthLabel;
         private Label songAuthorLabel;
         private Label songTitleLabel;
+        private Button fakeButton;
     }
 }

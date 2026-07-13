@@ -179,7 +179,9 @@ public partial class SigninForm : Form
                     MessageBox.Show("Login is OK: " + messageModel.MessageContent, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //save user info to local storage-------------------------------------------------------------------------
                     File.WriteAllBytes("UserInfo.txt", Encoding.UTF8.GetBytes($"{txtEmail.Text}\n{txtPassword.Text}\n{messageModel.Name}"));
-
+                    UserSession.Username = messageModel.Name;
+                    UserSession.Email = txtEmail.Text;
+                    UserSession.Password = txtPassword.Text;
                     //--------------------------------------------------------------------------------------------------------
                     this.Close();
                 }
